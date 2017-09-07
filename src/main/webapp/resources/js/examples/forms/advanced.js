@@ -31,7 +31,7 @@ $(function(){
 
     //Select2 multiple options example
     $("#select2-example-multiple").select2({
-        placeholder: "Select a country",
+        placeholder: "Select a project",
         allowClear: true
     });
 

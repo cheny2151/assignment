@@ -37,7 +37,8 @@ public class Analyst extends BaseEntity {
         this.analystName = analystName;
     }
 
-    @OneToMany(mappedBy = "analyst",cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
+    @JoinTable(name = "analyst_project")
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     public List<Project> getProjects() {
         return projects;
     }
@@ -46,7 +47,7 @@ public class Analyst extends BaseEntity {
         this.projects = projects;
     }
 
-    @ManyToMany(mappedBy = "analysts",cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "analysts", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     public List<SerialNumber> getSerialNumbers() {
         return serialNumbers;
     }

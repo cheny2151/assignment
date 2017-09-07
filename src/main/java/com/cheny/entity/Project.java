@@ -1,6 +1,9 @@
 package com.cheny.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.util.List;
 
 /**
@@ -9,13 +12,13 @@ import java.util.List;
  */
 @Entity
 @Table
-public class Project extends BaseEntity{
+public class Project extends BaseEntity {
 
     private static final long serialVersionUID = -7172278231663882157L;
 
     private String projectName;
 
-    private Analyst analyst;
+    private List<Analyst> analysts;
 
     private List<SerialNumber> serialNumbers;
 
@@ -27,16 +30,16 @@ public class Project extends BaseEntity{
         this.projectName = projectName;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Analyst getAnalyst() {
-        return analyst;
+    @ManyToMany(mappedBy = "projects", fetch = FetchType.LAZY)
+    public List<Analyst> getAnalyst() {
+        return analysts;
     }
 
-    public void setAnalyst(Analyst analyst) {
-        this.analyst = analyst;
+    public void setAnalyst(List<Analyst> analysts) {
+        this.analysts = analysts;
     }
 
-    @ManyToMany(mappedBy = "projects",fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "projects", fetch = FetchType.LAZY)
     public List<SerialNumber> getSerialNumbers() {
         return serialNumbers;
     }
