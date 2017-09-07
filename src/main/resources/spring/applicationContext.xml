@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd"
+       default-lazy-init="true">
+
+    <context:property-placeholder location="classpath*:/system.properties" ignore-resource-not-found="true"
+                                  ignore-unresolvable="true"/>
+
+    <context:component-scan base-package="com.cheny.dao"/>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="initialPoolSize" value="${connection_pools.initial_pool_size}"/>
+        <property name="minPoolSize" value="${connection_pools.min_pool_size}"/>
+        <property name="maxPoolSize" value="${connection_pools.max_pool_size}"/>
+        <property name="maxIdleTime" value="${connection_pools.max_idle_time}"/>
+        <property name="acquireIncrement" value="${connection_pools.acquire_increment}"/>
+        <property name="checkoutTimeout" value="${connection_pools.checkout_timeout}"/>
+    </bean>
+
+    <!--jpda核心工厂类-->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--用于指定JPA配置文件-->
+        <property name="persistenceXmlLocation" value="classpath*:/persistence.xml"/>
+        <!--persistenceUnitName：指定持久化单元的名称-->
+        <property name="persistenceUnitName" value="persistenceUnit"/>
+        <!--用于设置实现厂商JPA实现的特定属性-->
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="showSql" value="true"/>
+                <!--自动更新表-->
+                <property name="generateDdl" value="true"/>
+            </bean>
+        </property>
+        <!-- jpaProperties或jpaPropertyMap：指定JPA属性 -->
+        <property name="jpaProperties">
+            <props>
+                <!--Hibernate方言（Dialect）的类名 Mysql 5.5版本应该用org.hibernate.dialect.MySQL5InnoDBDialect-->
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <!--entity与数据库表名的命名策略-->
+                <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+                <!--二级缓存-->
+                <prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+                <prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+                <!--是否开启查询缓存-->
+                <prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+                <!--一个非零值，用来决定JDBC的获取量大小-->
+                <prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
+                <!--一个非零值，会开启Hibernate使用JDBC2的批量更新功能取值. 建议值在 5 和 30之间-->
+                <prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+                <!--事务隔离级别 1，2，4，8(可选)-->
+                <prop key="hibernate.connection.isolation">4</prop>
+                <prop key="javax.persistence.validation.mode">none</prop>
+                <!--Hibernate Search是在apache Lucene的基础上建立的主要用于Hibernate的持久化模型的全文检索工具。
+                hibernate Search 全局检索 indexBase:代表索引文件默认的保存位置${java.io.tmpdir}:操作系统的缓存临时目录
+                <prop key="hibernate.search.default.directory_provider">org.hibernate.search.store.FSDirectoryProvider</prop>
+                <prop key="hibernate.search.default.indexBase">${java.io.tmpdir}/xxxxxxxxxx/index</prop>-->
+            </props>
+        </property>
+    </bean>
+
+    <!-- freemarker配置 -->
+    <bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPaths" value="${template.loader_path}"/>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="defaultEncoding">${template.encoding}</prop>
+                <prop key="url_escaping_charset">utf-8</prop>
+                <prop key="template_update_delay">${template.update_delay}</prop>
+                <prop key="tag_syntax">auto_detect</prop>
+                <prop key="whitespace_stripping">true</prop>
+                <prop key="classic_compatible">true</prop>
+                <prop key="number_format">${template.number_format}</prop>
+                <prop key="boolean_format">${template.boolean_format}</prop>
+                <prop key="datetime_format">${template.datetime_format}</prop>
+                <prop key="date_format">${template.date_format}</prop>
+                <prop key="time_format">${template.time_format}</prop>
+                <prop key="object_wrapper">freemarker.ext.beans.BeansWrapper</prop>
+            </props>
+        </property>
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="contextPath" value="#{servletContext.contextPath}"/>
+                <entry key="time" value="#{T(java.lang.System).currentTimeMillis()}"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- 扫描注解 -->
+    <context:component-scan base-package="com.cheny.service"/>
+    <!-- 配置事务管理器 -->
+    <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 开启注解管理事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!-- ehcache缓存 -->
+    <bean id="ehCacheManagerFactoryBean" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:ehcache.xml"/>
+    </bean>
+
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="ehCacheManagerFactoryBean"/>
+    </bean>
+
+    <!-- 启用缓存注解开关 -->
+    <cache:annotation-driven cache-manager="cacheManager"/>
+
+</beans>

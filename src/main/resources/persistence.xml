@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+			 http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
+
+<!--EntityManager对象的事务管理方式有两种，分别为JTA和RESOURCE_LOCAL，即Java Transaction API方法和本地的事务管理。
+	1：RESOURCE_LOCAL事务数据库本地的事务。它是数据库级别的事务，只能针对一种数据库，不支持分布式的事务。对于中小型的应用，可以采用RESOURCE_LOCAL管理EntityManager事务。
+	2：JTA事务（Java Transaction API）是J2EE规范中有关事务的标准。它是容器级别的事务，只能运行在J2EE服务器中。它的最大优势是可以支持分布式的事务，如果系统采用的是分布式的数据库，那么只能选择JTA管理EntityManager事务。-->
+	<persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL" />
+
+</persistence>
