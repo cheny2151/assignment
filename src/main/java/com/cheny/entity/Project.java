@@ -22,6 +22,13 @@ public class Project extends BaseEntity {
 
     private List<SerialNumber> serialNumbers;
 
+    /**
+     * 标准
+     */
+    private String standard;
+
+    private Double price;
+
     public String getProjectName() {
         return projectName;
     }

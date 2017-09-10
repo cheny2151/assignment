@@ -63,8 +63,8 @@
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="${contextPath}/analyst_list">人员列表</a></li>
-                                    <li><a href="${contextPath}/analyst_add">添加</a></li>
+                                    <li><a href="${contextPath}/analyst/list">人员列表</a></li>
+                                    <li><a href="${contextPath}/page/analyst_add">添加</a></li>
                                     <#--<li><a href="${contextPath}/ui-elements_tabs">Tabs</a></li>
                                     <li><a href="${contextPath}/ui-elements_buttons">Buttons</a></li>
                                     <li><a href="${contextPath}/ui-elements_typography">Typography</a></li>
@@ -77,14 +77,14 @@
                                 <a><i class="fa fa-pie-chart" aria-hidden="true"></i><span>项目</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="charts_chart-js">项目列表</a></li>
-                                    <li><a href="charts_morris">添加</a></li>
+                                    <li><a href="${pageContext}/page/charts_morris">添加</a></li>
                                 </ul>
                             </li>
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-columns" aria-hidden="true"></i><span>任务单</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="forms_layouts">任务列表</a></li>
-                                    <li><a href="forms_elements">添加</a></li>
+                                    <li><a href="${pageContext}/forms_layouts">任务列表</a></li>
+                                    <li><a href="${pageContext}/page/forms_elements">添加</a></li>
                                     <li><a href="forms_advanced">Advanced</a></li>
                                     <li><a href="forms_validation">Validation</a></li>
                                 </ul>

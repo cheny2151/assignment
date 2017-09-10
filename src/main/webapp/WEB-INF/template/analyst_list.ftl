@@ -10,11 +10,10 @@
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/animate.css/animate.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/common.css">
 </head>
 
 <body>
-
-
 
 <div class="wrap">
     <div class="page-header">
@@ -43,9 +42,9 @@
                 </div>
             </div>
             <div class="header-separator"></div>
-        <#-- <div class="header-section">
+        [#-- <div class="header-section">
              <a href="#"><i class="fa fa-sign-out log-out" aria-hidden="true"></i></a>
-         </div>-->
+         </div>--]
         </div>
     </div>
 
@@ -65,33 +64,33 @@
                             <li class="has-child-item open-item active-item">
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li class="active-item"><a href="analyst_list">人员列表</a></li>
-                                    <li><a href="${contextPath}/analyst_add">添加</a></li>
-                                    <#--<li><a href="${contextPath}/ui-elements_tabs">Tabs</a></li>
+                                    <li class="active-item"><a href="${contextPath}/analyst/list">人员列表</a></li>
+                                    <li><a href="${contextPath}/page/analyst_add">添加</a></li>
+                                    [#--<li><a href="${contextPath}/ui-elements_tabs">Tabs</a></li>
                                     <li><a href="${contextPath}/ui-elements_buttons">Buttons</a></li>
                                     <li><a href="${contextPath}/ui-elements_typography">Typography</a></li>
                                     <li><a href="${contextPath}/ui-elements_alerts">Alerts</a></li>
                                     <li><a href="${contextPath}/ui-elements_modals">Modals</a></li>
-                                    <li><a href="${contextPath}/ui-elements_animations-appear">Animations</a></li>-->
+                                    <li><a href="${contextPath}/ui-elements_animations-appear">Animations</a></li>--]
                                 </ul>
                             </li>
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-pie-chart" aria-hidden="true"></i><span>项目</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="${contextPath}/project_list">项目列表</a></li>
-                                    <li><a href="${contextPath}/project_add">添加</a></li>
+                                    <li><a href="${contextPath}/page/project_list">项目列表</a></li>
+                                    <li><a href="${contextPath}/page/project_add">添加</a></li>
                                 </ul>
                             </li>
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-columns" aria-hidden="true"></i><span>任务单</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="${contextPath}/assignment_list">任务列表</a></li>
-                                    <li><a href="${contextPath}/assignment_add">添加</a></li>
-                                    <#--<li><a href="${contextPath}/forms_advanced">Advanced</a></li>-->
-                                    <#--<li><a href="${contextPath}/forms_validation">Validation</a></li>-->
+                                    <li><a href="${contextPath}/page/assignment_list">任务列表</a></li>
+                                    <li><a href="${contextPath}/page/assignment_add">添加</a></li>
+                                    [#--<li><a href="${contextPath}/forms_advanced">Advanced</a></li>--]
+                                    [#--<li><a href="${contextPath}/forms_validation">Validation</a></li>--]
                                 </ul>
                             </li>
-                            <#--<li class="has-child-item close-item">
+                            [#--<li class="has-child-item close-item">
                                 <a><i class="fa fa-table" aria-hidden="true"></i><span>Tables</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="tables_basic.html">Basic</a></li>
@@ -172,7 +171,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>-->
+                            </li>--]
                         </ul>
                     </nav>
                 </div>
@@ -207,10 +206,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>...</td>
-                            <td>xxx</td>
-                        </tr>
+                        [#list analysts as analyst]
+                            <tr>
+                                <td>
+                                    <input type="checkbox" value="${analyst.id}">
+                                </td>
+                                <td>
+                                    <span>${analyst.analystName}</span>
+                                </td>
+                                <td>
+                                    [#--<span>${analyst}</span>--]
+                                </td>
+                                <td style="width: 150px;">
+                                    <a class="fa fa-cog" href="/analyst/edit?id=${analyst.id}" style="cursor: pointer;"></a>
+                                    &nbsp;
+                                    &nbsp;
+                                    <a class="fa fa-times action" href="/analyst/delete?id=${analyst.id}" style="cursor: pointer;"></a>
+                                </td>
+                            </tr>
+                        [/#list]
                         </tbody>
                     </table>
                 </div>
@@ -218,51 +232,6 @@
 
 
         </div>
-        <div class="right-sidebar">
-            <div class="right-sidebar-toggle" data-toggle-class="right-sidebar-opened" data-target="html">
-                <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
-            </div>
-            <div id="right-nav" class="nano">
-                <div class="nano-content">
-                    <div class="template-settings">
-                        <h4 class="text-center">Template Settings</h4>
-                        <ul class="toggle-settings pv-xlg">
-                            <li>
-                                <h6 class="text">Header fixed</h6>
-                                <label class="switch">
-                                    <input id="header-fixed" type="checkbox" checked>
-                                    <span class="slider round"></span>
-                                </label>
-                            </li>
-                            <li>
-                                <h6 class="text">Left sidebar fixed</h6>
-                                <label class="switch">
-                                    <input id="left-sidebar-fixed" type="checkbox" checked>
-                                    <span class="slider round"></span>
-                                </label>
-                            </li>
-                            <li>
-                                <h6 class="text">Left sidebar collapsed</h6>
-                                <label class="switch">
-                                    <input id="left-sidebar-collapsed" type="checkbox">
-                                    <span class="slider round"></span>
-                                </label>
-                            </li>
-                            <li>
-                                <h6 class="text">Content header fixed</h6>
-                                <label class="switch">
-                                    <input id="content-header-fixed" type="checkbox" checked>
-                                    <span class="slider round"></span>
-                                </label>
-                            </li>
-                        </ul>
-                        <h4 class="text-center">Template Colors</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
     </div>
 </div>
 <script src="${contextPath}/resources/js/jquery.min.js"></script>
@@ -270,6 +239,12 @@
 <script src="${contextPath}/resources/vendor/nano-scroller/nano-scroller.js"></script>
 <script src="${contextPath}/resources/js/template-script.min.js"></script>
 <script src="${contextPath}/resources/js/template-init.min.js"></script>
+<script src="${contextPath}/resources/js/common.js"></script>
+<script type="text/javascript">
+    $(function () {
+        [@flush_message /]
+    })
+</script>
 </body>
 
 </html>

@@ -12,6 +12,7 @@
                                   ignore-unresolvable="true"/>
 
     <context:component-scan base-package="com.cheny.dao"/>
+    <context:component-scan base-package="com.cheny.template"/>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="${jdbc.driver}"/>
@@ -91,6 +92,7 @@
             <map>
                 <entry key="contextPath" value="#{servletContext.contextPath}"/>
                 <entry key="time" value="#{T(java.lang.System).currentTimeMillis()}"/>
+                <entry key="flush_message" value-ref="flushMessageDirective" />
             </map>
         </property>
     </bean>

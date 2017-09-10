@@ -1,0 +1,14 @@
+div.message{
+    position:absolute;width:240px;height:160px;
+    left:50%;top:50%;
+    margin-left:-120px;margin-top:-100px;
+    border:solid 1px #ccc;background-color: white;z-index:9999;
+    -webkit-box-shadow:0 0 10px rgba(0, 106, 195, .5); -moz-box-shadow:0 0 10px rgba(0, 106, 195, .5); box-shadow:0 0 10px rgba(0, 106, 195,.5);
+}
+div.message_title{
+    width:239px;height: 25px;margin:0 0 0 0;background-color: #006AC3;padding-left: 5px;
+}
+div.message_content{
+    text-align: center;
+    padding-top: 40px;
+}

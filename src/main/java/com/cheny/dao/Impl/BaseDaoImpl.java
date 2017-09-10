@@ -3,8 +3,13 @@ package com.cheny.dao.Impl;
 import com.cheny.dao.BaseDao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 /**
  * Created by cheny on 2017/8/6.
@@ -40,6 +45,15 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @Override
     public T find(Long id) {
         return entityManager.find(clazz, id);
+    }
+
+    @Override
+    public List<T> findList() {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> query = criteriaBuilder.createQuery(clazz);
+        Root<T> root = query.from(clazz);
+        query.select(root);
+        return entityManager.createQuery(query).setFlushMode(FlushModeType.COMMIT).getResultList();
     }
 
 }

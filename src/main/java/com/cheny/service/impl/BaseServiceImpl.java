@@ -5,6 +5,8 @@ import com.cheny.service.BaseService;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by cheny on 2017/8/6.
  */
@@ -32,6 +34,11 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         baseDao.remove(entity);
     }
 
+    @Override
+    public void remove(Long id) {
+        T entity = baseDao.find(id);
+        baseDao.remove(entity);
+    }
 
     @Override
     @Cacheable(value = "myCache")
@@ -40,4 +47,10 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         System.out.println("real running");
         return baseDao.find(id);
     }
+
+    @Override
+    public List<T> findList() {
+        return baseDao.findList();
+    }
+
 }

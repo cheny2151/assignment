@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/animate.css/animate.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/common.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/select2/css/select2.min.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/select2/css/select2-bootstrap.min.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/bootstrap_date-picker/css/bootstrap-datepicker3.min.css">
@@ -45,9 +46,9 @@
                 </div>
             </div>
             <div class="header-separator"></div>
-        <#-- <div class="header-section">
+        [#-- <div class="header-section">
              <a href="#"><i class="fa fa-sign-out log-out" aria-hidden="true"></i></a>
-         </div>-->
+         </div>--]
         </div>
     </div>
 
@@ -63,37 +64,37 @@
                 <div class="nano-content">
                     <nav>
                         <ul class="nav" id="main-nav">
-                            <li><a href="index.ftl"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
+                            <li><a href="${contextPath}/index"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
                             <li class="has-child-item open-item active-item">
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="analyst_list.ftl">人员列表</a></li>
-                                    <li class="active-item"><a href="analyst_add.ftl">添加</a></li>
-                                    <#--<li><a href="ui-elements_tabs.ftl">Tabs</a></li>
+                                    <li><a href="${contextPath}/analyst/list">人员列表</a></li>
+                                    <li class="active-item"><a href="${contextPath}/page/analyst_add" >添加</a></li>
+                                    [#--<li><a href="ui-elements_tabs.ftl">Tabs</a></li>
                                     <li><a href="ui-elements_buttons.ftl">Buttons</a></li>
                                     <li><a href="ui-elements_typography.ftl">Typography</a></li>
                                     <li><a href="ui-elements_alerts.ftl">Alerts</a></li>
                                     <li><a href="ui-elements_modals.ftl">Modals</a></li>
-                                    <li><a href="ui-elements_animations-appear.ftl">Animations</a></li>-->
+                                    <li><a href="ui-elements_animations-appear.ftl">Animations</a></li>--]
                                 </ul>
                             </li>
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-pie-chart" aria-hidden="true"></i><span>项目</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="project_list.ftl">项目列表</a></li>
-                                    <li><a href="project_add.ftl">添加</a></li>
+                                    <li><a href="${contextPath}/project_list.ftl">项目列表</a></li>
+                                    <li><a href="${contextPath}/page/project_add.ftl">添加</a></li>
                                 </ul>
                             </li>
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-columns" aria-hidden="true"></i><span>任务单</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="assignment_list.ftl">任务列表</a></li>
-                                    <li><a href="assignment_add.ftl">添加</a></li>
-                                    <#--<li><a href="forms_advanced.ftl">Advanced</a></li>-->
-                                    <#--<li><a href="forms_validation.ftl">Validation</a></li>-->
+                                    <li><a href="${contextPath}/assignment_list.ftl">任务列表</a></li>
+                                    <li><a href="${contextPath}/page/assignment_add.ftl">添加</a></li>
+                                    [#--<li><a href="forms_advanced.ftl">Advanced</a></li>--]
+                                    [#--<li><a href="forms_validation.ftl">Validation</a></li>--]
                                 </ul>
                             </li>
-                        <#--    <li class="has-child-item close-item">
+                        [#--    <li class="has-child-item close-item">
                                 <a><i class="fa fa-table" aria-hidden="true"></i><span>Tables</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="tables_basic.html">Basic</a></li>
@@ -174,7 +175,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>-->
+                            </li>--]
                         </ul>
                     </nav>
                 </div>
@@ -291,9 +292,12 @@
 <script src="${contextPath}/resources/vendor/bootstrap_date-picker/js/bootstrap-datepicker.min.js"></script>
 <script src="${contextPath}/resources/vendor/bootstrap_time-picker/js/bootstrap-timepicker.js"></script>
 <script src="${contextPath}/resources/vendor/bootstrap_color-picker/js/bootstrap-colorpicker.min.js"></script>
+<script src="${contextPath}/resources/js/common.js"></script>
 
     <script type="text/javascript">
-
+        $(function () {
+            [@flush_message /]
+        })
     </script>
 </body>
 

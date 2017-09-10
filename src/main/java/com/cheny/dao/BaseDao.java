@@ -1,5 +1,7 @@
 package com.cheny.dao;
 
+import java.util.List;
+
 /**
  * Created by cheny on 2017/8/6.
  */
@@ -12,5 +14,7 @@ public interface BaseDao<T> {
     void remove(T entity);
 
     T find(Long id);
+
+    List<T> findList();
 
 }

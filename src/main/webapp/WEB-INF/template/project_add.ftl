@@ -187,108 +187,98 @@
                 </div>
             </div>
         </div>
+
         <div class="content">
             <div class="content-header">
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
-                        <li><i class="fa fa-pie-chart" aria-hidden="true"></i><a href="#">项目</a></li>
+                        <li><i class="fa fa-home" aria-hidden="true"></i><a href="#">人员管理</a></li>
                         <li><a>添加</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="row animated fadeInUp">
-                <div class="col-sm-6">
-                    <h4 class="section-subtitle"><b>Line</b> Chart</h4>
-                    <div class="panel">
-                        <div class="panel-content">
-                            <div id="line-example"></div>
+
+            <div class="panel">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form-horizontal form-stripe" action="${contextPath}/analyst/add" method="get">
+                                <div class="form-group">
+                                    <label for="placeholder" class="col-sm-2 control-label">项目名</label>
+                                    <div class="col-sm-10">
+                                       <input type="text" class="form-control" id="placeholder" placeholder="name" name="projectName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="disabled" class="col-sm-2 control-label">收费</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="disabled" placeholder="price" name="price" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="disabled" class="col-sm-2 control-label">参照标准</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="disabled" placeholder="standard" name="standard">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" class="btn btn-primary">submit</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <h4 class="section-subtitle"><b>Area</b> Chart</h4>
-                    <div class="panel">
-                        <div class="panel-content">
-                            <div id="area-example"></div>
-                        </div>
-                    </div>
+
+            </div>
+
+            <div class="right-sidebar">
+                <div class="right-sidebar-toggle" data-toggle-class="right-sidebar-opened" data-target="html">
+                    <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
                 </div>
-                <div class="col-sm-6">
-                    <h4 class="section-subtitle"><b>Bar</b> Chart</h4>
-                    <div class="panel">
-                        <div class="panel-content">
-                            <div id="bar-example"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <h4 class="section-subtitle"><b>Donut</b> Chart</h4>
-                    <div class="panel">
-                        <div class="panel-content">
-                            <div id="donut-example"></div>
+                <div id="right-nav" class="nano">
+                    <div class="nano-content">
+                        <div class="template-settings">
+                            <h4 class="text-center">Template Settings</h4>
+                            <ul class="toggle-settings pv-xlg">
+                                <li>
+                                    <h6 class="text">Header fixed</h6>
+                                    <label class="switch">
+                                        <input id="header-fixed" type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <h6 class="text">Left sidebar fixed</h6>
+                                    <label class="switch">
+                                        <input id="left-sidebar-fixed" type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <h6 class="text">Left sidebar collapsed</h6>
+                                    <label class="switch">
+                                        <input id="left-sidebar-collapsed" type="checkbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <h6 class="text">Content header fixed</h6>
+                                    <label class="switch">
+                                        <input id="content-header-fixed" type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
         </div>
-        <div class="right-sidebar">
-            <div class="right-sidebar-toggle" data-toggle-class="right-sidebar-opened" data-target="html">
-                <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
-            </div>
-            <div id="right-nav" class="nano">
-                <div class="nano-content">
-                    <div class="template-settings">
-                        <h4 class="text-center">Template Settings</h4>
-                        <ul class="toggle-settings pv-xlg">
-                            <li>
-                                <h6 class="text">Header fixed</h6>
-                                <label class="switch">
-                                    <input id="header-fixed" type="checkbox" checked>
-                                    <span class="slider round"></span>
-                                </label>
-                            </li>
-                            <li>
-                                <h6 class="text">Left sidebar fixed</h6>
-                                <label class="switch">
-                                    <input id="left-sidebar-fixed" type="checkbox" checked>
-                                    <span class="slider round"></span>
-                                </label>
-                            </li>
-                            <li>
-                                <h6 class="text">Left sidebar collapsed</h6>
-                                <label class="switch">
-                                    <input id="left-sidebar-collapsed" type="checkbox">
-                                    <span class="slider round"></span>
-                                </label>
-                            </li>
-                            <li>
-                                <h6 class="text">Content header fixed</h6>
-                                <label class="switch">
-                                    <input id="content-header-fixed" type="checkbox" checked>
-                                    <span class="slider round"></span>
-                                </label>
-                            </li>
-                        </ul>
-                        <h4 class="text-center">Template Colors</h4>
-                        <ul class="toggle-colors">
-                            <li>
-                                <a href="${contextPath}/index" class="on-click"> <img alt="任务分派-green" src="images/任务分派-green.png" /></a>
-                            </li>
-                            <li>
-                                <a href="../任务分派-light/index.html" class="on-click"> <img alt="任务分派-light" src="images/任务分派-light.png" /></a>
-                            </li>
-                            <li>
-                                <a href="../任务分派-blue/index.html" class="on-click"> <img alt="任务分派-blue" src="images/任务分派-blue.png" /></a>
-                            </li>
-                            <li>
-                                <a href="../任务分派-red/index.html" class="on-click"> <img alt="任务分派-red" src="images/任务分派-red.png" /></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
+
     </div>
 </div>
 <script src="${contextPath}/resources/js/jquery.min.js"></script>

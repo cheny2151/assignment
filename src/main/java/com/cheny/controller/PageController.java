@@ -1,6 +1,9 @@
 package com.cheny.controller;
 
+import com.cheny.VO.Message;
+import com.cheny.template.FlushMessageDirective;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +20,7 @@ public class PageController extends BaseController {
         return "/index";
     }
 
-    @RequestMapping(value = "/{a}_{b}", method = RequestMethod.GET)
+    @RequestMapping(value = "/page/{a}_{b}", method = RequestMethod.GET)
     public String forward(@PathVariable String a, @PathVariable String b) {
         return "/" + a + "_" + b;
     }
