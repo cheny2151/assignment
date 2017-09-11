@@ -9,20 +9,13 @@
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/animate.css/animate.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/common.css">
 </head>
 
 <body>
 <div>
     <div>
         <div class="content" style="margin: 0;">
-           <#-- <div class="content-header" >
-                <div class="leftside-content-header">
-                    <ul class="breadcrumbs">
-                        <li><i class="fa fa-copy" aria-hidden="true"></i><a href="#">Pages</a></li>
-                        <li><a>Error 404</a></li>
-                    </ul>
-                </div>
-            </div>-->
             <div class="row animated bounce" style="margin:0;">
                 <div style="margin:0;">
                     <div>
@@ -50,6 +43,13 @@
 <script src="${contextPath}/resources/vendor/nano-scroller/nano-scroller.js"></script>
 <script src="${contextPath}/resources/js/template-script.min.js"></script>
 <script src="${contextPath}/resources/js/template-init.min.js"></script>
+<script src="${contextPath}/resources/js/common.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        [@flush_message /]
+    })
+</script>
 </body>
 
 </html>

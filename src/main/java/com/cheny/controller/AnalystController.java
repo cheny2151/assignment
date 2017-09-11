@@ -32,10 +32,20 @@ public class AnalystController extends BaseController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String add(Analyst analyst, RedirectAttributes redirectAttributes) {
+    public String add(Analyst analyst, RedirectAttributes redirectAttributes, Model model) {
+        if (analyst == null) {
+            return illegalView(model);
+        }
         analystService.persist(analyst);
         addSuccessFlushMessage(redirectAttributes, "添加成功");
         return "redirect:list";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String edit(Long id,Model model) {
+        Analyst analyst = analystService.find(id);
+        model.addAttribute("analyst",analyst);
+        return "/analyst_edit";
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.GET)

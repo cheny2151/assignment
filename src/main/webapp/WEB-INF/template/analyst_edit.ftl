@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="zh" class="fixed">
+<html lang="en" class="fixed">
 
 <head>
     <meta charset="UTF-8">
@@ -11,10 +11,14 @@
     <link rel="stylesheet" href="${contextPath}/resources/vendor/animate.css/animate.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/common.css">
+    <link rel="stylesheet" href="${contextPath}/resources/vendor/select2/css/select2.min.css">
+    <link rel="stylesheet" href="${contextPath}/resources/vendor/select2/css/select2-bootstrap.min.css">
+    <link rel="stylesheet" href="${contextPath}/resources/vendor/bootstrap_date-picker/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="${contextPath}/resources/vendor/bootstrap_time-picker/css/timepicker.css">
+    <link rel="stylesheet" href="${contextPath}/resources/vendor/bootstrap_color-picker/css/bootstrap-colorpicker.min.css">
 </head>
 
 <body>
-
 <div class="wrap">
     <div class="page-header">
         <div class="leftside-header">
@@ -60,37 +64,37 @@
                 <div class="nano-content">
                     <nav>
                         <ul class="nav" id="main-nav">
-                            <li><a href="index"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
+                            <li><a href="${contextPath}/index"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
                             <li class="has-child-item open-item active-item">
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li class="active-item"><a href="${contextPath}/analyst/list">人员列表</a></li>
-                                    <li><a href="${contextPath}/page/analyst_add">添加</a></li>
-                                    [#--<li><a href="${contextPath}/ui-elements_tabs">Tabs</a></li>
-                                    <li><a href="${contextPath}/ui-elements_buttons">Buttons</a></li>
-                                    <li><a href="${contextPath}/ui-elements_typography">Typography</a></li>
-                                    <li><a href="${contextPath}/ui-elements_alerts">Alerts</a></li>
-                                    <li><a href="${contextPath}/ui-elements_modals">Modals</a></li>
-                                    <li><a href="${contextPath}/ui-elements_animations-appear">Animations</a></li>--]
+                                    <li><a href="${contextPath}/analyst/list">人员列表</a></li>
+                                    <li class="active-item"><a href="${contextPath}/page/analyst_add" >添加</a></li>
+                                    [#--<li><a href="ui-elements_tabs.ftl">Tabs</a></li>
+                                    <li><a href="ui-elements_buttons.ftl">Buttons</a></li>
+                                    <li><a href="ui-elements_typography.ftl">Typography</a></li>
+                                    <li><a href="ui-elements_alerts.ftl">Alerts</a></li>
+                                    <li><a href="ui-elements_modals.ftl">Modals</a></li>
+                                    <li><a href="ui-elements_animations-appear.ftl">Animations</a></li>--]
                                 </ul>
                             </li>
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-pie-chart" aria-hidden="true"></i><span>项目</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="${contextPath}/page/project_list">项目列表</a></li>
-                                    <li><a href="${contextPath}/page/project_add">添加</a></li>
+                                    <li><a href="${contextPath}/project_list.ftl">项目列表</a></li>
+                                    <li><a href="${contextPath}/page/project_add.ftl">添加</a></li>
                                 </ul>
                             </li>
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-columns" aria-hidden="true"></i><span>任务单</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="${contextPath}/page/assignment_list">任务列表</a></li>
-                                    <li><a href="${contextPath}/page/assignment_add">添加</a></li>
-                                    [#--<li><a href="${contextPath}/forms_advanced">Advanced</a></li>--]
-                                    [#--<li><a href="${contextPath}/forms_validation">Validation</a></li>--]
+                                    <li><a href="${contextPath}/assignment_list.ftl">任务列表</a></li>
+                                    <li><a href="${contextPath}/page/assignment_add.ftl">添加</a></li>
+                                    [#--<li><a href="forms_advanced.ftl">Advanced</a></li>--]
+                                    [#--<li><a href="forms_validation.ftl">Validation</a></li>--]
                                 </ul>
                             </li>
-                            [#--<li class="has-child-item close-item">
+                        [#--    <li class="has-child-item close-item">
                                 <a><i class="fa fa-table" aria-hidden="true"></i><span>Tables</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="tables_basic.html">Basic</a></li>
@@ -107,9 +111,9 @@
                                     <li class="has-child-item close-item">
                                         <a>Error pages</a>
                                         <ul class="nav child-nav level-2 ">
-                                            <li><a href="pages_error-404-content">Error 404 content</a></li>
-                                            <li><a href="pages_error-404">Error 404 page</a></li>
-                                            <li><a href="pages_error-500">Error 500</a></li>
+                                            <li><a href="error_404.ftl">Error 404 content</a></li>
+                                            <li><a href="404.html">Error 404 page</a></li>
+                                            <li><a href="pages_error-500.ftl">Error 500</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="pages_faq.html">FAQ</a></li>
@@ -177,61 +181,103 @@
                 </div>
             </div>
         </div>
+
         <div class="content">
             <div class="content-header">
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
                         <li><i class="fa fa-home" aria-hidden="true"></i><a href="#">人员管理</a></li>
-                        <li><a>人员列表</a></li>
+                        <li><a>添加</a></li>
                     </ul>
                 </div>
             </div>
-            <form action="" method="get">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover table-bordered text-center">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <input type="checkbox" id="all">
-                                </th>
-                                <th>
-                                    姓名
-                                </th>
-                                <th>
-                                    项目数量
-                                </th>
-                                <th>
-                                    操作
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        [#list analysts as analyst]
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="id" value="${analyst.id}">
-                                </td>
-                                <td>
-                                    <span>${analyst.analystName}</span>
-                                </td>
-                                <td>
-                                    [#--<span>${analyst}</span>--]
-                                </td>
-                                <td style="width: 150px;">
-                                    <a class="fa fa-cog" href="/analyst/edit?id=${analyst.id}" style="cursor: pointer;"></a>
-                                    &nbsp;
-                                    &nbsp;
-                                    <a class="fa fa-times action" href="/analyst/delete?id=${analyst.id}" style="cursor: pointer;"></a>
-                                </td>
-                            </tr>
-                        [/#list]
-                        </tbody>
-                    </table>
-                </div>
-            </form>
 
+            <div class="panel">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form-horizontal form-stripe" action="${contextPath}/analyst/update" method="get">
+                                <input type="hidden" name="id" value="${analyst.id}">
+                                <div class="form-group">
+                                    <label for="placeholder" class="col-sm-2 control-label">姓名</label>
+                                    <div class="col-sm-10">
+                                    <span class="input-with-icon">
+                                    <input type="text" class="form-control" id="placeholder" placeholder="name" name="analystName" value="${analyst.analystName}">
+                                    <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="disabled" class="col-sm-2 control-label">Disabled</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="disabled" placeholder="Disabled input" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="select2-example-multiple" class="col-sm-2 control-label">选择项目:</label>
+                                    <div class="col-sm-10">
+                                        <select name="project" id="select2-example-multiple" class="form-control" multiple="multiple" style="width: 100%">
+                                            <optgroup label="项目列表">
+                                                <option value="AI" label="Anguilla">Anguilla</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="submit" class="btn btn-primary">submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
         </div>
+
+        <div class="right-sidebar">
+            <div class="right-sidebar-toggle" data-toggle-class="right-sidebar-opened" data-target="html">
+                <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+            </div>
+            <div id="right-nav" class="nano">
+                <div class="nano-content">
+                    <div class="template-settings">
+                        <h4 class="text-center">Template Settings</h4>
+                        <ul class="toggle-settings pv-xlg">
+                            <li>
+                                <h6 class="text">Header fixed</h6>
+                                <label class="switch">
+                                    <input id="header-fixed" type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <h6 class="text">Left sidebar fixed</h6>
+                                <label class="switch">
+                                    <input id="left-sidebar-fixed" type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <h6 class="text">Left sidebar collapsed</h6>
+                                <label class="switch">
+                                    <input id="left-sidebar-collapsed" type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <h6 class="text">Content header fixed</h6>
+                                <label class="switch">
+                                    <input id="content-header-fixed" type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
     </div>
 </div>
 <script src="${contextPath}/resources/js/jquery.min.js"></script>
@@ -239,23 +285,21 @@
 <script src="${contextPath}/resources/vendor/nano-scroller/nano-scroller.js"></script>
 <script src="${contextPath}/resources/js/template-script.min.js"></script>
 <script src="${contextPath}/resources/js/template-init.min.js"></script>
+<script src="${contextPath}/resources/js/examples/forms/advanced.js"></script>
+<script src="${contextPath}/resources/vendor/bootstrap_max-lenght/bootstrap-maxlength.js"></script>
+<script src="${contextPath}/resources/vendor/select2/js/select2.min.js"></script>
+<script src="${contextPath}/resources/vendor/input-masked/inputmask.bundle.min.js"></script>
+<script src="${contextPath}/resources/vendor/input-masked/phone-codes/phone.js"></script>
+<script src="${contextPath}/resources/vendor/bootstrap_date-picker/js/bootstrap-datepicker.min.js"></script>
+<script src="${contextPath}/resources/vendor/bootstrap_time-picker/js/bootstrap-timepicker.js"></script>
+<script src="${contextPath}/resources/vendor/bootstrap_color-picker/js/bootstrap-colorpicker.min.js"></script>
 <script src="${contextPath}/resources/js/common.js"></script>
-<script type="text/javascript">
-    $(function () {
 
-        [@flush_message /]
-
-        $("#all").on("change",function () {
-            var $this =$(this);
-            if ($this.prop("checked")){
-                $(":checkbox").prop("checked",true);
-            }else {
-                $(":checkbox").prop("checked",false);
-            }
+    <script type="text/javascript">
+        $(function () {
+            [@flush_message /]
         })
-
-    })
-</script>
+    </script>
 </body>
 
 </html>

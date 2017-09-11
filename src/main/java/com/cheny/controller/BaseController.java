@@ -5,6 +5,7 @@ import com.cheny.template.FlushMessageDirective;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -33,6 +34,16 @@ public class BaseController {
         if (redirectAttributes != null) {
             redirectAttributes.addFlashAttribute(FlushMessageDirective.FLUSH_MESSAGE_ATTRIBUTE_NAME, message);
         }
+    }
+
+    /**
+     * 非法操作视图
+     */
+    protected String illegalView(Model model) {
+        if (model != null) {
+            model.addAttribute(FlushMessageDirective.FLUSH_MESSAGE_ATTRIBUTE_NAME, "非法操作");
+        }
+        return "/404";
     }
 
     /*@ExceptionHandler
