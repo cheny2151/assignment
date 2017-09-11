@@ -50,9 +50,9 @@
                 </div>
             </div>
             <div class="header-separator"></div>
-        [#-- <div class="header-section">
+        <#-- <div class="header-section">
              <a href="#"><i class="fa fa-sign-out log-out" aria-hidden="true"></i></a>
-         </div>--]
+         </div>-->
         </div>
     </div>
 
@@ -74,7 +74,7 @@
                                 <ul class="nav child-nav level-1">
                                     <li><a href="${contextPath}/analyst/list">人员列表</a></li>
                                     <li><a href="${contextPath}/page/analyst_add.ftl">添加</a></li>
-                                [#--    <li><a href="ui-elements_tabs.ftl">Tabs</a></li>
+                                <#--    <li><a href="ui-elements_tabs.ftl">Tabs</a></li>
                                     <li><a href="ui-elements_buttons.ftl">Buttons</a></li>
                                     <li><a href="ui-elements_typography.ftl">Typography</a></li>
                                     <li><a href="ui-elements_alerts.ftl">Alerts</a></li>
@@ -86,7 +86,7 @@
                                             <li><a href="ui-elements_notifications-toastr.ftl">Toastr</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="ui-elements_animations-appear.ftl">Animations</a></li>--]
+                                    <li><a href="ui-elements_animations-appear.ftl">Animations</a></li>-->
                                 </ul>
                             </li>
                             <li class="has-child-item open-item active-item">
@@ -101,11 +101,11 @@
                                 <ul class="nav child-nav level-1">
                                     <li><a href="assignment_list.ftl">任务列表</a></li>
                                     <li><a href="${contextPath}/page/assignment_add.ftl">添加</a></li>
-                                    [#--<li><a href="forms_advanced.ftl">Advanced</a></li>--]
-                                    [#--<li><a href="forms_validation.ftl">Validation</a></li>--]
+                                    <#--<li><a href="forms_advanced.ftl">Advanced</a></li>-->
+                                    <#--<li><a href="forms_validation.ftl">Validation</a></li>-->
                                 </ul>
                             </li>
-                           [#-- <li class="has-child-item close-item">
+                           <#-- <li class="has-child-item close-item">
                                 <a><i class="fa fa-table" aria-hidden="true"></i><span>Tables</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="tables_basic.html">Basic</a></li>
@@ -186,7 +186,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>--]
+                            </li>-->
                         </ul>
                     </nav>
                 </div>
@@ -207,23 +207,23 @@
                 <div class="panel-content">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form-horizontal form-stripe" action="${contextPath}/project/add" method="get">
+                            <form class="form-horizontal form-stripe" action="${contextPath}/project/update" method="get">
                                 <div class="form-group">
                                     <label for="placeholder" class="col-sm-2 control-label">项目名</label>
                                     <div class="col-sm-10">
-                                       <input type="text" class="form-control" id="placeholder" placeholder="name" name="projectName">
+                                       <input type="text" class="form-control" id="placeholder" placeholder="name" name="projectName" value="${project.projectName}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="disabled" class="col-sm-2 control-label">收费</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="disabled" placeholder="price" name="price" >
+                                        <input type="text" class="form-control" id="disabled" placeholder="price" name="price" value="${project.price}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="disabled" class="col-sm-2 control-label">参照标准</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="disabled" placeholder="standard" name="standard">
+                                        <input type="text" class="form-control" id="disabled" placeholder="standard" name="standard" value="${project.standard}">
                                     </div>
                                 </div>
                                 <div class="form-group">

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/vendor/toastr/toastr.min.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/magnific-popup/magnific-popup.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/common.css">
 </head>
 
 <body>
@@ -76,8 +77,8 @@
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-pie-chart" aria-hidden="true"></i><span>项目</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="charts_chart-js">项目列表</a></li>
-                                    <li><a href="${pageContext}/page/charts_morris">添加</a></li>
+                                    <li><a href="${pageContext}/project/list">项目列表</a></li>
+                                    <li><a href="${pageContext}/page/project_add">添加</a></li>
                                 </ul>
                             </li>
                             <li class="has-child-item close-item">

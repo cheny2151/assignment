@@ -54,4 +54,20 @@ public class Project extends BaseEntity {
     public void setSerialNumbers(List<SerialNumber> serialNumbers) {
         this.serialNumbers = serialNumbers;
     }
+
+    public String getStandard() {
+        return standard;
+    }
+
+    public void setStandard(String standard) {
+        this.standard = standard;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 }

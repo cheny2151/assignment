@@ -1,3 +1,11 @@
+$.ready(function () {
+
+    $("#all").click(function () {
+        alert("...");
+    });
+
+});
+
 var $message;
 var timeout;
 $.message = function () {
@@ -28,3 +36,4 @@ $.message = function () {
 
     return $message;
 };
+
