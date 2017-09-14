@@ -3,6 +3,7 @@ $().ready(function () {
     var $all = $("#all");
     var $deleteAll = $("#deleteAll");
 
+    //checkbox全选
     $all.on("change",function () {
         var $this =$(this);
         if ($this.prop("checked")){
@@ -12,12 +13,15 @@ $().ready(function () {
         }
      });
 
+    //确认删除对话框
     $deleteAll.click(function () {
         return !!confirm("确定删除？");
     });
 
 });
 
+
+//消息框
 var $message;
 var timeout;
 $.message = function () {
