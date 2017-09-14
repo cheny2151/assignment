@@ -186,7 +186,9 @@
                     </ul>
                 </div>
             </div>
-            <form action="" method="get">
+            <form action="${contextPath}/analyst/delete" method="get">
+                <button class="btn btn-o btn-danger" id="deleteAll">delete</button>
+                <div><br></div>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover table-bordered text-center">
                         <thead>
@@ -209,7 +211,7 @@
                         [#list analysts as analyst]
                             <tr>
                                 <td>
-                                    <input type="checkbox" name="id" value="${analyst.id}">
+                                    <input type="checkbox" name="ids" value="${analyst.id}">
                                 </td>
                                 <td>
                                     <span>${analyst.analystName}</span>
@@ -221,7 +223,7 @@
                                     <a class="fa fa-cog" href="/analyst/edit?id=${analyst.id}" style="cursor: pointer;"></a>
                                     &nbsp;
                                     &nbsp;
-                                    <a class="fa fa-times action" href="/analyst/delete?id=${analyst.id}" style="cursor: pointer;"></a>
+                                    <a class="fa fa-times action" href="/analyst/delete?ids=${analyst.id}" style="cursor: pointer;"></a>
                                 </td>
                             </tr>
                         [/#list]
@@ -244,15 +246,6 @@
     $(function () {
 
         [@flush_message /]
-
-        $("#all").on("change",function () {
-            var $this =$(this);
-            if ($this.prop("checked")){
-                $(":checkbox").prop("checked",true);
-            }else {
-                $(":checkbox").prop("checked",false);
-            }
-        })
 
     })
 </script>

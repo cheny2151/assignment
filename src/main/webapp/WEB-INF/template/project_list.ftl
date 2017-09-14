@@ -65,8 +65,8 @@
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="analyst_list.ftl">人员列表</a></li>
-                                    <li><a href="analyst_add.ftl">添加</a></li>
+                                    <li><a href="${contextPath}/analyst/list">人员列表</a></li>
+                                    <li><a href="${contextPath}/page/analyst_add.ftl">添加</a></li>
                                 [#--<li><a href="ui-elements_tabs.ftl">Tabs</a></li>
                                 <li><a href="ui-elements_buttons.ftl">Buttons</a></li>
                                 <li><a href="ui-elements_typography.ftl">Typography</a></li>
@@ -188,9 +188,11 @@
                     </ul>
                 </div>
             </div>
-            <div class="row animated fadeInRight">
+            <form action="${contextPath}/project/delete" method="get">
+                <button class="btn btn-o btn-danger" id="deleteAll">delete</button>
+                <div><br></div>
+                <div class="row animated fadeInRight">
                 <div class="col-sm-12">
-                    <h4 class="section-subtitle"><b>Searching, ordering and paging</b></h4>
                     <div class="panel">
                         <div class="panel-content">
                             <div class="table-responsive">
@@ -222,7 +224,7 @@
                                                 <a class="fa fa-cog" href="/project/edit?id=${project.id}" style="cursor: pointer;"></a>
                                                 &nbsp;
                                                 &nbsp;
-                                                <a class="fa fa-times action" href="/project/delete?id=${project.id}" style="cursor: pointer;"></a>
+                                                <a class="fa fa-times action" href="/project/delete?ids=${project.id}" style="cursor: pointer;"></a>
                                             </td>
                                         </tr>
                                     [/#list]
@@ -233,6 +235,7 @@
                     </div>
                 </div>
             </div>
+            </form>
         </div>
 
     </div>
@@ -248,14 +251,13 @@
 
         [@flush_message /]
 
-        $("#all").on("change",function () {
-            var $this =$(this);
-            if ($this.prop("checked")){
-                $(":checkbox").prop("checked",true);
+        $("#deleteAll1").click(function () {
+            if (confirm("确定删除？")){
+                alert("success")
             }else {
-                $(":checkbox").prop("checked",false);
+                alert("quxiao")
             }
-        });
+        })
 
     });
 </script>

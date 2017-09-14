@@ -41,6 +41,15 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     }
 
     @Override
+    public void remove(Long[] ids) {
+        if (ids != null) {
+            for (Long id : ids) {
+                this.remove(id);
+            }
+        }
+    }
+
+    @Override
     @Cacheable(value = "myCache")
     @Transactional(readOnly = true)
     public T find(Long id) {

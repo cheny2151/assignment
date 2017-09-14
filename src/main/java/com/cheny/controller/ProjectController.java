@@ -55,9 +55,9 @@ public class ProjectController extends BaseController {
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.GET)
-    public String delete(Long id, RedirectAttributes redirectAttributes) {
-        if (id != null) {
-            projectService.remove(id);
+    public String delete(Long[] ids, RedirectAttributes redirectAttributes) {
+        if (ids != null) {
+            projectService.remove(ids);
             addSuccessFlushMessage(redirectAttributes, "删除成功");
         }
         return "redirect:list";

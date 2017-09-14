@@ -42,16 +42,18 @@ public class AnalystController extends BaseController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String edit(Long id,Model model) {
+    public String edit(Long id, Model model) {
         Analyst analyst = analystService.find(id);
-        model.addAttribute("analyst",analyst);
+        model.addAttribute("analyst", analyst);
         return "/analyst_edit";
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.GET)
-    public String delete(Long id, RedirectAttributes redirectAttributes) {
-        analystService.remove(id);
-        addSuccessFlushMessage(redirectAttributes, "删除成功");
+    public String delete(Long[] ids, RedirectAttributes redirectAttributes) {
+        if (ids != null) {
+            analystService.remove(ids);
+            addSuccessFlushMessage(redirectAttributes, "删除成功");
+        }
         return "redirect:list";
     }
 

@@ -1,7 +1,19 @@
-$.ready(function () {
+$().ready(function () {
 
-    $("#all").click(function () {
-        alert("...");
+    var $all = $("#all");
+    var $deleteAll = $("#deleteAll");
+
+    $all.on("change",function () {
+        var $this =$(this);
+        if ($this.prop("checked")){
+            $(":checkbox").prop("checked",true);
+        }else {
+            $(":checkbox").prop("checked",false);
+        }
+     });
+
+    $deleteAll.click(function () {
+        return !!confirm("确定删除？");
     });
 
 });
