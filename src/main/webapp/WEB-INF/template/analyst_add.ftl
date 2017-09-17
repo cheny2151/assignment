@@ -69,7 +69,7 @@
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="${contextPath}/analyst/list">人员列表</a></li>
-                                    <li class="active-item"><a href="${contextPath}/page/analyst_add" >添加</a></li>
+                                    <li class="active-item"><a href="${contextPath}/analyst/add" >添加</a></li>
                                     [#--<li><a href="ui-elements_tabs.ftl">Tabs</a></li>
                                     <li><a href="ui-elements_buttons.ftl">Buttons</a></li>
                                     <li><a href="ui-elements_typography.ftl">Typography</a></li>
@@ -196,12 +196,12 @@
                 <div class="panel-content">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form-horizontal form-stripe" action="${contextPath}/analyst/add" method="get">
+                            <form class="form-horizontal form-stripe" action="${contextPath}/analyst/save" method="post">
                                 <div class="form-group">
                                     <label for="placeholder" class="col-sm-2 control-label">姓名</label>
                                     <div class="col-sm-10">
                                     <span class="input-with-icon">
-                                    <input type="text" class="form-control" id="placeholder" placeholder="name" name="analystName">
+                                    <input type="text" class="form-control" id="placeholder" placeholder="name" name="name">
                                     <i class="fa fa-user"></i>
                                     </div>
                                 </div>
@@ -214,9 +214,11 @@
                                 <div class="form-group">
                                     <label for="select2-example-multiple" class="col-sm-2 control-label">选择项目:</label>
                                     <div class="col-sm-10">
-                                        <select name="project" id="select2-example-multiple" class="form-control" multiple="multiple" style="width: 100%">
+                                        <select name="projectIds" id="select2-example-multiple" class="form-control" multiple="multiple" style="width: 100%">
                                             <optgroup label="项目列表">
-                                                <option value="AI" label="Anguilla">Anguilla</option>
+                                                [#list projects as project]
+                                                    <option value="${project.id}" >${project.name}</option>
+                                                [/#list]
                                             </optgroup>
                                         </select>
                                     </div>
@@ -231,49 +233,6 @@
                     </div>
                 </div>
 
-        </div>
-
-        <div class="right-sidebar">
-            <div class="right-sidebar-toggle" data-toggle-class="right-sidebar-opened" data-target="html">
-                <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
-            </div>
-            <div id="right-nav" class="nano">
-                <div class="nano-content">
-                    <div class="template-settings">
-                        <h4 class="text-center">Template Settings</h4>
-                        <ul class="toggle-settings pv-xlg">
-                            <li>
-                                <h6 class="text">Header fixed</h6>
-                                <label class="switch">
-                                    <input id="header-fixed" type="checkbox" checked>
-                                    <span class="slider round"></span>
-                                </label>
-                            </li>
-                            <li>
-                                <h6 class="text">Left sidebar fixed</h6>
-                                <label class="switch">
-                                    <input id="left-sidebar-fixed" type="checkbox" checked>
-                                    <span class="slider round"></span>
-                                </label>
-                            </li>
-                            <li>
-                                <h6 class="text">Left sidebar collapsed</h6>
-                                <label class="switch">
-                                    <input id="left-sidebar-collapsed" type="checkbox">
-                                    <span class="slider round"></span>
-                                </label>
-                            </li>
-                            <li>
-                                <h6 class="text">Content header fixed</h6>
-                                <label class="switch">
-                                    <input id="content-header-fixed" type="checkbox" checked>
-                                    <span class="slider round"></span>
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>

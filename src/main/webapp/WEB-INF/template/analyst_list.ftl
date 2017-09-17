@@ -65,7 +65,7 @@
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li class="active-item"><a href="${contextPath}/analyst/list">人员列表</a></li>
-                                    <li><a href="${contextPath}/page/analyst_add">添加</a></li>
+                                    <li><a href="${contextPath}/analyst/add">添加</a></li>
                                     [#--<li><a href="${contextPath}/ui-elements_tabs">Tabs</a></li>
                                     <li><a href="${contextPath}/ui-elements_buttons">Buttons</a></li>
                                     <li><a href="${contextPath}/ui-elements_typography">Typography</a></li>
@@ -200,7 +200,7 @@
                                     姓名
                                 </th>
                                 <th>
-                                    项目数量
+                                    项目
                                 </th>
                                 <th>
                                     操作
@@ -214,16 +214,19 @@
                                     <input type="checkbox" name="ids" value="${analyst.id}">
                                 </td>
                                 <td>
-                                    <span>${analyst.analystName}</span>
+                                    <span>${analyst.name}</span>
                                 </td>
                                 <td>
-                                    [#--<span>${analyst}</span>--]
+                                    [#list analyst.projects as project]
+                                        <span>${project.name}</span>
+                                        [#if project_has_next],[/#if]
+                                    [/#list]
                                 </td>
                                 <td style="width: 150px;">
                                     <a class="fa fa-cog" href="/analyst/edit?id=${analyst.id}" style="cursor: pointer;"></a>
                                     &nbsp;
                                     &nbsp;
-                                    <a class="fa fa-times action" href="/analyst/delete?ids=${analyst.id}" style="cursor: pointer;"></a>
+                                    <a class="fa fa-times action deleteOne" href="/analyst/delete?ids=${analyst.id}" style="cursor: pointer;"></a>
                                 </td>
                             </tr>
                         [/#list]

@@ -73,7 +73,7 @@
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="${contextPath}/analyst/list">人员列表</a></li>
-                                    <li><a href="${contextPath}/page/analyst_add.ftl">添加</a></li>
+                                    <li><a href="${contextPath}/analyst/add">添加</a></li>
                                 <#--    <li><a href="ui-elements_tabs.ftl">Tabs</a></li>
                                     <li><a href="ui-elements_buttons.ftl">Buttons</a></li>
                                     <li><a href="ui-elements_typography.ftl">Typography</a></li>
@@ -211,7 +211,7 @@
                                 <div class="form-group">
                                     <label for="placeholder" class="col-sm-2 control-label">项目名</label>
                                     <div class="col-sm-10">
-                                       <input type="text" class="form-control" id="placeholder" placeholder="name" name="projectName" value="${project.projectName}">
+                                       <input type="text" class="form-control" id="placeholder" placeholder="name" name="name" value="${project.name}">
                                     </div>
                                 </div>
                                 <div class="form-group">

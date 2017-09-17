@@ -48,11 +48,20 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public List<T> findList() {
+    public List<T> findAll() {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> query = criteriaBuilder.createQuery(clazz);
         Root<T> root = query.from(clazz);
         query.select(root);
+        return entityManager.createQuery(query).setFlushMode(FlushModeType.COMMIT).getResultList();
+    }
+
+    @Override
+    public List<T> findByIds(List<Long> ids) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> query = criteriaBuilder.createQuery(clazz);
+        Root<T> root = query.from(clazz);
+        query.select(root).where(criteriaBuilder.in(root.get("id")).value(ids));
         return entityManager.createQuery(query).setFlushMode(FlushModeType.COMMIT).getResultList();
     }
 

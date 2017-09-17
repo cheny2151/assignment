@@ -65,7 +65,7 @@
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="analyst_list.ftl">人员列表</a></li>
-                                    <li><a href="analyst_add.ftl">添加</a></li>
+                                    <li><a href="${contextPath}/analyst/add">添加</a></li>
                                 <#--<li><a href="ui-elements_tabs.ftl">Tabs</a></li>
                                 <a href="ui-elements_buttons.ftl">Buttons</a></li>
                                 <li><a href="ui-elements_typography.ftl">Typography</a></li>
@@ -84,7 +84,7 @@
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-pie-chart" aria-hidden="true"></i><span>项目</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="project_list.ftl">项目列表</a></li>
+                                    <li><a href="${contextPath}/project/list">项目列表</a></li>
                                     <li><a href="project_add.ftl">添加</a></li>
                                 </ul>
                             </li>

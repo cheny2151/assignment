@@ -15,7 +15,7 @@ $(function () {
     "hideMethod": "fadeOut"
     };
 
-    toastr.info('Enjoy it!', '<h5 style="margin-top: 0px; margin-bottom: 5px;"><b>This is 任务分派 Template!</b></h5>');
+    toastr.info('任务分派系统!', '<h5 style="margin-top: 0px; margin-bottom: 5px;"><b>Welcome !</b></h5>');
 
     //AREA CHART EXAMPLE
     // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

@@ -25,7 +25,7 @@ public class ProjectController extends BaseController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Project project, RedirectAttributes redirectAttributes) {
 
-        if (StringUtils.isEmpty(project.getProjectName())) {
+        if (StringUtils.isEmpty(project.getName())) {
             addErrorFlushMessage(redirectAttributes, "项目名不能为空");
             return "redirect:/page/project_add";
         }
@@ -37,7 +37,7 @@ public class ProjectController extends BaseController {
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public String list(Model model) {
-        List<Project> projects = projectService.findList();
+        List<Project> projects = projectService.findAll();
         model.addAttribute("projects", projects);
         return "/project_list";
     }

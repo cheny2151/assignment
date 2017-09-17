@@ -35,13 +35,35 @@ $(function(){
         allowClear: true
     });
 
-    //Select2 tagging example
+    //Select3 tagging example
     $("#select2-example-tags").select2({
         placeholder: "Select a country",
         allowClear: true,
         tags: true,
         tokenSeparators: [',']
     });
+
+    $(".select-example-basic").select2({
+        placeholder: "Select a country",
+        allowClear: true
+    });
+
+    //select3 multiple options example
+    $(".select-example-multiple").select2({
+        placeholder: "Select a project",
+        allowClear: true
+    });
+
+    //select3 tagging example
+    $(".select-example-tags").select2({
+        placeholder: "Select a country",
+        allowClear: true,
+        tags: true,
+        tokenSeparators: [',']
+    });
+
+
+
 
     //MASKED INPUT
     // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

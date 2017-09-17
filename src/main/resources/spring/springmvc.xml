@@ -36,8 +36,8 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-	<bean id="defaultErrorView" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	<!--<bean id="defaultErrorView" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="defaultErrorView" value="error_404" />
-	</bean>
+	</bean>-->
 
 </beans>

@@ -15,6 +15,8 @@ public interface BaseDao<T> {
 
     T find(Long id);
 
-    List<T> findList();
+    List<T> findAll();
+
+    List<T> findByIds(List<Long> ids);
 
 }

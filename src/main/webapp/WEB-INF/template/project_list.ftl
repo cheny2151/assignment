@@ -66,7 +66,7 @@
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="${contextPath}/analyst/list">人员列表</a></li>
-                                    <li><a href="${contextPath}/page/analyst_add.ftl">添加</a></li>
+                                    <li><a href="${contextPath}/analyst/add">添加</a></li>
                                 [#--<li><a href="ui-elements_tabs.ftl">Tabs</a></li>
                                 <li><a href="ui-elements_buttons.ftl">Buttons</a></li>
                                 <li><a href="ui-elements_typography.ftl">Typography</a></li>
@@ -85,8 +85,8 @@
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-columns" aria-hidden="true"></i><span>任务单</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="assignment_list.ftl">任务列表</a></li>
-                                    <li><a href="assignment_add.ftl">添加</a></li>
+                                    <li><a href="${contextPath}/page/assignment_list.ftl">任务列表</a></li>
+                                    <li><a href="${contextPath}/page/assignment_add.ftl">添加</a></li>
                                     [#--<li><a href="forms_advanced.ftl">Advanced</a></li>--]
                                     [#--<li><a href="forms_validation.ftl">Validation</a></li>--]
                                 </ul>
@@ -211,12 +211,12 @@
                                     [#list projects as project]
                                         <tr>
                                             <td><input type="checkbox" name="ids" value="${project.id}"></td>
-                                            <td>${project.projectName}</td>
+                                            <td>${project.name}</td>
                                             <td>${project.price}</td>
                                             <td>${project.standard}</td>
                                             <td>
                                                 [#list project.analysts as analyst]
-                                                    ${analyst.analystName}
+                                                    ${analyst.name}
                                                     [#if analyst_has_next],[/#if]
                                                 [/#list]
                                             </td>

@@ -2,6 +2,7 @@ $().ready(function () {
 
     var $all = $("#all");
     var $deleteAll = $("#deleteAll");
+    var $deleteOne = $(".deleteOne");
 
     //checkbox全选
     $all.on("change",function () {
@@ -15,8 +16,11 @@ $().ready(function () {
 
     //确认删除对话框
     $deleteAll.click(function () {
-        return !!confirm("确定删除？");
+        return confirm("确定删除？");
     });
+    $deleteOne.click(function () {
+        return confirm("确定删除？");
+    })
 
 });
 

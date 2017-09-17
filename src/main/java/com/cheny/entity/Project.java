@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,11 +17,9 @@ public class Project extends BaseEntity {
 
     private static final long serialVersionUID = -7172278231663882157L;
 
-    private String projectName;
+    private List<Analyst> analysts = new ArrayList<>();
 
-    private List<Analyst> analysts;
-
-    private List<SerialNumber> serialNumbers;
+    private List<SerialNumber> serialNumbers = new ArrayList<>();
 
     /**
      * 标准
@@ -28,14 +27,6 @@ public class Project extends BaseEntity {
     private String standard;
 
     private Double price;
-
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
 
     @ManyToMany(mappedBy = "projects", fetch = FetchType.LAZY)
     public List<Analyst> getAnalyst() {

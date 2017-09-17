@@ -37,7 +37,7 @@
         <!--用于设置实现厂商JPA实现的特定属性-->
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="showSql" value="true"/>
+                <property name="showSql" value="false"/>
                 <!--自动更新表-->
                 <property name="generateDdl" value="true"/>
             </bean>

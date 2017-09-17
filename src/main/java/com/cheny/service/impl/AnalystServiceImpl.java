@@ -4,6 +4,7 @@ import com.cheny.dao.AnalystDao;
 import com.cheny.dao.Impl.AnalystDaoImpl;
 import com.cheny.entity.Analyst;
 import com.cheny.service.AnalystService;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,6 +22,5 @@ public class AnalystServiceImpl extends BaseServiceImpl<Analyst> implements Anal
     private void setBaseDao(AnalystDaoImpl analystDaoImpl) {
         super.setBaseDao(analystDaoImpl);
     }
-
 
 }

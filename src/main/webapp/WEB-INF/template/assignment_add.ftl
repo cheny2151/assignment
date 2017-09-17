@@ -10,7 +10,74 @@
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/animate.css/animate.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/common.css">
+    <link rel="stylesheet" href="${contextPath}/resources/vendor/select2/css/select2.min.css">
+    <link rel="stylesheet" href="${contextPath}/resources/vendor/select2/css/select2-bootstrap.min.css">
+    <link rel="stylesheet" href="${contextPath}/resources/vendor/bootstrap_date-picker/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="${contextPath}/resources/vendor/bootstrap_time-picker/css/timepicker.css">
+    <link rel="stylesheet" href="${contextPath}/resources/vendor/bootstrap_color-picker/css/bootstrap-colorpicker.min.css">
 </head>
+    <style type="text/css">
+        .form-inputs {
+            margin-left:10px;
+            margin-right: 20px;
+            width: 20%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            white-space: nowrap;
+        }
+        .form-inputs-head {
+            margin-right: 10px;
+            width: 5%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+        .form-select{
+            width: 35%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+        .select2-container--bootstrap{
+            display: "";
+            margin-top: -2px;
+        }
+    </style>
 
 <body>
 
@@ -43,9 +110,9 @@
                 </div>
             </div>
             <div class="header-separator"></div>
-        <#-- <div class="header-section">
+        [#-- <div class="header-section">
              <a href="#"><i class="fa fa-sign-out log-out" aria-hidden="true"></i></a>
-         </div>-->
+         </div>--]
         </div>
     </div>
 
@@ -66,8 +133,8 @@
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="analyst_list.ftl">人员列表</a></li>
-                                    <li><a href="analyst_add.ftl">添加</a></li>
-                                 <#--   <li><a href="ui-elements_tabs.ftl">Tabs</a></li>
+                                    <li><a href="${contextPath}/analyst/add">添加</a></li>
+                                 [#--   <li><a href="ui-elements_tabs.ftl">Tabs</a></li>
                                     <li><a href="ui-elements_buttons.ftl">Buttons</a></li>
                                     <li><a href="ui-elements_typography.ftl">Typography</a></li>
                                     <li><a href="ui-elements_alerts.ftl">Alerts</a></li>
@@ -79,7 +146,7 @@
                                             <li><a href="ui-elements_notifications-toastr.ftl">Toastr</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="ui-elements_animations-appear.ftl">Animations</a></li>-->
+                                    <li><a href="ui-elements_animations-appear.ftl">Animations</a></li>--]
                                 </ul>
                             </li>
                             <li class="has-child-item close-item">
@@ -94,11 +161,11 @@
                                 <ul class="nav child-nav level-1">
                                     <li><a href="assignment_list.ftl">任务列表</a></li>
                                     <li class="active-item"><a href="assignment_add.ftl">添加</a></li>
-                                    <#--<li><a href="forms_advanced.ftl">Advanced</a></li>-->
-                                    <#--<li><a href="forms_validation.ftl">Validation</a></li>-->
+                                    [#--<li><a href="forms_advanced.ftl">Advanced</a></li>--]
+                                    [#--<li><a href="forms_validation.ftl">Validation</a></li>--]
                                 </ul>
                             </li>
-                            <#--<li class="has-child-item close-item">
+                            [#--<li class="has-child-item close-item">
                                 <a><i class="fa fa-table" aria-hidden="true"></i><span>Tables</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="tables_basic.html">Basic</a></li>
@@ -179,7 +246,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>-->
+                            </li>--]
                         </ul>
                     </nav>
                 </div>
@@ -200,25 +267,45 @@
                 <div class="panel-content">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form-horizontal form-stripe" action="${contextPath}/analyst/add" method="get">
+                            <form class="form-horizontal form-stripe" action="${contextPath}/analyst/save" method="get">
                                 <div class="form-group">
-                                    <label for="placeholder" class="col-sm-2 control-label">姓名</label>
+                                    <label for="placeholder" class="col-sm-2 control-label">任务编号</label>
                                     <div class="col-sm-10">
                                     <span class="input-with-icon">
-                                    <input type="text" class="form-control" id="placeholder" placeholder="name" name="analystName">
+                                    <input type="text" class="form-control" id="placeholder" placeholder="name" name="name">
                                     <i class="fa fa-user"></i>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="disabled" class="col-sm-2 control-label">Disabled</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="disabled" placeholder="Disabled input" >
+                                   <label style="margin-left: 14%">流水号</label>
+                                   <label style="margin-left: 3%">接单日期</label>
+                                   <label style="margin-left: 15%">完成日期</label>
+                                   <label style="margin-left: 15%">项目</label>
+                                    <div class="col-sm-10" style="margin:10px auto 10px 205px">
+                                        <input type="text" class="form-inputs-head "  id="disabled" placeholder="Disabled input"  >
+                                        <input type="text" class="form-inputs"  id="disabled" placeholder="Disabled input"  >
+                                        <input type="text" class="form-inputs"  id="disabled" placeholder="Disabled input"  >
+                                        <select name="project" class="select-example-multiple form-select" multiple="multiple">
+                                            <optgroup label="项目列表">
+                                                <option value="AI" label="Anguilla">Anguilla</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-10" style="margin:10px auto 10px 205px">
+                                        <input type="text" class="form-inputs-head" placeholder="Disabled input" >
+                                        <input type="text" class="form-inputs"  id="disabled" placeholder="Disabled input" >
+                                        <input type="text" class="form-inputs"  id="disabled" placeholder="Disabled input" >
+                                        <select name="project" class="select-example-multiple form-select" multiple="multiple">
+                                            <optgroup label="项目列表">
+                                                <option value="AI" label="Anguilla">Anguilla</option>
+                                            </optgroup>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="select2-example-multiple" class="col-sm-2 control-label">选择项目:</label>
+                                    <label for="select-example-multiple" class="col-sm-2 control-label">选择项目:</label>
                                     <div class="col-sm-10">
-                                        <select name="project" id="select2-example-multiple" class="form-control" multiple="multiple" style="width: 100%">
+                                        <select name="project" class="select-example-multiple form-inputs" multiple="multiple" style="width: 100%">
                                             <optgroup label="项目列表">
                                                 <option value="AI" label="Anguilla">Anguilla</option>
                                             </optgroup>
@@ -236,51 +323,6 @@
                 </div>
 
             </div>
-
-            <div class="right-sidebar">
-                <div class="right-sidebar-toggle" data-toggle-class="right-sidebar-opened" data-target="html">
-                    <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
-                </div>
-                <div id="right-nav" class="nano">
-                    <div class="nano-content">
-                        <div class="template-settings">
-                            <h4 class="text-center">Template Settings</h4>
-                            <ul class="toggle-settings pv-xlg">
-                                <li>
-                                    <h6 class="text">Header fixed</h6>
-                                    <label class="switch">
-                                        <input id="header-fixed" type="checkbox" checked>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <h6 class="text">Left sidebar fixed</h6>
-                                    <label class="switch">
-                                        <input id="left-sidebar-fixed" type="checkbox" checked>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <h6 class="text">Left sidebar collapsed</h6>
-                                    <label class="switch">
-                                        <input id="left-sidebar-collapsed" type="checkbox">
-                                        <span class="slider round"></span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <h6 class="text">Content header fixed</h6>
-                                    <label class="switch">
-                                        <input id="content-header-fixed" type="checkbox" checked>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
         </div>
 
     </div>
@@ -290,6 +332,21 @@
 <script src="${contextPath}/resources/vendor/nano-scroller/nano-scroller.js"></script>
 <script src="${contextPath}/resources/js/template-script.min.js"></script>
 <script src="${contextPath}/resources/js/template-init.min.js"></script>
+<script src="${contextPath}/resources/js/examples/forms/advanced.js"></script>
+<script src="${contextPath}/resources/vendor/bootstrap_max-lenght/bootstrap-maxlength.js"></script>
+<script src="${contextPath}/resources/vendor/select2/js/select2.min.js"></script>
+<script src="${contextPath}/resources/vendor/input-masked/inputmask.bundle.min.js"></script>
+<script src="${contextPath}/resources/vendor/input-masked/phone-codes/phone.js"></script>
+<script src="${contextPath}/resources/vendor/bootstrap_date-picker/js/bootstrap-datepicker.min.js"></script>
+<script src="${contextPath}/resources/vendor/bootstrap_time-picker/js/bootstrap-timepicker.js"></script>
+<script src="${contextPath}/resources/vendor/bootstrap_color-picker/js/bootstrap-colorpicker.min.js"></script>
+<script src="${contextPath}/resources/js/common.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        [@flush_message /]
+    })
+</script>
 </body>
 
 </html>

@@ -69,7 +69,7 @@
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="${contextPath}/analyst/list">人员列表</a></li>
-                                    <li class="active-item"><a href="${contextPath}/page/analyst_add" >添加</a></li>
+                                    <li class="active-item"><a href="${contextPath}/analyst/add" >添加</a></li>
                                     [#--<li><a href="ui-elements_tabs.ftl">Tabs</a></li>
                                     <li><a href="ui-elements_buttons.ftl">Buttons</a></li>
                                     <li><a href="ui-elements_typography.ftl">Typography</a></li>
@@ -196,13 +196,13 @@
                 <div class="panel-content">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form-horizontal form-stripe" action="${contextPath}/analyst/update" method="get">
+                            <form class="form-horizontal form-stripe" action="${contextPath}/analyst/update" method="post">
                                 <input type="hidden" name="id" value="${analyst.id}">
                                 <div class="form-group">
                                     <label for="placeholder" class="col-sm-2 control-label">姓名</label>
                                     <div class="col-sm-10">
                                     <span class="input-with-icon">
-                                    <input type="text" class="form-control" id="placeholder" placeholder="name" name="analystName" value="${analyst.analystName}">
+                                    <input type="text" class="form-control" id="placeholder" placeholder="name" name="name" value="${analyst.name}">
                                     <i class="fa fa-user"></i>
                                     </div>
                                 </div>
@@ -215,9 +215,11 @@
                                 <div class="form-group">
                                     <label for="select2-example-multiple" class="col-sm-2 control-label">选择项目:</label>
                                     <div class="col-sm-10">
-                                        <select name="project" id="select2-example-multiple" class="form-control" multiple="multiple" style="width: 100%">
+                                        <select name="projectIds" id="select2-example-multiple" class="form-control" multiple="multiple" style="width: 100%">
                                             <optgroup label="项目列表">
-                                                <option value="AI" label="Anguilla">Anguilla</option>
+                                            [#list projects as project]
+                                                <option value="${project.id}" [#list analyst.projects as aProject][#if aProject.id == project.id]selected="selected"[#else ][/#if][/#list] >${project.name}</option>
+                                            [/#list]
                                             </optgroup>
                                         </select>
                                     </div>

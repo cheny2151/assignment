@@ -1,6 +1,7 @@
 package com.cheny.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,9 +16,11 @@ public class SerialNumber extends BaseEntity{
 
     private Integer number;
 
-    private List<Analyst> analysts;
+    private List<Analyst> analysts = new ArrayList<>();
 
-    private List<Project> projects;
+    private List<Project> projects = new ArrayList<>();
+
+    private Assignment assignment;
 
     public Integer getNumber() {
         return number;
@@ -45,5 +48,15 @@ public class SerialNumber extends BaseEntity{
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "assignment")
+    public Assignment getAssignment() {
+        return assignment;
+    }
+
+    public void setAssignment(Assignment assignment) {
+        this.assignment = assignment;
     }
 }

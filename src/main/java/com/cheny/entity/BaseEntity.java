@@ -23,6 +23,11 @@ public class BaseEntity implements Serializable {
     private Long id;
 
     /**
+     * name
+     */
+    private String name;
+
+    /**
      * 创建日期
      */
     private Date createDate;
@@ -37,7 +42,17 @@ public class BaseEntity implements Serializable {
         this.id = id;
     }
 
+    @Column(nullable = false)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @JsonFormat(pattern = "yyyy-MM-DD HH:mm:ss")
+    @Column(updatable = false)
     public Date getCreateDate() {
         return createDate;
     }
@@ -45,4 +60,5 @@ public class BaseEntity implements Serializable {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
 }
