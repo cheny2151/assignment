@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Entity
 @Table
-public class SerialNumber extends BaseEntity{
+public class SerialNumber extends BaseEntity {
 
     private static final long serialVersionUID = -4542666765989458491L;
 
@@ -21,6 +21,8 @@ public class SerialNumber extends BaseEntity{
     private List<Project> projects = new ArrayList<>();
 
     private Assignment assignment;
+
+    private List<Long> projectIds = new ArrayList<>();
 
     public Integer getNumber() {
         return number;
@@ -58,5 +60,14 @@ public class SerialNumber extends BaseEntity{
 
     public void setAssignment(Assignment assignment) {
         this.assignment = assignment;
+    }
+
+    @Transient
+    public List<Long> getProjectIds() {
+        return projectIds;
+    }
+
+    public void setProjectIds(List<Long> projectIds) {
+        this.projectIds = projectIds;
     }
 }

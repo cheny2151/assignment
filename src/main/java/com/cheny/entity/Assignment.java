@@ -2,6 +2,7 @@ package com.cheny.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,6 +24,16 @@ public class Assignment extends BaseEntity {
      */
     private String memo;
 
+    /**
+     * 接单日期
+     */
+    private Date startDate;
+
+    /**
+     * 完成日期
+     */
+    private Date finalDate;
+
     @OneToMany(mappedBy = "assignment",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     public List<SerialNumber> getSerialNumbers() {
         return serialNumbers;
@@ -38,5 +49,21 @@ public class Assignment extends BaseEntity {
 
     public void setMemo(String memo) {
         this.memo = memo;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getFinalDate() {
+        return finalDate;
+    }
+
+    public void setFinalDate(Date finalDate) {
+        this.finalDate = finalDate;
     }
 }

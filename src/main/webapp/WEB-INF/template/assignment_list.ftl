@@ -92,7 +92,7 @@
                                 <a><i class="fa fa-columns" aria-hidden="true"></i><span>任务单</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li class="active-item"><a href="assignment_list.ftl">任务列表</a></li>
-                                    <li><a href="assignment_add.ftl">添加</a></li>
+                                    <li><a href="${contextPath}/assignment/add">添加</a></li>
                                     <#--<li><a href="forms_advanced.ftl">Advanced</a></li>-->
                                     <#--<li><a href="forms_validation.ftl">Validation</a></li>-->
                                 </ul>

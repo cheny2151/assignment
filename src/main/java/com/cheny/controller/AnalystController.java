@@ -4,7 +4,7 @@ import com.cheny.entity.Analyst;
 import com.cheny.entity.Project;
 import com.cheny.service.AnalystService;
 import com.cheny.service.ProjectService;
-import org.springframework.cache.annotation.CacheEvict;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,14 +45,17 @@ public class AnalystController extends BaseController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(Analyst analyst, Long[] projectIds, RedirectAttributes redirectAttributes, Model model) {
-        if (analyst == null) {
+
+        if (StringUtils.isEmpty(analyst.getName())) {
             return illegalView(model);
         }
         List<Project> projects = projectService.findByIds(projectIds);
         analyst.getProjects().addAll(projects);
         analystService.persist(analyst);
+
         addSuccessFlushMessage(redirectAttributes, "添加成功");
         return "redirect:list";
+
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)

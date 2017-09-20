@@ -77,6 +77,9 @@
             display: "";
             margin-top: -2px;
         }
+        .btn-my{
+            margin-left:5%;
+        }
     </style>
 
 <body>
@@ -160,7 +163,7 @@
                                 <a><i class="fa fa-columns" aria-hidden="true"></i><span>任务单</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="assignment_list.ftl">任务列表</a></li>
-                                    <li class="active-item"><a href="assignment_add.ftl">添加</a></li>
+                                    <li class="active-item"><a href="${contextPath}/assignment/add">添加</a></li>
                                     [#--<li><a href="forms_advanced.ftl">Advanced</a></li>--]
                                     [#--<li><a href="forms_validation.ftl">Validation</a></li>--]
                                 </ul>
@@ -267,7 +270,7 @@
                 <div class="panel-content">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form-horizontal form-stripe" action="${contextPath}/analyst/save" method="get">
+                            <form class="form-horizontal form-stripe" action="${contextPath}/assignment/save" method="post">
                                 <div class="form-group">
                                     <label for="placeholder" class="col-sm-2 control-label">任务编号</label>
                                     <div class="col-sm-10">
@@ -277,40 +280,28 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                   <label style="margin-left: 14%">流水号</label>
-                                   <label style="margin-left: 3%">接单日期</label>
-                                   <label style="margin-left: 15%">完成日期</label>
-                                   <label style="margin-left: 15%">项目</label>
-                                    <div class="col-sm-10" style="margin:10px auto 10px 205px">
-                                        <input type="text" class="form-inputs-head "  id="disabled" placeholder="Disabled input"  >
-                                        <input type="text" class="form-inputs"  id="disabled" placeholder="Disabled input"  >
-                                        <input type="text" class="form-inputs"  id="disabled" placeholder="Disabled input"  >
-                                        <select name="project" class="select-example-multiple form-select" multiple="multiple">
-                                            <optgroup label="项目列表">
-                                                <option value="AI" label="Anguilla">Anguilla</option>
-                                            </optgroup>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-10" style="margin:10px auto 10px 205px">
-                                        <input type="text" class="form-inputs-head" placeholder="Disabled input" >
-                                        <input type="text" class="form-inputs"  id="disabled" placeholder="Disabled input" >
-                                        <input type="text" class="form-inputs"  id="disabled" placeholder="Disabled input" >
-                                        <select name="project" class="select-example-multiple form-select" multiple="multiple">
-                                            <optgroup label="项目列表">
-                                                <option value="AI" label="Anguilla">Anguilla</option>
-                                            </optgroup>
-                                        </select>
+                                    <label for="placeholder" class="col-sm-2 control-label">接单日期</label>
+                                    <div class="col-sm-10">
+                                        <input type='text' name='assignment.startDate' class='form-inputs'  placeholder='Start Date' >
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="select-example-multiple" class="col-sm-2 control-label">选择项目:</label>
+                                    <label for="placeholder" class="col-sm-2 control-label">完成日期</label>
                                     <div class="col-sm-10">
-                                        <select name="project" class="select-example-multiple form-inputs" multiple="multiple" style="width: 100%">
-                                            <optgroup label="项目列表">
-                                                <option value="AI" label="Anguilla">Anguilla</option>
-                                            </optgroup>
-                                        </select>
+                                        <input type='text' name='assignment.finalDate' class='form-inputs'  placeholder='Final Date' >
                                     </div>
+                                </div>
+                                <div class="form-group" id="form-group">
+                                    <a style="margin-left:8% " id="add" href="javascript:void(0)" class="btn btn-primary btn-sm">add</a>
+                                   <label style="margin-left: 3%">流水号</label>
+                                   <label style="margin-left: 3%">接单日期</label>
+                                   <label style="margin-left: 15%">完成日期</label>
+                                   <label style="margin-left: 14%">项目</label>
+                                </div>
+                                <div class="form-group" style="margin-left:12%;width: 80%;">
+                                    <label for="textareaMaxLength" class="control-label">备注</label>
+                                    <textarea class="form-control" rows="5" id="textareaMaxLength" placeholder="Write a comment" maxlength="500"></textarea>
+                                    <span class="help-block"><i class="fa fa-info-circle mr-xs"></i>Max characters set to <span class="code">500</span></span>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
@@ -341,11 +332,46 @@
 <script src="${contextPath}/resources/vendor/bootstrap_time-picker/js/bootstrap-timepicker.js"></script>
 <script src="${contextPath}/resources/vendor/bootstrap_color-picker/js/bootstrap-colorpicker.min.js"></script>
 <script src="${contextPath}/resources/js/common.js"></script>
-
 <script type="text/javascript">
     $(function () {
-        [@flush_message /]
-    })
+
+    [@flush_message /]
+
+        var $formGroup = $("#form-group");
+
+        //下标
+        var count = 0;
+        //增加子流水号
+        $("#add").click(function () {
+
+            $formGroup.append($("<div class='col-sm-10' style='margin:10px auto 10px 205px'>" +
+                    "<input type='text' name='serialNumbers["+count+"].number' class='form-inputs-head' placeholder='Number' >" +
+                    "<select name='serialNumbers["+count+"].projectIds' class='select-example-multiple form-select' multiple='multiple'>" +
+                    "<optgroup label='项目列表'>"+
+                    [#list projects as project]
+                    "<option value='${project.id}'>${project.name}</option></optgroup>"+
+                    [/#list]
+                    "</select>" +
+                    "<a href='javascript:void(0)' class='btn btn-danger btn-sm btn-my' onclick='deleteOne(this)'>delete</a>" +
+                    "<div>"));
+
+            $(".select-example-multiple").select2({
+                placeholder: "Select a project",
+                allowClear: true
+            });
+
+            count++;
+        });
+
+    });
+
+    function deleteOne(t) {
+
+        var $this = $(t);
+        $this.parent().remove();
+
+    }
+
 </script>
 </body>
 
