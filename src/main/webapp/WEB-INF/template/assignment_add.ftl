@@ -381,7 +381,7 @@
         //日历控件
         $("#start_date").ECalendar({
             type:"date",                   //模式，time: 带时间选择; date: 不带时间选择;
-            stamp : true,                //是否转成时间戳，默认true;
+            stamp : false,                //是否转成时间戳，默认true;
             offset:[0,2],                  //弹框手动偏移量;
             format:"yyyy-mm-dd",       //时间格式 默认 yyyy-mm-dd hh:ii;
             skin:"#006AC3",               //皮肤颜色，默认随机，可选值：0-8,或者直接标注颜色值;
@@ -391,7 +391,7 @@
 
         $("#end_date").ECalendar({
             type:"date",
-            stamp : true,
+            stamp : false,
             offset:[0,2],
             format:"yyyy-mm-dd",
             skin:"#006AC3",
