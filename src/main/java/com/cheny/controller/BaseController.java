@@ -23,6 +23,9 @@ public class BaseController {
 
     protected Logger logger = Logger.getLogger(this.getClass());
 
+    /**
+     * 瞬时信息
+     */
     protected void addSuccessFlushMessage(RedirectAttributes redirectAttributes, String content) {
         if (StringUtils.isNotEmpty(content)) {
             addFlushMessage(redirectAttributes, new Message(Message.SUCCESS_CODE, content));

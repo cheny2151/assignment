@@ -3,6 +3,7 @@ package com.cheny.controller;
 import com.cheny.entity.Assignment;
 import com.cheny.entity.Project;
 import com.cheny.entity.SerialNumber;
+import com.cheny.service.AssignmentService;
 import com.cheny.service.ProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,8 @@ public class AssignmentController extends BaseController {
 
     @Resource(name = "projectServiceImpl")
     private ProjectService projectService;
+    @Resource(name = "assignmentServiceImpl")
+    private AssignmentService assignmentService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Model model) {
@@ -34,15 +37,19 @@ public class AssignmentController extends BaseController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(Assignment assignment, RedirectAttributes redirectAttributes) {
-        List<SerialNumber> serialNumbers = assignment.getSerialNumbers();
-        for (SerialNumber serialNumber : serialNumbers) {
-            System.out.print(serialNumber.getNumber() + ":");
-            List<Long> projectIds = serialNumber.getProjectIds();
-            for (Long id : projectIds) {
-                System.out.print(id);
+
+        try {
+            List<SerialNumber> serialNumbers = assignment.getSerialNumbers();
+            for (SerialNumber serialNumber : serialNumbers) {
+                List<Long> projectIds = serialNumber.getProjectIds();
+                serialNumber.getProjects().addAll(projectService.findByIds(projectIds));
             }
-            System.out.println();
+            assignmentService.merge(assignment);
+            addSuccessFlushMessage(redirectAttributes, "添加成功");
+        } catch (Exception e) {
+            addErrorFlushMessage(redirectAttributes, "添加失败");
         }
+
         return "redirect:add";
     }
 }

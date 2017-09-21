@@ -23,4 +23,6 @@ public interface BaseService<T> {
 
     List<T> findByIds(Long[] ids);
 
+    List<T> findByIds(List<Long> ids);
+
 }

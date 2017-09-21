@@ -2,8 +2,6 @@ package com.cheny.service.impl;
 
 import com.cheny.dao.BaseDao;
 import com.cheny.service.BaseService;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
@@ -55,6 +53,11 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     @Transactional(readOnly = true)
     public List<T> findByIds(Long[] ids) {
         return baseDao.findByIds(Arrays.asList(ids));
+    }
+
+    @Override
+    public List<T> findByIds(List<Long> ids) {
+        return baseDao.findByIds(ids);
     }
 
     @Override
