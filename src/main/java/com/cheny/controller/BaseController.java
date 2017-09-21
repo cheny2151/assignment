@@ -1,19 +1,24 @@
 package com.cheny.controller;
 
 import com.cheny.VO.Message;
+import com.cheny.system.DateEditor;
+import com.cheny.system.StringEditor;
 import com.cheny.template.FlushMessageDirective;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Date;
 
 
 /**
  * 基类
  * Created by cheny on 2017/7/25.
  */
-@Controller
 public class BaseController {
 
     protected Logger logger = Logger.getLogger(this.getClass());
@@ -34,6 +39,15 @@ public class BaseController {
         if (redirectAttributes != null) {
             redirectAttributes.addFlashAttribute(FlushMessageDirective.FLUSH_MESSAGE_ATTRIBUTE_NAME, message);
         }
+    }
+
+    /**
+     * 数据绑定
+     */
+    @InitBinder
+    protected void dateBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Date.class, new DateEditor());
+        binder.registerCustomEditor(String.class, new StringEditor());
     }
 
     /**

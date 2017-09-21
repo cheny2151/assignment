@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/vendor/bootstrap_date-picker/css/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/bootstrap_time-picker/css/timepicker.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/bootstrap_color-picker/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/calendar/style.css">
 </head>
     <style type="text/css">
         .form-inputs {
@@ -79,6 +80,15 @@
         }
         .btn-my{
             margin-left:5%;
+        }
+        .ECalendarBox{
+            z-index: 100;
+        }
+        .icon{
+            display: none;
+        }
+        .currentdate>h2{
+            margin-top: 5px;
         }
     </style>
 
@@ -274,21 +284,19 @@
                                 <div class="form-group">
                                     <label for="placeholder" class="col-sm-2 control-label">任务编号</label>
                                     <div class="col-sm-10">
-                                    <span class="input-with-icon">
-                                    <input type="text" class="form-control" id="placeholder" placeholder="name" name="name">
-                                    <i class="fa fa-user"></i>
+                                        <input type="text" name="name" class="form-inputs" placeholder="Code" >
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="placeholder" class="col-sm-2 control-label">接单日期</label>
-                                    <div class="col-sm-10">
-                                        <input type='text' name='assignment.startDate' class='form-inputs'  placeholder='Start Date' >
+                                    <div class="col-sm-10" >
+                                        <input type='text' name='startDate' id="start_date" class='form-inputs'  placeholder='Start Date' >
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="placeholder" class="col-sm-2 control-label">完成日期</label>
-                                    <div class="col-sm-10">
-                                        <input type='text' name='assignment.finalDate' class='form-inputs'  placeholder='Final Date' >
+                                    <div class="col-sm-10" style="z-index: 0">
+                                        <input type='text' name='finalDate' id="end_date" class='form-inputs'  placeholder='Final Date' >
                                     </div>
                                 </div>
                                 <div class="form-group" id="form-group">
@@ -300,7 +308,7 @@
                                 </div>
                                 <div class="form-group" style="margin-left:12%;width: 80%;">
                                     <label for="textareaMaxLength" class="control-label">备注</label>
-                                    <textarea class="form-control" rows="5" id="textareaMaxLength" placeholder="Write a comment" maxlength="500"></textarea>
+                                    <textarea class="form-control" name="memo" rows="5" id="textareaMaxLength" placeholder="Write a memo" maxlength="500"></textarea>
                                     <span class="help-block"><i class="fa fa-info-circle mr-xs"></i>Max characters set to <span class="code">500</span></span>
                                 </div>
                                 <div class="form-group">
@@ -331,6 +339,7 @@
 <script src="${contextPath}/resources/vendor/bootstrap_date-picker/js/bootstrap-datepicker.min.js"></script>
 <script src="${contextPath}/resources/vendor/bootstrap_time-picker/js/bootstrap-timepicker.js"></script>
 <script src="${contextPath}/resources/vendor/bootstrap_color-picker/js/bootstrap-colorpicker.min.js"></script>
+<script src="${contextPath}/resources/js/calendar/Ecalendar.jquery.min.js"></script>
 <script src="${contextPath}/resources/js/common.js"></script>
 <script type="text/javascript">
     $(function () {
@@ -352,7 +361,7 @@
                     "<option value='${project.id}'>${project.name}</option></optgroup>"+
                     [/#list]
                     "</select>" +
-                    "<a href='javascript:void(0)' class='btn btn-danger btn-sm btn-my' onclick='deleteOne(this)'>delete</a>" +
+                    "<a href='javascript:void(0)' class='btn btn-danger btn-sm btn-my deleteOne'>delete</a>" +
                     "<div>"));
 
             $(".select-example-multiple").select2({
@@ -363,14 +372,34 @@
             count++;
         });
 
+        //Delete
+        $formGroup.on("click",".deleteOne",function () {
+           var $this = $(this);
+           $this.parent("div").remove();
+        });
+
+        //日历控件
+        $("#start_date").ECalendar({
+            type:"date",                   //模式，time: 带时间选择; date: 不带时间选择;
+            stamp : true,                //是否转成时间戳，默认true;
+            offset:[0,2],                  //弹框手动偏移量;
+            format:"yyyy-mm-dd",       //时间格式 默认 yyyy-mm-dd hh:ii;
+            skin:"#006AC3",               //皮肤颜色，默认随机，可选值：0-8,或者直接标注颜色值;
+            step:10,                      //选择时间分钟的精确度;
+            callback:function(v,e){}     //回调函数
+        });
+
+        $("#end_date").ECalendar({
+            type:"date",
+            stamp : true,
+            offset:[0,2],
+            format:"yyyy-mm-dd",
+            skin:"#006AC3",
+            step:10,
+            callback:function(v,e){}
+        });
+
     });
-
-    function deleteOne(t) {
-
-        var $this = $(t);
-        $this.parent().remove();
-
-    }
 
 </script>
 </body>

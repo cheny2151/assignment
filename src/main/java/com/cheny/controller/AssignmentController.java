@@ -6,10 +6,14 @@ import com.cheny.entity.SerialNumber;
 import com.cheny.service.ProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,7 +21,7 @@ import java.util.List;
  */
 @Controller("AssignmentController")
 @RequestMapping("/assignment")
-public class AssignmentController {
+public class AssignmentController extends BaseController{
 
     @Resource(name = "projectServiceImpl")
     private ProjectService projectService;
@@ -32,8 +36,8 @@ public class AssignmentController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(Assignment assignment) {
-        List<SerialNumber> serialNumbers = assignment.getSerialNumbers();
+    public String save(Date startDate, RedirectAttributes redirectAttributes) {
+      /*  List<SerialNumber> serialNumbers = assignment.getSerialNumbers();
         for (SerialNumber serialNumber : serialNumbers) {
             System.out.println(serialNumber.getNumber()+":");
             List<Long> projectIds = serialNumber.getProjectIds();
@@ -41,7 +45,7 @@ public class AssignmentController {
                 System.out.print(id);
             }
             System.out.println();
-        }
+        }*/
         return "redirect:add";
     }
 }
