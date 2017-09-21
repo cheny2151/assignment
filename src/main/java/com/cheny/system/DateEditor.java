@@ -21,7 +21,6 @@ public class DateEditor extends PropertyEditorSupport {
     @Override
     public String getAsText() {
         Date value = (Date) getValue();
-        System.out.println("getAsText Running");
         return SIMPLE_DATE_FORMAT.format(value);
     }
 
