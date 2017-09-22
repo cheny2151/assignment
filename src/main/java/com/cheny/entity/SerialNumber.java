@@ -52,7 +52,7 @@ public class SerialNumber extends BaseEntity {
         this.projects = projects;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "assignment")
     public Assignment getAssignment() {
         return assignment;
@@ -72,8 +72,8 @@ public class SerialNumber extends BaseEntity {
     }
 
     @PrePersist
-    public void prePersist(){
-        this.setName(this.getAssignment().getName()+"-"+this.getNumber().toString());
+    public void prePersist() {
+        this.setName(this.getAssignment().getName() + "-" + this.getNumber().toString());
     }
 
 }

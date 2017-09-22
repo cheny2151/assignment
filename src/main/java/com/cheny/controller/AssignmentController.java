@@ -8,6 +8,8 @@ import com.cheny.service.ProjectService;
 import com.cheny.service.SerialNumberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -41,12 +43,13 @@ public class AssignmentController extends BaseController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(Assignment assignment, RedirectAttributes redirectAttributes) {
 
-
         try {
+            Assert.notNull(assignment, "Must Not Null");
+            Assert.hasText(assignment.getName(), "Must Not Whitespace");
             assignmentService.persist(assignment);
             List<SerialNumber> serialNumbers = assignment.getSerialNumbers();
             for (SerialNumber serialNumber : serialNumbers) {
-                if (serialNumber == null) {
+                if (StringUtils.isEmpty(serialNumber.getNumber())) {
                     continue;
                 }
                 List<Long> projectIds = serialNumber.getProjectIds();

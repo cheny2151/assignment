@@ -17,7 +17,7 @@ public class Assignment extends BaseEntity {
     /**
      * 流水号
      */
-    private List<SerialNumber> serialNumbers =new ArrayList<>();
+    private List<SerialNumber> serialNumbers = new ArrayList<>();
 
     /**
      * 备注
@@ -34,7 +34,7 @@ public class Assignment extends BaseEntity {
      */
     private Date finalDate;
 
-    @OneToMany(mappedBy = "assignment",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "assignment", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     public List<SerialNumber> getSerialNumbers() {
         return serialNumbers;
     }
