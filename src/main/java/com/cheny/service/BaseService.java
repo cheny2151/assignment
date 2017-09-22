@@ -25,4 +25,6 @@ public interface BaseService<T> {
 
     List<T> findByIds(List<Long> ids);
 
+    void flush();
+
 }

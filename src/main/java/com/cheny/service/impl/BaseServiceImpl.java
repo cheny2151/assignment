@@ -61,6 +61,11 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     }
 
     @Override
+    public void flush() {
+        baseDao.flush();
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public T find(Long id) {
         return baseDao.find(id);

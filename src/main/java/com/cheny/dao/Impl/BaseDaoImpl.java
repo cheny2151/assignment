@@ -65,4 +65,9 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         return entityManager.createQuery(query).setFlushMode(FlushModeType.COMMIT).getResultList();
     }
 
+    @Override
+    public void flush() {
+        entityManager.flush();
+    }
+
 }

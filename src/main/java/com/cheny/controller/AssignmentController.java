@@ -5,6 +5,7 @@ import com.cheny.entity.Project;
 import com.cheny.entity.SerialNumber;
 import com.cheny.service.AssignmentService;
 import com.cheny.service.ProjectService;
+import com.cheny.service.SerialNumberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,8 @@ public class AssignmentController extends BaseController {
     private ProjectService projectService;
     @Resource(name = "assignmentServiceImpl")
     private AssignmentService assignmentService;
+    @Resource(name = "serialNumberServiceImpl")
+    private SerialNumberService serialNumberService;
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Model model) {
@@ -38,13 +41,19 @@ public class AssignmentController extends BaseController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(Assignment assignment, RedirectAttributes redirectAttributes) {
 
+
         try {
+            assignmentService.persist(assignment);
             List<SerialNumber> serialNumbers = assignment.getSerialNumbers();
             for (SerialNumber serialNumber : serialNumbers) {
+                if (serialNumber == null) {
+                    continue;
+                }
                 List<Long> projectIds = serialNumber.getProjectIds();
                 serialNumber.getProjects().addAll(projectService.findByIds(projectIds));
+                serialNumber.setAssignment(assignment);
+                serialNumberService.persist(serialNumber);
             }
-            assignmentService.merge(assignment);
             addSuccessFlushMessage(redirectAttributes, "添加成功");
         } catch (Exception e) {
             addErrorFlushMessage(redirectAttributes, "添加失败");

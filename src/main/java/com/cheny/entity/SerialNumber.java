@@ -70,4 +70,10 @@ public class SerialNumber extends BaseEntity {
     public void setProjectIds(List<Long> projectIds) {
         this.projectIds = projectIds;
     }
+
+    @PrePersist
+    public void prePersist(){
+        this.setName(this.getAssignment().getName()+"-"+this.getNumber().toString());
+    }
+
 }

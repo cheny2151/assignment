@@ -19,4 +19,6 @@ public interface BaseDao<T> {
 
     List<T> findByIds(List<Long> ids);
 
+    void flush();
+
 }
