@@ -1,9 +1,6 @@
 package com.cheny.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,5 +57,16 @@ public class Project extends BaseEntity {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    //删除前处理
+    @PreRemove
+    public void PreRemove() {
+        for (Analyst analyst : analysts) {
+            analyst.getProjects().remove(this);
+        }
+        for (SerialNumber serialNumber : serialNumbers) {
+            serialNumber.getProjects().remove(this);
+        }
     }
 }

@@ -22,7 +22,7 @@ public class ProjectController extends BaseController {
     @Resource(name = "projectServiceImpl")
     public ProjectService projectService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/save", method = RequestMethod.GET)
     public String add(Project project, RedirectAttributes redirectAttributes) {
 
         if (StringUtils.isEmpty(project.getName())) {

@@ -76,7 +76,8 @@
         }
         .select2-container--bootstrap{
             display: "";
-            margin-top: -2px;
+            margin-top: -5px;
+            margin-left: 50px;
         }
         .btn-my{
             margin-left:5%;
@@ -145,7 +146,7 @@
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="analyst_list.ftl">人员列表</a></li>
+                                    <li><a href="${contextPath}/analyst/list">人员列表</a></li>
                                     <li><a href="${contextPath}/analyst/add">添加</a></li>
                                  [#--   <li><a href="ui-elements_tabs.ftl">Tabs</a></li>
                                     <li><a href="ui-elements_buttons.ftl">Buttons</a></li>
@@ -165,14 +166,14 @@
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-pie-chart" aria-hidden="true"></i><span>项目</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="project_list.ftl">项目列表</a></li>
-                                    <li><a href="project_add.ftl">添加</a></li>
+                                    <li><a href="${contextPath}/project/list">项目列表</a></li>
+                                    <li><a href="${contextPath}/page/project_add">添加</a></li>
                                 </ul>
                             </li>
                             <li class="has-child-item open-item active-item">
                                 <a><i class="fa fa-columns" aria-hidden="true"></i><span>任务单</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="assignment_list.ftl">任务列表</a></li>
+                                    <li><a href="${contextPath}/assignment/list">任务列表</a></li>
                                     <li class="active-item"><a href="${contextPath}/assignment/add">添加</a></li>
                                     [#--<li><a href="forms_advanced.ftl">Advanced</a></li>--]
                                     [#--<li><a href="forms_validation.ftl">Validation</a></li>--]
@@ -302,8 +303,6 @@
                                 <div class="form-group" id="form-group">
                                     <a style="margin-left:8% " id="add" href="javascript:void(0)" class="btn btn-primary btn-sm">add</a>
                                    <label style="margin-left: 3%">流水号</label>
-                                   <label style="margin-left: 3%">接单日期</label>
-                                   <label style="margin-left: 15%">完成日期</label>
                                    <label style="margin-left: 14%">项目</label>
                                 </div>
                                 <div class="form-group" style="margin-left:12%;width: 80%;">
