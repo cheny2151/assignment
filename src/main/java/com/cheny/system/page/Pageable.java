@@ -1,5 +1,6 @@
 package com.cheny.system.page;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,9 @@ import java.util.List;
  * 分页信息
  * Created by cheny on 2017/9/24.
  */
-public class Pageable<T> {
+public class Pageable<T> implements Serializable{
+
+    private static final long serialVersionUID = 5705303253597757865L;
 
     /**
      * 默认分页大小

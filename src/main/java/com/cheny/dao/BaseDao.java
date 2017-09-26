@@ -1,5 +1,7 @@
 package com.cheny.dao;
 
+import com.cheny.system.page.Filter;
+
 import java.util.List;
 
 /**
@@ -20,5 +22,8 @@ public interface BaseDao<T> {
     List<T> findByIds(List<Long> ids);
 
     void flush();
+
+    List<T> findList(List<Filter> filters);
+
 
 }

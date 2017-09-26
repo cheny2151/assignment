@@ -6,19 +6,19 @@ package com.cheny.system.page;
  */
 public class Filter {
 
-    private enum Operator {
+    public enum Operator {
 
         equal,
 
         notEqual,
 
-        greaterThan,
+        gt,
 
-        greaterThanOrEqualTo,
+        ge,
 
-        lessThan,
+        lt,
 
-        lessThanOrEqualTo,
+        le,
 
         in,
 
@@ -27,6 +27,10 @@ public class Filter {
         notLike,
 
         between,
+
+        isNull,
+
+        notNull
 
     }
 
@@ -43,68 +47,72 @@ public class Filter {
     /**
      * 值
      */
-    private String value1;
-
-    private String value2;
+    private Object value;
 
     /**
      * 是否忽略大小写，默认false
      */
     private boolean isIgnoreCase = false;
 
-    public Filter(Operator operator, String property, String value, boolean isIgnoreCase) {
+    public Filter(Operator operator, String property, Object value, boolean isIgnoreCase) {
         this.operator = operator;
         this.property = property;
-        this.value1 = value;
+        this.value = value;
         this.isIgnoreCase = isIgnoreCase;
     }
 
-    public Filter(Operator operator, String property, String value) {
+    public Filter(Operator operator, String property, Object value) {
         this.operator = operator;
         this.property = property;
-        this.value1 = value;
+        this.value = value;
     }
 
-    public static Filter eq(String property, String value) {
+    public static Filter eq(String property, Object value) {
         return new Filter(Operator.equal, property, value);
     }
 
-    public static Filter neq(String property, String value) {
+    public static Filter noteq(String property, Object value) {
         return new Filter(Operator.notEqual, property, value);
     }
 
-    public static Filter gt(String property, String value) {
-        return new Filter(Operator.greaterThan, property, value);
+    public static Filter gt(String property, Object value) {
+        return new Filter(Operator.gt, property, value);
     }
 
-    public static Filter ge(String property, String value) {
-        return new Filter(Operator.greaterThanOrEqualTo, property, value);
+    public static Filter ge(String property, Object value) {
+        return new Filter(Operator.ge, property, value);
     }
 
-    public static Filter lt(String property, String value) {
-        return new Filter(Operator.lessThan, property, value);
+    public static Filter lt(String property, Object value) {
+        return new Filter(Operator.lt, property, value);
     }
 
-    public static Filter le(String property, String value) {
-        return new Filter(Operator.lessThanOrEqualTo, property, value);
+    public static Filter le(String property, Object value) {
+        return new Filter(Operator.le, property, value);
     }
 
-    public static Filter in(String property, String value) {
+    public static Filter in(String property, Object value) {
         return new Filter(Operator.in, property, value);
     }
 
-    public static Filter like(String property, String value) {
+    public static Filter like(String property, Object value) {
         return new Filter(Operator.like, property, value);
     }
 
-    public static Filter notLike(String property, String value) {
+    public static Filter notLike(String property, Object value) {
         return new Filter(Operator.notLike, property, value);
     }
 
-    public static Filter between(String property, String value1, String value2) {
-        Filter filter = new Filter(Operator.between, property, value1);
-        filter.setValue2(value2);
-        return filter;
+    public static Filter isNull(String property) {
+        return new Filter(Operator.isNull, property, null);
+    }
+
+    public static Filter notNull(String property) {
+        return new Filter(Operator.notNull, property, null);
+    }
+
+    public static Filter between(String property, Object value) {
+        return new Filter(Operator.between, property, value);
     }
 
     public Operator getOperator() {
@@ -123,27 +131,21 @@ public class Filter {
         this.property = property;
     }
 
-    public String getValue1() {
-        return value1;
+    public Object getValue() {
+        return value;
     }
 
-    public void setValue1(String value) {
-        this.value1 = value;
+    public void setValue(Object value) {
+        this.value = value;
     }
 
-    public String getValue2() {
-        return value2;
-    }
 
-    public void setValue2(String value2) {
-        this.value2 = value2;
-    }
-
-    public boolean isIgnoreCase() {
+    public boolean getIsIgnoreCase() {
         return isIgnoreCase;
     }
 
-    public void setIgnoreCase(boolean ignoreCase) {
+    public void setIsIgnoreCase(boolean ignoreCase) {
         isIgnoreCase = ignoreCase;
     }
+
 }
