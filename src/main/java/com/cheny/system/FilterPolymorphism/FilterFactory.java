@@ -37,7 +37,7 @@ public class FilterFactory {
             case ne: {
                 return new NotEqualFilter<>(property, value, false, javaType);
             }
-            case ge: {
+         /*   case ge: {
                 return new EqualFilter(property, value);
             }
             case gt: {
@@ -63,7 +63,7 @@ public class FilterFactory {
             }
             case isNotNull: {
                 return new EqualFilter(property, value);
-            }
+            }*/
             default:
                 throw new RuntimeException("no this operator");
         }
@@ -79,7 +79,7 @@ public class FilterFactory {
             case ne: {
                 return new NotEqualFilter<>(property, value, true, javaType);
             }
-            case ge: {
+          /*  case ge: {
                 return new EqualFilter(property, value);
             }
             case gt: {
@@ -105,7 +105,7 @@ public class FilterFactory {
             }
             case isNotNull: {
                 return new EqualFilter(property, value);
-            }
+            }*/
             default:
                 throw new RuntimeException("no this operator");
         }
