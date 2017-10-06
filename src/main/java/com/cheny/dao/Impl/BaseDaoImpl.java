@@ -83,6 +83,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         return null;
     }
 
+    /**
+     * <?>:可接收任何result type的criteriaQuery( criteriaBuilder.createQuery(T)-> result type为T );
+     * 而且 criteriaQuery.select(Selection<? extends T> selection) select的参数应该是或者继承于 result type
+     */
     private void addRestriction(CriteriaQuery<?> criteriaQuery, List<Filter> filters) {
         Assert.notNull(criteriaQuery, "must not null");
 
