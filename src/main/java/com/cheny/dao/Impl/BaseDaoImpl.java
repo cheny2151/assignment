@@ -80,7 +80,21 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         Root<T> root = criteriaQuery.from(clazz);
         criteriaQuery.select(root);
         addRestriction(criteriaQuery, filters);
-        return null;
+        return entityManager.createQuery(criteriaQuery).setFlushMode(FlushModeType.COMMIT).getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<T> findListPolymorphism(List<com.cheny.system.FilterPolymorphism.Filter<T>> filters) {
+        Assert.notEmpty(filters, "Must Not Empty");
+
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(clazz);
+        criteriaQuery.from(clazz);
+        for (com.cheny.system.FilterPolymorphism.Filter filter : filters) {
+            filter.addRestrictions(criteriaQuery, criteriaBuilder);
+        }
+        return entityManager.createQuery(criteriaQuery).setFlushMode(FlushModeType.COMMIT).getResultList();
     }
 
     /**
@@ -245,7 +259,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     private Path getPath(Root<T> root, String property) {
-        String[] properties = property.split(".");
+        String[] properties = property.split("\\.");
         Path<Object> path = root.get(properties[0]);
         for (int i = 1; i < properties.length; i++) {
             path = path.get(properties[i]);

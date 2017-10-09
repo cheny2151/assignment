@@ -6,6 +6,8 @@ import com.cheny.entity.SerialNumber;
 import com.cheny.service.AssignmentService;
 import com.cheny.service.ProjectService;
 import com.cheny.service.SerialNumberService;
+import com.cheny.system.FilterPolymorphism.Filter;
+import com.cheny.system.FilterPolymorphism.FilterFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,5 +66,19 @@ public class AssignmentController extends BaseController {
         }
 
         return "redirect:add";
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String findList(Model model) {
+        Filter<Project> filter = FilterFactory.create(FilterFactory.Operator.like, "name", "维", Project.class);
+        Filter<Project> filter1 = FilterFactory.create(FilterFactory.Operator.eq, "price", 500D, Project.class);
+        ArrayList<Filter<Project>> filters = new ArrayList<>();
+        filters.add(filter);
+        filters.add(filter1);
+        List<Project> list = projectService.findListPolymorphism(filters);
+        for (Project project : list) {
+            System.out.println(project.getName());
+        }
+        return null;
     }
 }

@@ -2,6 +2,7 @@ package com.cheny.dao;
 
 import com.cheny.system.page.Filter;
 
+import javax.persistence.criteria.*;
 import java.util.List;
 
 /**
@@ -25,5 +26,9 @@ public interface BaseDao<T> {
 
     List<T> findList(List<Filter> filters);
 
+    /**
+     * 重构：多态代替条件
+     */
+    List<T> findListPolymorphism(List<com.cheny.system.FilterPolymorphism.Filter<T>> filters);
 
 }

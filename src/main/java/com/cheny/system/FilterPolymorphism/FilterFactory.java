@@ -28,7 +28,7 @@ public class FilterFactory {
 
     }
 
-    public static <T> Filter create(Operator operator, String property, Object value, Class<T> javaType) {
+    public static <T> Filter<T> create(Operator operator, String property, Object value, Class<T> javaType) {
 
         switch (operator) {
             case eq: {
@@ -52,26 +52,25 @@ public class FilterFactory {
             case in: {
                 return new InFilter<>(property, value, false, javaType);
             }
-/*
             case like: {
-                return new EqualFilter(property, value);
+                return new LikeFilter<>(property, value, false, javaType);
             }
             case noLike: {
-                return new EqualFilter(property, value);
+                return new NotLikeFilter<>(property, value, false, javaType);
             }
             case isNull: {
-                return new EqualFilter(property, value);
+                return new NullFilter<>(property, value, false, javaType);
             }
             case isNotNull: {
-                return new EqualFilter(property, value);
-            }*/
+                return new NotNullFilter<>(property, value, false, javaType);
+            }
             default:
                 throw new RuntimeException("no this operator");
         }
 
     }
 
-    public static <T> Filter createIgnoreCase(Operator operator, String property, Object value, Class<T> javaType) {
+    public static <T> Filter<T> createIgnoreCase(Operator operator, String property, Object value, Class<T> javaType) {
 
         switch (operator) {
             case eq: {
@@ -80,13 +79,12 @@ public class FilterFactory {
             case ne: {
                 return new NotEqualFilter<>(property, value, true, javaType);
             }
-            /*case like: {
-                return new EqualFilter(property, value);
+            case like: {
+                return new LikeFilter<>(property, value, true, javaType);
             }
             case noLike: {
-                return new EqualFilter(property, value);
+                return new NotLikeFilter<>(property, value, true, javaType);
             }
-            */
             default:
                 throw new RuntimeException("no this operator");
         }

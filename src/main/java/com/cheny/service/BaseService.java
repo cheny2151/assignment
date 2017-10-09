@@ -1,5 +1,7 @@
 package com.cheny.service;
 
+import com.cheny.system.page.Filter;
+
 import java.util.List;
 
 /**
@@ -26,5 +28,9 @@ public interface BaseService<T> {
     List<T> findByIds(List<Long> ids);
 
     void flush();
+
+    List<T> findList(List<Filter> filters);
+
+    List<T> findListPolymorphism(List<com.cheny.system.FilterPolymorphism.Filter<T>> filters);
 
 }

@@ -17,7 +17,7 @@ public class LikeFilter<T> extends Filter<T> {
         Path<?> path = getPath(criteriaQuery);
         if (value instanceof String && String.class.isAssignableFrom(path.getJavaType())) {
             Predicate restriction = criteriaQuery.getRestriction() != null ? criteriaQuery.getRestriction() : criteriaBuilder.conjunction();
-            restriction = criteriaBuilder.and(restriction, criteriaBuilder.like((Path<String>) path, (String) value));
+            restriction = criteriaBuilder.and(restriction, criteriaBuilder.like((Path<String>) path, "%" + value + "%"));
             criteriaQuery.where(restriction);
         }
     }

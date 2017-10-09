@@ -14,5 +14,6 @@ public class NotNullFilter<T> extends Filter<T> {
     public void addRestrictions(CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
         Predicate restriction = criteriaQuery.getRestriction() != null ? criteriaQuery.getRestriction() : criteriaBuilder.conjunction();
         restriction = criteriaBuilder.and(restriction, criteriaBuilder.isNotNull(getPath(criteriaQuery)));
+        criteriaQuery.where(restriction);
     }
 }

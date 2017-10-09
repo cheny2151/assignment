@@ -2,6 +2,7 @@ package com.cheny.service.impl;
 
 import com.cheny.dao.BaseDao;
 import com.cheny.service.BaseService;
+import com.cheny.system.page.Filter;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
@@ -63,6 +64,16 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     @Override
     public void flush() {
         baseDao.flush();
+    }
+
+    @Override
+    public List<T> findList(List<Filter> filters) {
+        return baseDao.findList(filters);
+    }
+
+    @Override
+    public List<T> findListPolymorphism(List<com.cheny.system.FilterPolymorphism.Filter<T>> filters) {
+        return baseDao.findListPolymorphism(filters);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.cheny.system.FilterPolymorphism;
 
-import org.springframework.cache.annotation.Cacheable;
+import com.cheny.system.SpringUtils;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.util.Assert;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -9,6 +11,11 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import java.util.Set;
 
+/**
+ * 重构:多态代替条件
+ *
+ * @param <T> 实体类型
+ */
 public abstract class Filter<T> {
 
     protected Class<T> javaType;
@@ -26,16 +33,26 @@ public abstract class Filter<T> {
         this.ignoreCase = ignoreCase;
     }
 
-    abstract void addRestrictions(CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder);
+    public abstract void addRestrictions(CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder);
 
-    @Cacheable(value = "myCache", key = "#root.methodName+#javaType")
-    public Root<T> getRoot(CriteriaQuery<?> criteriaQuery, Class<T> javaType) {
+    @SuppressWarnings("unchecked")
+    private Root<T> getRoot(CriteriaQuery<?> criteriaQuery, Class<T> javaType) {
         Assert.notNull(javaType, "Must Not Null");
+
+        CacheManager cacheManager = (CacheManager) SpringUtils.getBean("cacheManager");
+        Cache rootCache = cacheManager.getCache("rootCache");
+
+
+        if (rootCache.get("getRoot_" + javaType) != null) {
+            return (Root<T>) rootCache.get("getRoot_" + javaType).get();
+        }
 
         Set<Root<?>> roots = criteriaQuery.getRoots();
         for (Root<?> root : roots) {
             if (javaType.equals(root.getJavaType())) {
-                return (Root<T>) root.as(javaType);
+                Root<T> result = (Root<T>) root.as(javaType);
+                rootCache.put("getRoot_" + javaType, result);
+                return result;
             }
         }
         return null;
@@ -48,7 +65,7 @@ public abstract class Filter<T> {
         if (root == null) {
             return null;
         }
-        String[] propertySplit = property.split(".");
+        String[] propertySplit = property.split("\\.");
         Path<?> path = root.get(propertySplit[0]);
         for (int i = 1; i < propertySplit.length; i++) {
             path = path.get(propertySplit[i]);
