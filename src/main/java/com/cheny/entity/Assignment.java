@@ -1,9 +1,7 @@
 package com.cheny.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by cheny on 2017/9/17.
@@ -66,4 +64,14 @@ public class Assignment extends BaseEntity {
     public void setFinalDate(Date finalDate) {
         this.finalDate = finalDate;
     }
+
+    @Transient
+    public Set<Project> getProjects() {
+        HashSet<Project> projects = new HashSet<>();
+        for (SerialNumber serialNumber : serialNumbers) {
+            projects.addAll(serialNumber.getProjects());
+        }
+        return projects;
+    }
+
 }

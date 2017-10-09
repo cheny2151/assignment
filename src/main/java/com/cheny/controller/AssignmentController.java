@@ -70,15 +70,8 @@ public class AssignmentController extends BaseController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String findList(Model model) {
-        Filter<Project> filter = FilterFactory.create(FilterFactory.Operator.like, "name", "维", Project.class);
-        Filter<Project> filter1 = FilterFactory.create(FilterFactory.Operator.eq, "price", 500D, Project.class);
-        ArrayList<Filter<Project>> filters = new ArrayList<>();
-        filters.add(filter);
-        filters.add(filter1);
-        List<Project> list = projectService.findListPolymorphism(filters);
-        for (Project project : list) {
-            System.out.println(project.getName());
-        }
-        return null;
+        List<Assignment> assignments = assignmentService.findAll();
+        model.addAttribute("assignments",assignments);
+        return "/assignment_list";
     }
 }

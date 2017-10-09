@@ -86,7 +86,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @SuppressWarnings("unchecked")
     @Override
     public List<T> findListPolymorphism(List<com.cheny.system.FilterPolymorphism.Filter<T>> filters) {
-        Assert.notEmpty(filters, "Must Not Empty");
+
+        if (filters == null || filters.isEmpty()) {
+            return findAll();
+        }
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(clazz);

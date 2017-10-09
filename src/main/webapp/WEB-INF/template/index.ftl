@@ -84,7 +84,7 @@
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-columns" aria-hidden="true"></i><span>任务单</span></a>
                                 <ul class="nav child-nav level-1">
-                                    <li><a href="${pageContext}/forms_layouts">任务列表</a></li>
+                                    <li><a href="${pageContext}/assignment/list">任务列表</a></li>
                                     <li><a href="${pageContext}/assignment/add">添加</a></li>
                                     <#--<li><a href="forms_advanced">Advanced</a></li>-->
                                     <#--<li><a href="forms_validation">Validation</a></li>-->
