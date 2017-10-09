@@ -13,12 +13,13 @@ public class NotEqualFilter<T> extends Filter<T> {
 
     @SuppressWarnings("unchecked")
     @Override
-    void addRestrictions(CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+    public void addRestrictions(CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
         Predicate restriction = criteriaQuery.getRestriction() != null ? criteriaQuery.getRestriction() : criteriaBuilder.conjunction();
-        if (ignoreCase && value instanceof String && javaType.isAssignableFrom(String.class)) {
-            restriction = criteriaBuilder.and(restriction, criteriaBuilder.notEqual(criteriaBuilder.lower((Path<String>) getPath(criteriaQuery)), ((String) value).toLowerCase()));
+        Path<?> path = getPath(criteriaQuery);
+        if (ignoreCase && value instanceof String && String.class.isAssignableFrom(path.getJavaType())) {
+            restriction = criteriaBuilder.and(restriction, criteriaBuilder.notEqual(criteriaBuilder.lower((Path<String>) path), ((String) value).toLowerCase()));
         } else {
-            restriction = criteriaBuilder.and(restriction, criteriaBuilder.notEqual(getPath(criteriaQuery), value));
+            restriction = criteriaBuilder.and(restriction, criteriaBuilder.notEqual(path, value));
         }
         criteriaQuery.where(restriction);
     }

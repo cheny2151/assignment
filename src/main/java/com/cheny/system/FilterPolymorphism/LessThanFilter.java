@@ -4,11 +4,11 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
+import java.util.Date;
 
-public class EqualFilter<T> extends Filter<T> {
+public class LessThanFilter<T> extends Filter<T> {
 
-
-    EqualFilter(String property, Object value, boolean ignoreCase, Class<T> javaType) {
+    LessThanFilter(String property, Object value, boolean ignoreCase, Class<T> javaType) {
         super(property, value, ignoreCase, javaType);
     }
 
@@ -17,13 +17,11 @@ public class EqualFilter<T> extends Filter<T> {
     public void addRestrictions(CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
         Predicate restriction = criteriaQuery.getRestriction() != null ? criteriaQuery.getRestriction() : criteriaBuilder.conjunction();
         Path<?> path = getPath(criteriaQuery);
-        if (ignoreCase && value instanceof String && String.class.isAssignableFrom(path.getJavaType())) {
-            restriction = criteriaBuilder.and(restriction, criteriaBuilder.equal(criteriaBuilder.lower((Path<String>) path), ((String) value).toLowerCase()));
-        } else {
-            restriction = criteriaBuilder.and(restriction, criteriaBuilder.equal(path, value));
+        if (value instanceof Number && Number.class.isAssignableFrom(path.getJavaType())) {
+            restriction = criteriaBuilder.and(restriction, criteriaBuilder.lt((Path<Number>) path, (Number) value));
+        } else if (value instanceof Date && Date.class.isAssignableFrom(path.getJavaType())) {
+            restriction = criteriaBuilder.and(restriction, criteriaBuilder.lessThan((Path<Date>) path, (Date) value));
         }
         criteriaQuery.where(restriction);
     }
-
-
 }

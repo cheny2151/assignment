@@ -1,5 +1,8 @@
 package com.cheny.system.FilterPolymorphism;
 
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.util.Assert;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
@@ -25,7 +28,10 @@ public abstract class Filter<T> {
 
     abstract void addRestrictions(CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder);
 
-    private Root<T> getRoot(CriteriaQuery<?> criteriaQuery) {
+    @Cacheable(value = "myCache", key = "#root.methodName+#javaType")
+    public Root<T> getRoot(CriteriaQuery<?> criteriaQuery, Class<T> javaType) {
+        Assert.notNull(javaType, "Must Not Null");
+
         Set<Root<?>> roots = criteriaQuery.getRoots();
         for (Root<?> root : roots) {
             if (javaType.equals(root.getJavaType())) {
@@ -36,7 +42,9 @@ public abstract class Filter<T> {
     }
 
     protected Path<?> getPath(CriteriaQuery criteriaQuery) {
-        Root<T> root = getRoot(criteriaQuery);
+        Assert.notNull(property, "Must Not Null");
+
+        Root<T> root = getRoot(criteriaQuery, javaType);
         if (root == null) {
             return null;
         }

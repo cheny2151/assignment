@@ -37,28 +37,29 @@ public class FilterFactory {
             case ne: {
                 return new NotEqualFilter<>(property, value, false, javaType);
             }
-         /*   case ge: {
-                return new EqualFilter(property, value);
-            }
             case gt: {
-                return new EqualFilter(property, value);
+                return new GreaterThanFilter<>(property, value, false, javaType);
             }
-            case in: {
-                return new EqualFilter(property, value);
-            }
-            case le: {
-                return new EqualFilter(property, value);
+            case ge: {
+                return new GreaterThanOrEqualFilter<>(property, value, false, javaType);
             }
             case lt: {
-                return new EqualFilter(property, value);
+                return new LessThanFilter<>(property, value, false, javaType);
             }
+            case le: {
+                return new LessThanOrEqualFilter<>(property, value, false, javaType);
+            }
+            case in: {
+                return new InFilter<>(property, value, false, javaType);
+            }
+/*
             case like: {
                 return new EqualFilter(property, value);
             }
-            case isNull: {
+            case noLike: {
                 return new EqualFilter(property, value);
             }
-            case noLike: {
+            case isNull: {
                 return new EqualFilter(property, value);
             }
             case isNotNull: {
@@ -79,33 +80,13 @@ public class FilterFactory {
             case ne: {
                 return new NotEqualFilter<>(property, value, true, javaType);
             }
-          /*  case ge: {
-                return new EqualFilter(property, value);
-            }
-            case gt: {
-                return new EqualFilter(property, value);
-            }
-            case in: {
-                return new EqualFilter(property, value);
-            }
-            case le: {
-                return new EqualFilter(property, value);
-            }
-            case lt: {
-                return new EqualFilter(property, value);
-            }
-            case like: {
-                return new EqualFilter(property, value);
-            }
-            case isNull: {
+            /*case like: {
                 return new EqualFilter(property, value);
             }
             case noLike: {
                 return new EqualFilter(property, value);
             }
-            case isNotNull: {
-                return new EqualFilter(property, value);
-            }*/
+            */
             default:
                 throw new RuntimeException("no this operator");
         }
