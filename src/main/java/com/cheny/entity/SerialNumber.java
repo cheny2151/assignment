@@ -14,14 +14,29 @@ public class SerialNumber extends BaseEntity {
 
     private static final long serialVersionUID = -4542666765989458491L;
 
+    /**
+     * 流水号
+     */
     private Integer number;
 
+    /**
+     * 分析员
+     */
     private List<Analyst> analysts = new ArrayList<>();
 
+    /**
+     * 项目
+     */
     private List<Project> projects = new ArrayList<>();
 
+    /**
+     * 所属任务单
+     */
     private Assignment assignment;
 
+    /**
+     * 存放关联项目id
+     */
     private List<Long> projectIds = new ArrayList<>();
 
     public Integer getNumber() {
@@ -75,5 +90,13 @@ public class SerialNumber extends BaseEntity {
     public void prePersist() {
         this.setName(this.getAssignment().getName() + "-" + this.getNumber().toString());
     }
+
+    @PreRemove
+    public void preRemove() {
+        this.setProjects(null);
+        this.setAssignment(null);
+        this.setAnalysts(null);
+    }
+
 
 }

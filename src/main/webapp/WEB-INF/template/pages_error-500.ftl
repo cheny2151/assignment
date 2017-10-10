@@ -25,7 +25,7 @@
                         <div class="row mt-xlg">
                             <div class="col-sm-6  col-sm-offset-3">
                                 <button class="btn btn-sm btn-darker-2 btn-block" onClick="history.back();">Previous page</button>
-                                <a href="http://myiideveloper.com/任务分派/任务分派-green/dashboard.html" class="btn btn-sm btn-primary btn-block">Dashboard</a>
+                                <a href="http://myiideveloper.com/任务分派/任务分派-green/Home.html" class="btn btn-sm btn-primary btn-block">Home</a>
                                 <a href="pages_faq.html" class="btn btn-sm btn-lighter-2 btn-block mb-xlg">FAQ</a>
                             </div>
                         </div>

@@ -10,6 +10,8 @@
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/animate.css/animate.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/common.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/my-icon.css">
 </head>
 
 <body>
@@ -60,7 +62,7 @@
                 <div class="nano-content">
                     <nav>
                         <ul class="nav" id="main-nav">
-                            <li><a href="index.ftl"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
+                            <li><a href="index.ftl"><i class="fa fa-home" aria-hidden="true"></i><span>Home</span></a></li>
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">
@@ -224,7 +226,13 @@
                                         <td>${assignment.startDate?string("yyyy-MM-dd")}</td>
                                         <td>${assignment.finalDate?string("yyyy-MM-dd")}</td>
                                         <td>${assignment.serialNumbers?size}</td>
-                                        <td>zzz</td>
+                                        <td style="position: relative;">
+                                            <a href="/assignment/view?id=${assignment.id}" style="cursor: pointer;position: absolute;left: 0;"><i class="view" ></i></a>
+                                            &nbsp;
+                                            &nbsp;
+                                            <a class="fa fa-times action deleteOne" href="/assignment/delete?ids=${assignment.id}"
+                                               style="cursor: pointer;position: absolute;left: 30px;"></a>
+                                        </td>
                                     </tr>
                                     [/#list]
                                     </tbody>
@@ -246,6 +254,10 @@
 <script src="${contextPath}/resources/vendor/data-table/media/js/jquery.dataTables.min.js"></script>
 <script src="${contextPath}/resources/vendor/data-table/media/js/dataTables.bootstrap.min.js"></script>
 <script src="${contextPath}/resources/js/examples/tables/data-tables.js"></script>
+<script src="${contextPath}/resources/js/common.js"></script>
+<script type="text/javascript">
+    [@flush_message /]
+</script>
 
 </body>
 

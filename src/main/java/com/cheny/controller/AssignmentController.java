@@ -6,8 +6,6 @@ import com.cheny.entity.SerialNumber;
 import com.cheny.service.AssignmentService;
 import com.cheny.service.ProjectService;
 import com.cheny.service.SerialNumberService;
-import com.cheny.system.FilterPolymorphism.Filter;
-import com.cheny.system.FilterPolymorphism.FilterFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -71,7 +68,21 @@ public class AssignmentController extends BaseController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String findList(Model model) {
         List<Assignment> assignments = assignmentService.findAll();
-        model.addAttribute("assignments",assignments);
+        model.addAttribute("assignments", assignments);
         return "/assignment_list";
     }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String delete(Long[] ids, RedirectAttributes redirectAttributes) {
+        if (ids != null) {
+            try {
+                assignmentService.deleteAssignments(ids);
+                addSuccessFlushMessage(redirectAttributes, "删除成功");
+            } catch (Exception e) {
+                addErrorFlushMessage(redirectAttributes, "删除失败,请重试");
+            }
+        }
+        return "redirect:list";
+    }
+
 }

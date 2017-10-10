@@ -64,7 +64,7 @@
                 <div class="nano-content">
                     <nav>
                         <ul class="nav" id="main-nav">
-                            <li><a href="${contextPath}/index"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
+                            <li><a href="${contextPath}/index"><i class="fa fa-home" aria-hidden="true"></i><span>Home</span></a></li>
                             <li class="has-child-item open-item active-item">
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">

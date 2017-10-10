@@ -77,7 +77,6 @@
         .select2-container--bootstrap{
             display: "";
             margin-top: -5px;
-            margin-left: 50px;
         }
         .btn-my{
             margin-left:5%;
@@ -142,7 +141,7 @@
                 <div class="nano-content">
                     <nav>
                         <ul class="nav" id="main-nav">
-                            <li><a href="index.ftl"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a></li>
+                            <li><a href="index.ftl"><i class="fa fa-home" aria-hidden="true"></i><span>Home</span></a></li>
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                                 <ul class="nav child-nav level-1">
@@ -352,7 +351,7 @@
         //增加子流水号
         $("#add").click(function () {
 
-            $formGroup.append($("<div class='col-sm-10' style='margin:10px auto 10px 205px'>" +
+            $formGroup.append($("<div class='col-sm-10' style='margin-left: 13%'>" +
                     "<input type='text' name='serialNumbers["+count+"].number' class='form-inputs-head' placeholder='Number' >" +
                     "<select name='serialNumbers["+count+"].projectIds' class='select-example-multiple form-select' multiple='multiple'>" +
                     "<optgroup label='项目列表'>"+

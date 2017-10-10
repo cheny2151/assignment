@@ -33,7 +33,7 @@ $.message = function () {
     if ($message == null) {
         var $message = $("<div class='message'></div>");
         var $messageTitle = $("<div class='message_title'></div>");
-        var $messageContent = $("<div class='message_content'></div>")
+        var $messageContent = $("<div class='message_content'></div>");
         $messageTitle.appendTo($message);
         $messageContent.appendTo($message);
         $message.appendTo("body");

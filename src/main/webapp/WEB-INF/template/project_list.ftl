@@ -64,7 +64,7 @@
                 <div class="nano-content">
                     <nav>
                         <ul class="nav" id="main-nav">
-                            <li><a href="index.ftl"><i class="fa fa-home" aria-hidden="true"></i><span>Dashboard</span></a>
+                            <li><a href="index.ftl"><i class="fa fa-home" aria-hidden="true"></i><span>Home</span></a>
                             </li>
                             <li class="has-child-item close-item">
                                 <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>

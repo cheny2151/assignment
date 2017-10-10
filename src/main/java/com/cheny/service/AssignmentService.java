@@ -7,5 +7,9 @@ import com.cheny.entity.Assignment;
  */
 public interface AssignmentService extends BaseService<Assignment> {
 
-
+    /**
+     * 删除任务单，级联流水号
+     * @param ids ids
+     */
+    void deleteAssignments(Long[] ids);
 }

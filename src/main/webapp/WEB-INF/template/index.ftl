@@ -489,7 +489,7 @@
 <script src="${contextPath}/resources/vendor/toastr/toastr.min.js"></script>
 <script src="${contextPath}/resources/vendor/chart-js/chart.min.js"></script>
 <script src="${contextPath}/resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-<script src="${contextPath}/resources/js/examples/dashboard.js"></script>
+<script src="${contextPath}/resources/js/examples/Home.js"></script>
 </body>
 
 </html>
