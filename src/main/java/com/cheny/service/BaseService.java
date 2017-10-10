@@ -11,7 +11,7 @@ public interface BaseService<T> {
 
     void persist(T entity);
 
-    void merge(T entity);
+    T merge(T entity);
 
     void remove(T entity);
 
@@ -32,5 +32,7 @@ public interface BaseService<T> {
     List<T> findList(List<Filter> filters);
 
     List<T> findListPolymorphism(List<com.cheny.system.FilterPolymorphism.Filter<T>> filters);
+
+    T updateOnlyThisProperties(T entity, String... properties);
 
 }

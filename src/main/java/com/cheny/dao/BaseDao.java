@@ -2,7 +2,6 @@ package com.cheny.dao;
 
 import com.cheny.system.page.Filter;
 
-import javax.persistence.criteria.*;
 import java.util.List;
 
 /**
@@ -12,7 +11,7 @@ public interface BaseDao<T> {
 
     void persist(T entity);
 
-    void merge(T entity);
+    T merge(T entity);
 
     void remove(T entity);
 
@@ -25,6 +24,10 @@ public interface BaseDao<T> {
     void flush();
 
     List<T> findList(List<Filter> filters);
+
+    Long getIdentifier(T entity);
+
+    boolean contains(T entity);
 
     /**
      * 重构：多态代替条件

@@ -306,6 +306,7 @@
                                    <label style="margin-left: 14%">项目</label>
                                     [#list assignment.serialNumbers as serialNumber]
                                         <div class='col-sm-10' style='margin-left: 13%'>
+                                            <input type="hidden" name="serialNumbers[${serialNumber_index}].id" value="${serialNumber.id}">
                                             <input type='text' name='serialNumbers[${serialNumber_index}].number' class='form-inputs-head' placeholder='Number' value="${serialNumber.number}" >
                                             <select name='serialNumbers[${serialNumber_index}].projectIds' class='select-example-multiple form-select' multiple='multiple'>
                                             <optgroup label='项目列表'>

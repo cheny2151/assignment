@@ -36,8 +36,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public void merge(T entity) {
-        entityManager.merge(entity);
+    public T merge(T entity) {
+        return entityManager.merge(entity);
     }
 
     @Override
@@ -81,6 +81,17 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         criteriaQuery.select(root);
         addRestriction(criteriaQuery, filters);
         return entityManager.createQuery(criteriaQuery).setFlushMode(FlushModeType.COMMIT).getResultList();
+    }
+
+    @Override
+    public Long getIdentifier(T entity) {
+        Assert.notNull(entity, "Must Not Null");
+        return (Long) entityManager.getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(entity);
+    }
+
+    @Override
+    public boolean contains(T entity) {
+        return entityManager.contains(entity);
     }
 
     @SuppressWarnings("unchecked")

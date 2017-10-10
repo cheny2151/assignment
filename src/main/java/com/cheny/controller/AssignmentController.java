@@ -105,8 +105,28 @@ public class AssignmentController extends BaseController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(Assignment assignment) {
 
+        //更新原始实体
+        assignment = assignmentService.updateOnlyThisProperties(assignment, "memo", "startDate", "finalDate");
+
         List<SerialNumber> serialNumbers = assignment.getSerialNumbers();
-        return null;
+        for (SerialNumber serialNumber : serialNumbers) {
+            List<Project> projects = projectService.findByIds(serialNumber.getProjectIds());
+            //id不为null则update，为null则save
+            Long id = serialNumber.getId();
+            if (id != null) {
+                SerialNumber originSerialNumber = serialNumberService.find(id);
+                originSerialNumber.setProjects(projects);
+                originSerialNumber.setNumber(serialNumber.getNumber());
+                serialNumberService.merge(originSerialNumber);
+            } else {
+                serialNumber.setProjects(projects);
+                serialNumber.setAssignment(assignment);
+                serialNumberService.persist(serialNumber);
+            }
+        }
+
+        return "redirect:view?id=" + assignment.getId();
+
     }
 
 }
