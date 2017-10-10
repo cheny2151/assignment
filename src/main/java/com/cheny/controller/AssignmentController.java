@@ -74,6 +74,7 @@ public class AssignmentController extends BaseController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String delete(Long[] ids, RedirectAttributes redirectAttributes) {
+
         if (ids != null) {
             try {
                 assignmentService.deleteAssignments(ids);
@@ -83,6 +84,29 @@ public class AssignmentController extends BaseController {
             }
         }
         return "redirect:list";
+
+    }
+
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    public String view(Long id, RedirectAttributes redirectAttributes, Model model) {
+
+        Assignment assignment = assignmentService.find(id);
+        if (assignment == null) {
+            addErrorFlushMessage(redirectAttributes, "找不到该单号");
+            return "redirect:list";
+        }
+        List<Project> projects = projectService.findAll();
+        model.addAttribute("projects", projects);
+        model.addAttribute("assignment", assignment);
+        return "/assignment_view";
+
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String update(Assignment assignment) {
+
+        List<SerialNumber> serialNumbers = assignment.getSerialNumbers();
+        return null;
     }
 
 }

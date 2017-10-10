@@ -280,33 +280,46 @@
                 <div class="panel-content">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form-horizontal form-stripe" action="${contextPath}/assignment/save" method="post">
+                            <form class="form-horizontal form-stripe" action="${contextPath}/assignment/update" method="post">
+                                <input type="hidden" name="id" value="${assignment.id}">
                                 <div class="form-group">
                                     <label for="placeholder" class="col-sm-2 control-label">任务编号</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="name" class="form-inputs" placeholder="Code" >
+                                        <input type="text" name="name" class="form-inputs" placeholder="Code" value="${assignment.name}" >
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="placeholder" class="col-sm-2 control-label">接单日期</label>
                                     <div class="col-sm-10" >
-                                        <input type='text' name='startDate' id="start_date" class='form-inputs'  placeholder='Start Date' >
+                                        <input type='text' name='startDate' id="start_date" class='form-inputs'  placeholder='Start Date' value="${assignment.startDate}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="placeholder" class="col-sm-2 control-label">完成日期</label>
                                     <div class="col-sm-10" style="z-index: 50">
-                                        <input type='text' name='finalDate' id="end_date" class='form-inputs'  placeholder='Final Date' >
+                                        <input type='text' name='finalDate' id="end_date" class='form-inputs'  placeholder='Final Date' value="${assignment.finalDate}">
                                     </div>
                                 </div>
                                 <div class="form-group" id="form-group">
                                     <a style="margin-left:8% " id="add" href="javascript:void(0)" class="btn btn-primary btn-sm">add</a>
                                    <label style="margin-left: 3%">流水号</label>
                                    <label style="margin-left: 14%">项目</label>
+                                    [#list assignment.serialNumbers as serialNumber]
+                                        <div class='col-sm-10' style='margin-left: 13%'>
+                                            <input type='text' name='serialNumbers[${serialNumber_index}].number' class='form-inputs-head' placeholder='Number' value="${serialNumber.number}" >
+                                            <select name='serialNumbers[${serialNumber_index}].projectIds' class='select-example-multiple form-select' multiple='multiple'>
+                                            <optgroup label='项目列表'>
+                                            [#list projects as project]
+                                                <option value='${project.id}' [#list serialNumber.projects as snProject][#if project.id == snProject.id ]selected="selected"[/#if][/#list]>${project.name}</option></optgroup>
+                                            [/#list]
+                                            </select>
+                                            <a href='javascript:void(0)' class='btn btn-danger btn-sm btn-my deleteOne'>delete</a>
+                                        </div>
+                                    [/#list]
                                 </div>
                                 <div class="form-group" style="margin-left:12%;width: 80%;">
                                     <label for="textareaMaxLength" class="control-label">备注</label>
-                                    <textarea class="form-control" name="memo" rows="5" id="textareaMaxLength" placeholder="Write a memo" maxlength="500"></textarea>
+                                    <textarea class="form-control" name="memo" rows="5" id="textareaMaxLength" placeholder="Write a memo" maxlength="500" >${assignment.memo}</textarea>
                                     <span class="help-block"><i class="fa fa-info-circle mr-xs"></i>Max characters set to <span class="code">500</span></span>
                                 </div>
                                 <div class="form-group">
@@ -347,13 +360,14 @@
         var $formGroup = $("#form-group");
 
         //下标
-        var count = 0;
+        var count = ${Request.assignment.serialNumbers?size};
+
         //增加子流水号
         $("#add").click(function () {
 
             $formGroup.append($("<div class='col-sm-10' style='margin-left: 13%'>" +
                     "<input type='text' name='serialNumbers["+count+"].number' class='form-inputs-head' placeholder='Number' >" +
-                    "<select name='serialNumbers["+count+"].projectIds' class='select-example-multiple form-select' multiple='multiple'>" +
+                    "<select name='serialNumbers["+count+"].projectIds' class='select-example-multiple form-select' multiple='multiple' >" +
                     "<optgroup label='项目列表'>"+
                     [#list projects as project]
                     "<option value='${project.id}'>${project.name}</option></optgroup>"+

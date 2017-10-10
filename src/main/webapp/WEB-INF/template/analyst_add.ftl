@@ -196,19 +196,17 @@
                 <div class="panel-content">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form-horizontal form-stripe" action="${contextPath}/analyst/save" method="post">
+                            <form id="form" class="form-horizontal form-stripe" action="${contextPath}/analyst/save" method="post">
                                 <div class="form-group">
                                     <label for="placeholder" class="col-sm-2 control-label">姓名</label>
                                     <div class="col-sm-10">
-                                    <span class="input-with-icon">
                                     <input type="text" class="form-control" id="placeholder" placeholder="name" name="name">
-                                    <i class="fa fa-user"></i>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="disabled" class="col-sm-2 control-label">Disabled</label>
+                                    <label for="disabled" class="col-sm-2 control-label">工号</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="disabled" placeholder="Disabled input" >
+                                        <input type="text" class="form-control" id="disabled" placeholder="Number" name="number" >
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -239,6 +237,7 @@
     </div>
 </div>
 <script src="${contextPath}/resources/js/jquery.min.js"></script>
+<script src="${contextPath}/resources/vendor/jquery-validation/jquery.validate.min.js"></script>
 <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="${contextPath}/resources/vendor/nano-scroller/nano-scroller.js"></script>
 <script src="${contextPath}/resources/js/template-script.min.js"></script>
@@ -256,7 +255,14 @@
     <script type="text/javascript">
         $(function () {
             [@flush_message /]
-        })
+        });
+
+        $("#form").validate({
+            rules:{
+                name:"required"
+            }
+        });
+
     </script>
 </body>
 
