@@ -26,11 +26,11 @@ public class Project extends BaseEntity {
     private Double price;
 
     @ManyToMany(mappedBy = "projects", fetch = FetchType.LAZY)
-    public List<Analyst> getAnalyst() {
+    public List<Analyst> getAnalysts() {
         return analysts;
     }
 
-    public void setAnalyst(List<Analyst> analysts) {
+    public void setAnalysts(List<Analyst> analysts) {
         this.analysts = analysts;
     }
 
