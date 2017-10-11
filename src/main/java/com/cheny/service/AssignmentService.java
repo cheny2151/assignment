@@ -9,7 +9,14 @@ public interface AssignmentService extends BaseService<Assignment> {
 
     /**
      * 删除任务单，级联流水号
+     *
      * @param ids ids
      */
     void deleteAssignments(Long[] ids);
+
+    /**
+     * 移除被删除的流水号
+     */
+    void removeBeDeleted(Assignment origin, Assignment target);
+
 }

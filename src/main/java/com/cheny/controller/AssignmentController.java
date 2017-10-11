@@ -106,21 +106,30 @@ public class AssignmentController extends BaseController {
     public String update(Assignment assignment) {
 
         //更新原始实体
-        assignment = assignmentService.updateOnlyThisProperties(assignment, "memo", "startDate", "finalDate");
+        Assignment origin = assignmentService.updateOnlyThisProperties(assignment, "name", "memo", "startDate", "finalDate");
 
+        //移除被删除的流水号
+        assignmentService.removeBeDeleted(origin, assignment);
+
+        //更新流水号
         List<SerialNumber> serialNumbers = assignment.getSerialNumbers();
         for (SerialNumber serialNumber : serialNumbers) {
+            if (StringUtils.isEmpty(serialNumber.getNumber())) {
+                continue;
+            }
             List<Project> projects = projectService.findByIds(serialNumber.getProjectIds());
             //id不为null则update，为null则save
             Long id = serialNumber.getId();
             if (id != null) {
                 SerialNumber originSerialNumber = serialNumberService.find(id);
-                originSerialNumber.setProjects(projects);
+                List<Project> originProject = originSerialNumber.getProjects();
+                originProject.clear();
+                originProject.addAll(projects);
                 originSerialNumber.setNumber(serialNumber.getNumber());
                 serialNumberService.merge(originSerialNumber);
             } else {
-                serialNumber.setProjects(projects);
-                serialNumber.setAssignment(assignment);
+                serialNumber.getProjects().addAll(projects);
+                serialNumber.setAssignment(origin);
                 serialNumberService.persist(serialNumber);
             }
         }

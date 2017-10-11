@@ -6,8 +6,10 @@ import com.cheny.entity.Assignment;
 import com.cheny.entity.SerialNumber;
 import com.cheny.service.AssignmentService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -31,10 +33,33 @@ public class AssignmentServiceImpl extends BaseServiceImpl<Assignment> implement
         List<Assignment> assignments = findByIds(ids);
         for (Assignment assignment : assignments) {
             List<SerialNumber> serialNumbers = assignment.getSerialNumbers();
+            /* 手动代替注解：级联删除
             for (SerialNumber serialNumber : serialNumbers) {
                 serialNumberDao.remove(serialNumber);
-            }
+            }*/
             assignmentDao.remove(assignment);
         }
     }
+
+    @Override
+    public void removeBeDeleted(Assignment origin, Assignment target) {
+        Assert.notNull(origin, "Must not null");
+        Assert.notNull(target, "Must not null");
+
+        HashSet<Long> targetIds = new HashSet<>();
+        for (SerialNumber serialNumber : target.getSerialNumbers()) {
+            if (serialNumber.getId() != null) {
+                targetIds.add(serialNumber.getId());
+            }
+        }
+
+        //origin比target多出的则移除
+        for (SerialNumber serialNumber : origin.getSerialNumbers()) {
+            if (!targetIds.contains(serialNumber.getId())) {
+                serialNumberDao.remove(serialNumber);
+            }
+        }
+
+    }
+
 }

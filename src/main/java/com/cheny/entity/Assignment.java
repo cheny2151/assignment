@@ -32,7 +32,7 @@ public class Assignment extends BaseEntity {
      */
     private Date finalDate;
 
-    @OneToMany(mappedBy = "assignment", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "assignment", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE,CascadeType.REMOVE})
     public List<SerialNumber> getSerialNumbers() {
         return serialNumbers;
     }
