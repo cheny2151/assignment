@@ -1,5 +1,9 @@
 package com.cheny.system.FilterPolymorphism;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class FilterFactory {
 
     public enum Operator {
@@ -89,6 +93,13 @@ public class FilterFactory {
                 throw new RuntimeException("no this operator");
         }
 
+    }
+
+    @SafeVarargs
+    public static <T> List<Filter<T>> createFilterList(Filter<T>... filters) {
+        ArrayList<Filter<T>> filterList = new ArrayList<>();
+        filterList.addAll(Arrays.asList(filters));
+        return filterList;
     }
 
 }
