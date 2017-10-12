@@ -24,37 +24,8 @@
 
 
 <div class="wrap">
-    <div class="page-header">
-        <div class="leftside-header">
-            <div class="logo">
-                <a href="${contextPath}/index" class="on-click">
-                    <span style="position: absolute;font-size: 30px;color: #000;top: 12px;left: 10px;">管理系统</span>
-                </a>
-            </div>
-            <div id="menu-toggle" class="visible-xs toggle-left-sidebar" data-toggle-class="left-sidebar-open" data-target="html">
-                <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
-            </div>
-        </div>
-        <div class="rightside-header">
-            <div class="header-middle"></div>
-            <div class="header-section hidden-xs" id="notice-headerbox">
-                <div class="header-separator"></div>
-            </div>
-            <div class="header-section" id="user-headerbox">
-                <div class="user-header-wrap">
-
-                    <div class="user-info">
-                        <span class="user-name"></span>
-                        <span class="user-profile">Admin</span>
-                    </div>
-                </div>
-            </div>
-            <div class="header-separator"></div>
-        <#-- <div class="header-section">
-             <a href="#"><i class="fa fa-sign-out log-out" aria-hidden="true"></i></a>
-         </div>-->
-        </div>
-    </div>
+    
+    [#include "top.ftl"]
 
     <div class="page-body">
         <div class="left-sidebar">
@@ -74,7 +45,7 @@
                                 <ul class="nav child-nav level-1">
                                     <li><a href="${contextPath}/analyst/list">人员列表</a></li>
                                     <li><a href="${contextPath}/analyst/add">添加</a></li>
-                                <#--    <li><a href="ui-elements_tabs.ftl">Tabs</a></li>
+                                [#--    <li><a href="ui-elements_tabs.ftl">Tabs</a></li>
                                     <li><a href="ui-elements_buttons.ftl">Buttons</a></li>
                                     <li><a href="ui-elements_typography.ftl">Typography</a></li>
                                     <li><a href="ui-elements_alerts.ftl">Alerts</a></li>
@@ -86,7 +57,7 @@
                                             <li><a href="ui-elements_notifications-toastr.ftl">Toastr</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="ui-elements_animations-appear.ftl">Animations</a></li>-->
+                                    <li><a href="ui-elements_animations-appear.ftl">Animations</a></li>--]
                                 </ul>
                             </li>
                             <li class="has-child-item open-item active-item">
@@ -101,11 +72,11 @@
                                 <ul class="nav child-nav level-1">
                                     <li><a href="${contextPath}/assignment/list">任务列表</a></li>
                                     <li><a href="${contextPath}/assignment/add">添加</a></li>
-                                    <#--<li><a href="forms_advanced.ftl">Advanced</a></li>-->
-                                    <#--<li><a href="forms_validation.ftl">Validation</a></li>-->
+                                    [#--<li><a href="forms_advanced.ftl">Advanced</a></li>--]
+                                    [#--<li><a href="forms_validation.ftl">Validation</a></li>--]
                                 </ul>
                             </li>
-                           <#-- <li class="has-child-item close-item">
+                           [#-- <li class="has-child-item close-item">
                                 <a><i class="fa fa-table" aria-hidden="true"></i><span>Tables</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="tables_basic.html">Basic</a></li>
@@ -186,7 +157,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>-->
+                            </li>--]
                         </ul>
                     </nav>
                 </div>

@@ -17,37 +17,9 @@
 
 <body>
 <div class="wrap">
-    <div class="page-header">
-        <div class="leftside-header">
-            <div class="logo">
-                <a href="${contextPath}/index" class="on-click">
-                    <span style="position: absolute;font-size: 30px;color: #000;top: 12px;left: 10px;">管理系统</span>
-                </a>
-            </div>
-            <div id="menu-toggle" class="visible-xs toggle-left-sidebar" data-toggle-class="left-sidebar-open" data-target="html">
-                <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
-            </div>
-        </div>
-        <div class="rightside-header">
-            <div class="header-middle"></div>
-            <div class="header-section hidden-xs" id="notice-headerbox">
-                <div class="header-separator"></div>
-            </div>
-            <div class="header-section" id="user-headerbox">
-                <div class="user-header-wrap">
-
-                    <div class="user-info">
-                        <span class="user-name"></span>
-                        <span class="user-profile">Admin</span>
-                    </div>
-                </div>
-            </div>
-            <div class="header-separator"></div>
-           <#-- <div class="header-section">
-                <a href="#"><i class="fa fa-sign-out log-out" aria-hidden="true"></i></a>
-            </div>-->
-        </div>
-    </div>
+    
+    [#include "top.ftl"]
+        
     <div class="page-body">
         <div class="left-sidebar">
             <div class="left-sidebar-header">
@@ -66,12 +38,12 @@
                                 <ul class="nav child-nav level-1">
                                     <li><a href="${contextPath}/analyst/list">人员列表</a></li>
                                     <li><a href="${contextPath}/analyst/add">添加</a></li>
-                                    <#--<li><a href="${contextPath}/ui-elements_tabs">Tabs</a></li>
+                                    [#--<li><a href="${contextPath}/ui-elements_tabs">Tabs</a></li>
                                     <li><a href="${contextPath}/ui-elements_buttons">Buttons</a></li>
                                     <li><a href="${contextPath}/ui-elements_typography">Typography</a></li>
                                     <li><a href="${contextPath}/ui-elements_alerts">Alerts</a></li>
                                     <li><a href="${contextPath}/ui-elements_modals">Modals</a></li>
-                                    <li><a href="ui-elements_animations-appear">Animations</a></li>-->
+                                    <li><a href="ui-elements_animations-appear">Animations</a></li>--]
                                 </ul>
                             </li>
                             <li class="has-child-item close-item">
@@ -86,19 +58,19 @@
                                 <ul class="nav child-nav level-1">
                                     <li><a href="${pageContext}/assignment/list">任务列表</a></li>
                                     <li><a href="${pageContext}/assignment/add">添加</a></li>
-                                    <#--<li><a href="forms_advanced">Advanced</a></li>-->
-                                    <#--<li><a href="forms_validation">Validation</a></li>-->
+                                    [#--<li><a href="forms_advanced">Advanced</a></li>--]
+                                    [#--<li><a href="forms_validation">Validation</a></li>--]
                                 </ul>
                             </li>
-                         <#--   <li class="has-child-item close-item">
+                         [#--   <li class="has-child-item close-item">
                                 <a><i class="fa fa-table" aria-hidden="true"></i><span>Tables</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="tables_basic.html">Basic</a></li>
                                     <li><a href="tables_data-tables.html">DataTable</a></li>
                                     <li><a href="tables_responsive.html">Responsive</a></li>
                                 </ul>
-                            </li>-->
-                           <#-- <li class="has-child-item close-item">
+                            </li>--]
+                           [#-- <li class="has-child-item close-item">
                                 <a><i class="fa fa-files-o" aria-hidden="true"></i><span>Pages</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="pages_sign-in.html">Sign in</a></li>
@@ -115,8 +87,8 @@
                                     <li><a href="pages_faq.html">FAQ</a></li>
                                     <li><a href="pages_user-profile.html">User profile</a></li>
                                 </ul>
-                            </li>-->
-                           <#-- <li class="has-child-item close-item">
+                            </li>--]
+                           [#-- <li class="has-child-item close-item">
                                 <a><i class="fa fa-paper-plane" aria-hidden="true"></i><span>Widgets</span></a>
                                 <ul class="nav child-nav level-1">
                                     <li><a href="widgets_boxes.html">Boxes</a></li>
@@ -171,7 +143,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>-->
+                            </li>--]
                         </ul>
                     </nav>
                 </div>
