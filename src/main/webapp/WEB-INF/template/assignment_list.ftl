@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>任务分派</title>
-    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/vendor/bootstrap/css/font-awesome.min.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/animate.css/animate.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/common.css">
+    <link rel="stylesheet" href="${contextPath}/resources/vendor/data-table/media/css/dataTables.bootstrap.min.css">
+    <link type="text/css" href="${contextPath}/resources/css/common.css">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/my-icon.css">
 </head>
 
@@ -222,8 +223,8 @@
                                                 [#if project_has_next],[/#if]
                                             [/#list]
                                         </td>
-                                        <td>${assignment.startDate?string("yyyy-MM-dd")}</td>
-                                        <td>${assignment.finalDate?string("yyyy-MM-dd")}</td>
+                                        <td>${assignment.startDate!"-"}</td>
+                                        <td>${assignment.finalDate!"-"}</td>
                                         <td>${assignment.serialNumbers?size}</td>
                                         <td style="position: relative;">
                                             <a href="/assignment/view?id=${assignment.id}" style="cursor: pointer;position: absolute;left: 0;"><i class="view" ></i></a>

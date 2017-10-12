@@ -20,7 +20,7 @@ import java.util.List;
 public class ProjectController extends BaseController {
 
     @Resource(name = "projectServiceImpl")
-    public ProjectService projectService;
+    private ProjectService projectService;
 
     @RequestMapping(value = "/save", method = RequestMethod.GET)
     public String add(Project project, RedirectAttributes redirectAttributes) {

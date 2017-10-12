@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>任务分派</title>
-    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/vendor/bootstrap/css/font-awesome.min.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/animate.css/animate.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/common.css">
@@ -280,7 +280,7 @@
                 <div class="panel-content">
                     <div class="row">
                         <div class="col-md-12">
-                            <form class="form-horizontal form-stripe" action="${contextPath}/assignment/save" method="post">
+                            <form id="aForm" class="form-horizontal form-stripe" action="${contextPath}/assignment/save" method="post">
                                 <div class="form-group">
                                     <label for="placeholder" class="col-sm-2 control-label">任务编号</label>
                                     <div class="col-sm-10">
@@ -325,6 +325,7 @@
     </div>
 </div>
 <script src="${contextPath}/resources/js/jquery.min.js"></script>
+<script src="${contextPath}/resources/vendor/jquery-validation/jquery.validate.min.js"></script>
 <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="${contextPath}/resources/vendor/nano-scroller/nano-scroller.js"></script>
 <script src="${contextPath}/resources/js/template-script.min.js"></script>
@@ -345,6 +346,12 @@
     [@flush_message /]
 
         var $formGroup = $("#form-group");
+
+        $("#aForm").validate({
+            rules:{
+                name:"required"
+            }
+        });
 
         //下标
         var count = 0;
@@ -396,6 +403,7 @@
             step:10,
             callback:function(v,e){}
         });
+
 
     });
 
