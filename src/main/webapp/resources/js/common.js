@@ -20,7 +20,12 @@ $().ready(function () {
     });
     $deleteOne.click(function () {
         return confirm("确定删除？");
-    })
+    });
+
+    //菜单栏切换
+    /*$(".child-nav>li").click(function () {
+        alert("...")
+    })*/
 
 });
 
@@ -55,5 +60,6 @@ $.message = function () {
     },3000);
 
     return $message;
+
 };
 
