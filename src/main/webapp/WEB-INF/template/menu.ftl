@@ -14,8 +14,8 @@
                     <li class="has-child-item open-item active-item">
                         <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                         <ul class="nav child-nav level-1">
-                            <li onclick="changeMenu(this)"><a href="${contextPath}/analyst/list">人员列表</a></li>
-                            <li onclick="changeMenu(this)"><a href="${contextPath}/analyst/add" >添加</a></li>
+                            <li val="analystList" onclick="changeMenu(this)"><a href="${contextPath}/analyst/list">人员列表</a></li>
+                            <li val="analystAdd" onclick="changeMenu(this)" [#if Session.menu = 'analystAdd']class="active-item" [/#if]><a href="${contextPath}/analyst/add" > [#if Session.menu = 'analystAdd']class="active-item" [/#if]添加</a></li>
                         [#--<li><a href="ui-elements_tabs.ftl">Tabs</a></li>
                         <li><a href="ui-elements_buttons.ftl">Buttons</a></li>
                         <li><a href="ui-elements_typography.ftl">Typography</a></li>
@@ -27,8 +27,8 @@
                     <li class="has-child-item close-item">
                         <a><i class="fa fa-pie-chart" aria-hidden="true"></i><span>项目</span></a>
                         <ul class="nav child-nav level-1">
-                            <li><a href="${contextPath}/project/list">项目列表</a></li>
-                            <li><a href="${contextPath}/page/project_add">添加</a></li>
+                            <li><a val="projectList" href="${contextPath}/project/list">项目列表</a></li>
+                            <li><a val="projectAdd" href="${contextPath}/page/project_add">添加</a></li>
                         </ul>
                     </li>
                     <li class="has-child-item close-item">
@@ -128,9 +128,10 @@
     </div>
 </div>
 <script type="text/javascript">
-   function changeMenu(target) {
-//       $(".active-item").removeClass("active-item");
-       target.className="active-item";
-   }
+    function changeMenu(target){
+        alert($(target).attr("val"));
+        sessionStorage.setItem("menu",$(target).attr("val"));
+    }
+
 </script>
 
