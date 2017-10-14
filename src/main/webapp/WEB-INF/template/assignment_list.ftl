@@ -33,15 +33,18 @@
                     </ul>
                 </div>
             </div>
-            <div class="row animated fadeInRight">
+            <form action="${contextPath}/assignment/delete" method="get">
+                <button class="btn btn-o btn-danger" id="deleteAll">delete</button>
+                <div class="row animated fadeInRight">
                 <div class="col-sm-12">
-                    <h4 class="section-subtitle"><b>Searching, ordering and paging</b></h4>
+                    <h4 class="section-subtitle"></h4>
                     <div class="panel">
                         <div class="panel-content">
                             <div class="table-responsive">
                                 <table id="basic-table" class="data-table table table-striped nowrap table-hover" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
+                                        <th><input type="checkbox" id="all"></th>
                                         <th>编号</th>
                                         <th>项目</th>
                                         <th>接单日期</th>
@@ -53,6 +56,7 @@
                                     <tbody>
                                     [#list assignments as assignment]
                                     <tr>
+                                        <td><input type="checkbox" name="ids" value="${assignment.id}"></td>
                                         <td>${assignment.name}</td>
                                         <td>
                                             [#list assignment.projects as project]
@@ -79,6 +83,7 @@
                     </div>
                 </div>
             </div>
+            </form>
         </div>
 
     </div>

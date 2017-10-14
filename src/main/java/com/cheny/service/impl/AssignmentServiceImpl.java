@@ -32,8 +32,8 @@ public class AssignmentServiceImpl extends BaseServiceImpl<Assignment> implement
     public void deleteAssignments(Long[] ids) {
         List<Assignment> assignments = findByIds(ids);
         for (Assignment assignment : assignments) {
+           /*  手动代替注解：级联删除
             List<SerialNumber> serialNumbers = assignment.getSerialNumbers();
-            /* 手动代替注解：级联删除
             for (SerialNumber serialNumber : serialNumbers) {
                 serialNumberDao.remove(serialNumber);
             }*/
