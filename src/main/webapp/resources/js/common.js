@@ -4,7 +4,7 @@ $().ready(function () {
     var menu = sessionStorage.getItem("menu");
     $("#" + menu).addClass("active-item").closest(".has-child-item").removeClass("close-item").addClass("open-item active-item");
 
-    //菜单栏缩放
+    //会话保存菜单栏缩放状态
     var item = sessionStorage.getItem("menuList");
     if (item == true) {
         $("html").addClass("left-sidebar-collapsed");
