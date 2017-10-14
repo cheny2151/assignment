@@ -11,11 +11,11 @@
             <nav>
                 <ul class="nav" id="main-nav">
                     <li><a href="${contextPath}/index"><i class="fa fa-home" aria-hidden="true"></i><span>Home</span></a></li>
-                    <li class="has-child-item open-item active-item">
+                    <li class="has-child-item close-item">
                         <a><i class="fa fa-cubes" aria-hidden="true"></i><span>人员管理</span></a>
                         <ul class="nav child-nav level-1">
-                            <li val="analystList" onclick="changeMenu(this)"><a href="${contextPath}/analyst/list">人员列表</a></li>
-                            <li val="analystAdd" onclick="changeMenu(this)" [#if Session.menu = 'analystAdd']class="active-item" [/#if]><a href="${contextPath}/analyst/add" > [#if Session.menu = 'analystAdd']class="active-item" [/#if]添加</a></li>
+                            <li id="analystList" onclick="changeMenu(this)"><a href="${contextPath}/analyst/list">人员列表</a></li>
+                            <li id="analystAdd" onclick="changeMenu(this)" ><a href="${contextPath}/analyst/add" > [#if Session.menu = 'analystAdd']class="active-item" [/#if]添加</a></li>
                         [#--<li><a href="ui-elements_tabs.ftl">Tabs</a></li>
                         <li><a href="ui-elements_buttons.ftl">Buttons</a></li>
                         <li><a href="ui-elements_typography.ftl">Typography</a></li>
@@ -27,15 +27,15 @@
                     <li class="has-child-item close-item">
                         <a><i class="fa fa-pie-chart" aria-hidden="true"></i><span>项目</span></a>
                         <ul class="nav child-nav level-1">
-                            <li><a val="projectList" href="${contextPath}/project/list">项目列表</a></li>
-                            <li><a val="projectAdd" href="${contextPath}/page/project_add">添加</a></li>
+                            <li id="projectList" onclick="changeMenu(this)"><a  href="${contextPath}/project/list">项目列表</a></li>
+                            <li id="projectAdd" onclick="changeMenu(this)"><a href="${contextPath}/page/project_add">添加</a></li>
                         </ul>
                     </li>
                     <li class="has-child-item close-item">
                         <a><i class="fa fa-columns" aria-hidden="true"></i><span>任务单</span></a>
                         <ul class="nav child-nav level-1">
-                            <li><a href="${contextPath}/assignment/list">任务列表</a></li>
-                            <li><a href="${contextPath}/assignment/add">添加</a></li>
+                            <li id="assignmentList" onclick="changeMenu(this)"><a href="${contextPath}/assignment/list">任务列表</a></li>
+                            <li id="assignmentAdd" onclick="changeMenu(this)"><a href="${contextPath}/assignment/add">添加</a></li>
                         [#--<li><a href="forms_advanced.ftl">Advanced</a></li>--]
                         [#--<li><a href="forms_validation.ftl">Validation</a></li>--]
                         </ul>
@@ -129,8 +129,7 @@
 </div>
 <script type="text/javascript">
     function changeMenu(target){
-        alert($(target).attr("val"));
-        sessionStorage.setItem("menu",$(target).attr("val"));
+        sessionStorage.setItem("menu",$(target).attr("id"));
     }
 
 </script>
