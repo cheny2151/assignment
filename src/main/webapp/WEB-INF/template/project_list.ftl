@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/data-table/media/css/dataTables.bootstrap.min.css">
     <link type="text/css" href="${contextPath}/resources/css/common.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/my-icon.css">
 </head>
 
 <body>
@@ -93,13 +94,18 @@
 <script src="${contextPath}/resources/js/template-init.min.js"></script>
 <script src="${contextPath}/resources/vendor/data-table/media/js/jquery.dataTables.min.js"></script>
 <script src="${contextPath}/resources/vendor/data-table/media/js/dataTables.bootstrap.min.js"></script>
+<script src="${contextPath}/resources/js/examples/tables/data-tables.js"></script>
 <script src="${contextPath}/resources/js/common.js"></script>
 <script type="text/javascript">
+
+
     $(function () {
 
         [@flush_message /]
 
-//        $('.data-table').DataTable({})
+        $(".table-responsive").on("click",".deleteOne",function () {
+            return confirm("确定删除？");
+        });
 
     });
 </script>

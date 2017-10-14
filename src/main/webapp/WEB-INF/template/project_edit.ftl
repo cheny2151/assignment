@@ -98,7 +98,9 @@
 
 <script type="text/javascript">
     $(function () {
+
         [@flush_message /]
+
     })
 </script>
 </body>

@@ -93,7 +93,15 @@
 <script src="${contextPath}/resources/js/examples/tables/data-tables.js"></script>
 <script src="${contextPath}/resources/js/common.js"></script>
 <script type="text/javascript">
-    [@flush_message /]
+    $(function () {
+
+        [@flush_message /]
+
+        $(".table-responsive").on("click",".deleteOne",function () {
+            return confirm("确定删除？");
+        });
+
+    });
 </script>
 
 </body>
