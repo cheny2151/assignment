@@ -180,15 +180,11 @@
 <script type="text/javascript">
     $(function () {
 
+        alert("..");
+
     [@flush_message /]
 
         var $formGroup = $("#form-group");
-
-        $("#aForm").validate({
-            rules:{
-                name:"required"
-            }
-        });
 
         //下标
         var count = 0;
@@ -199,9 +195,9 @@
                     "<input type='text' name='serialNumbers["+count+"].number' class='form-inputs-head' placeholder='Number' >" +
                     "<select name='serialNumbers["+count+"].projectIds' class='select-example-multiple form-select' multiple='multiple'>" +
                     "<optgroup label='项目列表'>"+
-                    [#list projects as project]
+            [#list projects as project]
                     "<option value='${project.id}'>${project.name}</option></optgroup>"+
-                    [/#list]
+            [/#list]
                     "</select>" +
                     "<a href='javascript:void(0)' class='btn btn-danger btn-sm btn-my deleteOne'>delete</a>" +
                     "</div>"));
@@ -212,6 +208,7 @@
             });
 
             count++;
+
         });
 
         //Delete
@@ -242,6 +239,12 @@
         });
 
 
+    });
+
+    $("#aForm").validate({
+        rules:{
+            name:"required"
+        }
     });
 
 </script>

@@ -1,5 +1,10 @@
 $().ready(function () {
 
+    //菜单栏切换
+    $(".active-item").removeClass("active-item");
+    var menu = sessionStorage.getItem("menu");
+    $("#"+menu).addClass("active-item").closest(".has-child-item").removeClass("close-item").addClass("open-item active-item");
+
     var $all = $("#all");
     var $deleteAll = $("#deleteAll");
     var $deleteOne = $(".deleteOne");
@@ -21,11 +26,6 @@ $().ready(function () {
     $deleteOne.click(function () {
         return confirm("确定删除？");
     });
-
-    //菜单栏切换
-    $(".active-item").removeClass("active-item");
-    var menu = sessionStorage.getItem("menu");
-    $("#"+menu).addClass("active-item").closest(".has-child-item").removeClass("close-item").addClass("open-item active-item").siblings().class("has-child-item close-item");
 
 });
 
