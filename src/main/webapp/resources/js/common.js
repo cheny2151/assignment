@@ -22,9 +22,10 @@ $().ready(function () {
     $deleteAll.click(function () {
         return confirm("确定删除？");
     });
-    $deleteOne.click(function () {
+   /* TODO：由于分页暂由前端框架，会出现bug
+   $deleteOne.click(function () {
         return confirm("确定删除？");
-    });
+    });*/
 
 });
 
