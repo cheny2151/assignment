@@ -180,8 +180,6 @@
 <script type="text/javascript">
     $(function () {
 
-        alert("..");
-
     [@flush_message /]
 
         var $formGroup = $("#form-group");

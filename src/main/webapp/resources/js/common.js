@@ -1,7 +1,6 @@
 $().ready(function () {
 
     //菜单栏切换
-    $(".active-item").removeClass("active-item");
     var menu = sessionStorage.getItem("menu");
     $("#"+menu).addClass("active-item").closest(".has-child-item").removeClass("close-item").addClass("open-item active-item");
 

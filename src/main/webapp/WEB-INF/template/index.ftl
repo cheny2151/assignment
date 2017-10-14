@@ -336,6 +336,8 @@
 <script src="${contextPath}/resources/vendor/chart-js/chart.min.js"></script>
 <script src="${contextPath}/resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 <script src="${contextPath}/resources/js/examples/Home.js"></script>
+<script src="${contextPath}/resources/js/common.js"></script>
+
 </body>
 
 </html>
