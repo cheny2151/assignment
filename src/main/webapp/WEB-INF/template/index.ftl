@@ -6,12 +6,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>任务分派</title>
+    [#--框架外部轮廓必要css start--]
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/vendor/bootstrap/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
+    [#--必要css end--]
     <link rel="stylesheet" href="${contextPath}/resources/${contextPath}/resources/vendor/animate.css/animate.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/toastr/toastr.min.css">
     <link rel="stylesheet" href="${contextPath}/resources/vendor/magnific-popup/magnific-popup.css">
-    <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/common.css">
 </head>
 
@@ -25,6 +27,7 @@
     [#include "menu.ftl"]
 
         <div class="content">
+
             <div class="content-header">
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
@@ -32,6 +35,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="row animated fadeInUp">
                 <div class="col-sm-12 col-lg-9">
                     <div class="row">
@@ -327,16 +331,19 @@
 
     </div>
 </div>
+[#--]外部轮廓必要js start[--]
 <script src="${contextPath}/resources/js/jquery.min.js"></script>
-<script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="${contextPath}/resources/vendor/nano-scroller/nano-scroller.js"></script>
 <script src="${contextPath}/resources/js/template-script.min.js"></script>
+<script src="${contextPath}/resources/vendor/nano-scroller/nano-scroller.js"></script>
 <script src="${contextPath}/resources/js/template-init.min.js"></script>
-<script src="${contextPath}/resources/vendor/toastr/toastr.min.js"></script>
-<script src="${contextPath}/resources/vendor/chart-js/chart.min.js"></script>
-<script src="${contextPath}/resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-<script src="${contextPath}/resources/js/examples/Home.js"></script>
+<script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+[#--]外部轮廓必要js end[--]
 <script src="${contextPath}/resources/js/common.js"></script>
+
+[#--<script src="${contextPath}/resources/vendor/toastr/toastr.min.js"></script>--]
+[#--<script src="${contextPath}/resources/vendor/chart-js/chart.min.js"></script>--]
+[#--<script src="${contextPath}/resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>--]
+[#--<script src="${contextPath}/resources/js/examples/Home.js"></script--]
 
 </body>
 

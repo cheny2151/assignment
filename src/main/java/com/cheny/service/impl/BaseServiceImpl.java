@@ -58,13 +58,13 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     @Override
     @Transactional(readOnly = true)
     public List<T> findByIds(Long[] ids) {
-        return baseDao.findByIds(Arrays.asList(ids));
+        return ids != null ? baseDao.findByIds(Arrays.asList(ids)) : null;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<T> findByIds(List<Long> ids) {
-        return baseDao.findByIds(ids);
+        return ids != null ? baseDao.findByIds(ids) : null;
     }
 
     @Override

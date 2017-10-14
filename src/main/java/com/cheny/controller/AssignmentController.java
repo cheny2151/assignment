@@ -103,7 +103,7 @@ public class AssignmentController extends BaseController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(Assignment assignment) {
+    public String update(Assignment assignment, RedirectAttributes redirectAttributes) {
 
         //更新原始实体
         Assignment origin = assignmentService.updateOnlyThisProperties(assignment, "name", "memo", "startDate", "finalDate");
@@ -134,6 +134,7 @@ public class AssignmentController extends BaseController {
             }
         }
 
+        addSuccessFlushMessage(redirectAttributes, "修改成功");
         return "redirect:view?id=" + assignment.getId();
 
     }

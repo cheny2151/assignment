@@ -50,11 +50,13 @@ public class AnalystController extends BaseController {
             return illegalView(model);
         }
         List<Project> projects = projectService.findByIds(projectIds);
-        analyst.getProjects().addAll(projects);
+        if (projects != null) {
+            analyst.getProjects().addAll(projects);
+        }
         analystService.persist(analyst);
 
         addSuccessFlushMessage(redirectAttributes, "添加成功");
-        return "redirect:list";
+        return "redirect:/page/analyst_add";
 
     }
 
@@ -72,7 +74,9 @@ public class AnalystController extends BaseController {
         List<Project> projects = projectService.findByIds(projectIds);
         List<Project> analystProjects = analyst.getProjects();
         analystProjects.clear();
-        analystProjects.addAll(projects);
+        if (projects != null) {
+            analystProjects.addAll(projects);
+        }
         analystService.merge(analyst);
         addSuccessFlushMessage(redirectAttributes, "修改成功");
         return "redirect:edit?id=" + analyst.getId();

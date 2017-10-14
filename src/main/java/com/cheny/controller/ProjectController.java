@@ -31,7 +31,7 @@ public class ProjectController extends BaseController {
         }
         projectService.persist(project);
         addSuccessFlushMessage(redirectAttributes, "添加成功");
-        return "redirect:list";
+        return "redirect:/page/project_add";
 
     }
 
@@ -51,7 +51,9 @@ public class ProjectController extends BaseController {
 
     @RequestMapping(value = "update", method = RequestMethod.GET)
     public String update(Project project, RedirectAttributes redirectAttributes) {
-        return null;
+        projectService.updateOnlyThisProperties(project, "standard", "price", "name");
+        addSuccessFlushMessage(redirectAttributes, "修改成功");
+        return "redirect:edit?id=" + project.getId();
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.GET)

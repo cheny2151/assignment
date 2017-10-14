@@ -46,6 +46,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <form class="form-horizontal form-stripe" action="${contextPath}/project/update" method="get">
+                                <input type="hidden" name="id" value="${project.id}">
                                 <div class="form-group">
                                     <label for="placeholder" class="col-sm-2 control-label">项目名</label>
                                     <div class="col-sm-10">

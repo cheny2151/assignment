@@ -69,7 +69,7 @@
                                                    style="cursor: pointer;"></a>
                                                 &nbsp;
                                                 &nbsp;
-                                                <a class="fa fa-times action" href="/project/delete?ids=${project.id}"
+                                                <a class="fa fa-times action deleteOne" href="/project/delete?ids=${project.id}"
                                                    style="cursor: pointer;"></a>
                                             </td>
                                         </tr>
@@ -99,7 +99,7 @@
 
         [@flush_message /]
 
-        $('.data-table').DataTable({})
+//        $('.data-table').DataTable({})
 
     });
 </script>
