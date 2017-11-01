@@ -30,12 +30,12 @@ public interface BaseDao<T> {
 
     boolean contains(T entity);
 
-    List<T> findList(CriteriaQuery<T> criteriaQuery, List<Filter> filters);
+//    List<T> findList(CriteriaQuery<T> criteriaQuery, List<Filter> filters);
 
     /**
      * 重构：多态代替条件
      */
     List<T> findListPolymorphism(List<com.cheny.system.FilterPolymorphism.Filter<T>> filters);
 
-    List<T> findListPolymorphism(CriteriaQuery<T> criteriaQuery, List<com.cheny.system.FilterPolymorphism.Filter<T>> filters);
+//    List<T> findListPolymorphism(CriteriaQuery<T> criteriaQuery, List<com.cheny.system.FilterPolymorphism.Filter<T>> filters);
 }
