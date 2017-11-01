@@ -85,7 +85,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     /**
      * 中间层(protect 不开放给service层)
      *
-     * @param criteriaQuery 已经组装好select,from和部分where的criteriaQuery
+     * @param criteriaQuery 已经组装好select,from和部分where的criteriaQuery(可用于传入已经拼好的criteriaQuery)
      */
     protected List<T> findList(CriteriaQuery<T> criteriaQuery, List<Filter> filters) {
         addRestriction(criteriaQuery, filters);
@@ -112,17 +112,15 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     /**
-     * @param criteriaQuery 已经组装好select,from和部分where的criteriaQuery
+     * @param criteriaQuery 已经组装好select,from和部分where的criteriaQuery(可用于传入已经拼好的criteriaQuery)
      */
     @SuppressWarnings("unchecked")
     protected List<T> findListPolymorphism(CriteriaQuery<T> criteriaQuery, List<com.cheny.system.FilterPolymorphism.Filter<T>> filters) {
-        if (filters == null || filters.isEmpty()) {
-            return findAll();
-        }
-
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        for (com.cheny.system.FilterPolymorphism.Filter filter : filters) {
-            filter.addRestrictions(criteriaQuery, criteriaBuilder);
+        if (filters != null && !filters.isEmpty()) {
+            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+            for (com.cheny.system.FilterPolymorphism.Filter filter : filters) {
+                filter.addRestrictions(criteriaQuery, criteriaBuilder);
+            }
         }
         return entityManager.createQuery(criteriaQuery).setFlushMode(FlushModeType.COMMIT).getResultList();
     }
