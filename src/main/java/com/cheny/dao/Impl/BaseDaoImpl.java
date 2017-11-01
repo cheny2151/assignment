@@ -53,10 +53,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @Override
     public List<T> findAll() {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<T> query = criteriaBuilder.createQuery(clazz);
-        Root<T> root = query.from(clazz);
-        query.select(root);
-        return entityManager.createQuery(query).setFlushMode(FlushModeType.COMMIT).getResultList();
+        CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(clazz);
+        Root<T> root = criteriaQuery.from(clazz);
+        criteriaQuery.select(root);
+        return entityManager.createQuery(criteriaQuery).setFlushMode(FlushModeType.COMMIT).getResultList();
     }
 
     @Override
@@ -79,6 +79,16 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(clazz);
         Root<T> root = criteriaQuery.from(clazz);
         criteriaQuery.select(root);
+        return this.findList(criteriaQuery, filters);
+    }
+
+    /**
+     * 中间层
+     *
+     * @param criteriaQuery 已经组装好select,from和部分where的criteriaQuery
+     */
+    @Override
+    public List<T> findList(CriteriaQuery<T> criteriaQuery, List<Filter> filters) {
         addRestriction(criteriaQuery, filters);
         return entityManager.createQuery(criteriaQuery).setFlushMode(FlushModeType.COMMIT).getResultList();
     }
@@ -94,17 +104,25 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         return entityManager.contains(entity);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public List<T> findListPolymorphism(List<com.cheny.system.FilterPolymorphism.Filter<T>> filters) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(clazz);
+        criteriaQuery.from(clazz);
+        return findListPolymorphism(criteriaQuery, filters);
+    }
 
+    /**
+     * @param criteriaQuery 已经组装好select,from和部分where的criteriaQuery
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<T> findListPolymorphism(CriteriaQuery<T> criteriaQuery, List<com.cheny.system.FilterPolymorphism.Filter<T>> filters) {
         if (filters == null || filters.isEmpty()) {
             return findAll();
         }
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(clazz);
-        criteriaQuery.from(clazz);
         for (com.cheny.system.FilterPolymorphism.Filter filter : filters) {
             filter.addRestrictions(criteriaQuery, criteriaBuilder);
         }
