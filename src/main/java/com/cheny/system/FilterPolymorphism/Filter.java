@@ -1,6 +1,6 @@
 package com.cheny.system.FilterPolymorphism;
 
-import com.cheny.system.SpringUtils;
+import com.cheny.utils.SpringUtils;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.util.Assert;
