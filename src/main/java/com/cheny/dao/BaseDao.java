@@ -2,7 +2,6 @@ package com.cheny.dao;
 
 import com.cheny.system.page.Filter;
 
-import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 /**
@@ -38,4 +37,6 @@ public interface BaseDao<T> {
     List<T> findListPolymorphism(List<com.cheny.system.FilterPolymorphism.Filter<T>> filters);
 
 //    List<T> findListPolymorphism(CriteriaQuery<T> criteriaQuery, List<com.cheny.system.FilterPolymorphism.Filter<T>> filters);
+
+    Long count(List<com.cheny.system.FilterPolymorphism.Filter> filters);
 }

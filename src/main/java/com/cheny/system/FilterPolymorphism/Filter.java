@@ -26,10 +26,53 @@ public abstract class Filter<T> {
 
     protected Boolean ignoreCase;
 
+    private static Cache rootCache;
+
+    private Root<T> root;
+
+    static {
+        CacheManager cacheManager = (CacheManager) SpringUtils.getBean("cacheManager");
+        rootCache = cacheManager.getCache("rootCache");
+    }
+
+    @SuppressWarnings("unchecked")
     Filter(String property, Object value, boolean ignoreCase, Class<T> javaType) {
         this.property = property;
         this.value = value;
         this.javaType = javaType;
+        this.ignoreCase = ignoreCase;
+        root = rootCache.get("getRoot_" + javaType) == null ? null : (Root<T>) rootCache.get("getRoot_" + javaType).get();
+    }
+
+    public Class<T> getJavaType() {
+        return javaType;
+    }
+
+    public void setJavaType(Class<T> javaType) {
+        this.javaType = javaType;
+    }
+
+    public Object getValue() {
+        return value;
+    }
+
+    public void setValue(Object value) {
+        this.value = value;
+    }
+
+    public String getProperty() {
+        return property;
+    }
+
+    public void setProperty(String property) {
+        this.property = property;
+    }
+
+    public Boolean getIgnoreCase() {
+        return ignoreCase;
+    }
+
+    public void setIgnoreCase(Boolean ignoreCase) {
         this.ignoreCase = ignoreCase;
     }
 
@@ -39,18 +82,11 @@ public abstract class Filter<T> {
     private Root<T> getRoot(CriteriaQuery<?> criteriaQuery, Class<T> javaType) {
         Assert.notNull(javaType, "Must Not Null");
 
-        CacheManager cacheManager = (CacheManager) SpringUtils.getBean("cacheManager");
-        Cache rootCache = cacheManager.getCache("rootCache");
-
-
-        if (rootCache.get("getRoot_" + javaType) != null) {
-            return (Root<T>) rootCache.get("getRoot_" + javaType).get();
-        }
-
         Set<Root<?>> roots = criteriaQuery.getRoots();
         for (Root<?> root : roots) {
             if (javaType.equals(root.getJavaType())) {
                 Root<T> result = (Root<T>) root.as(javaType);
+                //缓存
                 rootCache.put("getRoot_" + javaType, result);
                 return result;
             }
@@ -61,7 +97,7 @@ public abstract class Filter<T> {
     protected Path<?> getPath(CriteriaQuery criteriaQuery) {
         Assert.notNull(property, "Must Not Null");
 
-        Root<T> root = getRoot(criteriaQuery, javaType);
+        Root<T> root = this.root != null ? this.root : getRoot(criteriaQuery, javaType);
         if (root == null) {
             return null;
         }
