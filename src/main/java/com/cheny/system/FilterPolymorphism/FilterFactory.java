@@ -32,46 +32,44 @@ public class FilterFactory {
 
     }
 
-    public static <T> Filter<T> create(Operator operator, String property, Object value, Class<T> javaType) {
+    public static <T> Filter<T> eq(String property, Object value, Class<T> javaType) {
+        return new EqualFilter<>(property, value, false, javaType);
+    }
 
-        switch (operator) {
-            case eq: {
-                return new EqualFilter<>(property, value, false, javaType);
-            }
-            case ne: {
-                return new NotEqualFilter<>(property, value, false, javaType);
-            }
-            case gt: {
-                return new GreaterThanFilter<>(property, value, false, javaType);
-            }
-            case ge: {
-                return new GreaterThanOrEqualFilter<>(property, value, false, javaType);
-            }
-            case lt: {
-                return new LessThanFilter<>(property, value, false, javaType);
-            }
-            case le: {
-                return new LessThanOrEqualFilter<>(property, value, false, javaType);
-            }
-            case in: {
-                return new InFilter<>(property, value, false, javaType);
-            }
-            case like: {
-                return new LikeFilter<>(property, value, false, javaType);
-            }
-            case noLike: {
-                return new NotLikeFilter<>(property, value, false, javaType);
-            }
-            case isNull: {
-                return new NullFilter<>(property, value, false, javaType);
-            }
-            case isNotNull: {
-                return new NotNullFilter<>(property, value, false, javaType);
-            }
-            default:
-                throw new RuntimeException("no this operator");
-        }
+    public static <T> Filter<T> ne(String property, Object value, Class<T> javaType) {
+        return new NotEqualFilter<>(property, value, false, javaType);
+    }
 
+    public static <T> Filter<T> gt(String property, Object value, Class<T> javaType) {
+        return new GreaterThanFilter<>(property, value, false, javaType);
+    }
+
+    public static <T> Filter<T> ge(String property, Object value, Class<T> javaType) {
+        return new GreaterThanOrEqualFilter<>(property, value, false, javaType);
+    }
+
+    public static <T> Filter<T> lt(String property, Object value, Class<T> javaType) {
+        return new LessThanFilter<>(property, value, false, javaType);
+    }
+
+    public static <T> Filter<T> le(String property, Object value, Class<T> javaType) {
+        return new LessThanOrEqualFilter<>(property, value, false, javaType);
+    }
+
+    public static <T> Filter<T> in(String property, Object value, Class<T> javaType) {
+        return new InFilter<>(property, value, false, javaType);
+    }
+
+    public static <T> Filter<T> like(String property, Object value, Class<T> javaType) {
+        return new LikeFilter<>(property, value, false, javaType);
+    }
+
+    public static <T> Filter<T> isNull(String property, Object value, Class<T> javaType) {
+        return new NullFilter<>(property, value, false, javaType);
+    }
+
+    public static <T> Filter<T> isNotNull(String property, Object value, Class<T> javaType) {
+        return new NotNullFilter<>(property, value, false, javaType);
     }
 
     public static <T> Filter<T> createIgnoreCase(Operator operator, String property, Object value, Class<T> javaType) {

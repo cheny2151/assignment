@@ -3,6 +3,7 @@ package com.cheny.system.FilterPolymorphism;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
+import java.util.Arrays;
 import java.util.Collection;
 
 public class InFilter<T> extends Filter<T> {
@@ -17,7 +18,14 @@ public class InFilter<T> extends Filter<T> {
         if (value == null) {
             return;
         }
-        restriction = criteriaBuilder.and(restriction, getPath(criteriaQuery).in((Collection) value));
+        Collection value;
+        //只接收数组或者集合
+        try {
+            value = (Collection) this.value;
+        } catch (ClassCastException e) {
+            value = Arrays.asList(this.value);
+        }
+        restriction = criteriaBuilder.and(restriction, getPath(criteriaQuery).in(value));
         criteriaQuery.where(restriction);
     }
 }

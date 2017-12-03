@@ -35,4 +35,6 @@ public interface BaseService<T> {
 
     T updateOnlyThisProperties(T entity, String... properties);
 
+    Long count(com.cheny.system.FilterPolymorphism.Filter... filters);
+
 }

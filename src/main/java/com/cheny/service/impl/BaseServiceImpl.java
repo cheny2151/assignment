@@ -112,6 +112,11 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         return null;
     }
 
+    @Override
+    public Long count(com.cheny.system.FilterPolymorphism.Filter... filters) {
+        return baseDao.count(Arrays.asList(filters));
+    }
+
     private void copyUpdateProperties(T origin, T target, String[] properties) {
         Assert.notNull(origin, "Must Not Null");
         Assert.notNull(target, "Must Not Null");

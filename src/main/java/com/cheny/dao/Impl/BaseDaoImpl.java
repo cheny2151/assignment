@@ -8,6 +8,7 @@ import org.springframework.util.Assert;
 import javax.persistence.EntityManager;
 import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.lang.reflect.ParameterizedType;
 import java.math.BigDecimal;
@@ -51,6 +52,24 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
+    public void flush() {
+        entityManager.flush();
+    }
+
+    @Override
+    public Long getIdentifier(T entity) {
+        Assert.notNull(entity, "Must Not Null");
+        return (Long) entityManager.getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(entity);
+    }
+
+    @Override
+    public boolean contains(T entity) {
+        return entityManager.contains(entity);
+    }
+
+    //***************************List start****************************//
+
+    @Override
     public List<T> findAll() {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(clazz);
@@ -66,11 +85,6 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         Root<T> root = query.from(clazz);
         query.select(root).where(criteriaBuilder.in(root.get("id")).value(ids));
         return entityManager.createQuery(query).setFlushMode(FlushModeType.COMMIT).getResultList();
-    }
-
-    @Override
-    public void flush() {
-        entityManager.flush();
     }
 
     @Override
@@ -90,17 +104,6 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     protected List<T> findList(CriteriaQuery<T> criteriaQuery, List<Filter> filters) {
         addRestriction(criteriaQuery, filters);
         return entityManager.createQuery(criteriaQuery).setFlushMode(FlushModeType.COMMIT).getResultList();
-    }
-
-    @Override
-    public Long getIdentifier(T entity) {
-        Assert.notNull(entity, "Must Not Null");
-        return (Long) entityManager.getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(entity);
-    }
-
-    @Override
-    public boolean contains(T entity) {
-        return entityManager.contains(entity);
     }
 
     @Override
@@ -124,6 +127,46 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         }
         return entityManager.createQuery(criteriaQuery).setFlushMode(FlushModeType.COMMIT).getResultList();
     }
+
+    //***************************List end****************************//
+
+
+    //****************count start*******************//
+
+    /**
+     * 查找数量通用接口
+     */
+    public Long count(List<com.cheny.system.FilterPolymorphism.Filter> filters) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
+        Root<T> root = criteriaQuery.from(clazz);
+        criteriaQuery.select(criteriaBuilder.count(root));
+        return count(criteriaQuery, filters);
+    }
+
+    /**
+     * 查找数量中间层
+     */
+    @SuppressWarnings("unchecked")
+    protected Long count(CriteriaQuery<Long> criteriaQuery, List<com.cheny.system.FilterPolymorphism.Filter> filters) {
+        Assert.notNull(criteriaQuery, "must not null");
+
+        if (filters != null && filters.size() > 0) {
+            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+            for (com.cheny.system.FilterPolymorphism.Filter filter : filters) {
+                //TODO:暂时不考虑多表查询多root
+                if (filter.getJavaType() != clazz) {
+                    continue;
+                }
+                filter.addRestrictions(criteriaQuery, criteriaBuilder);
+            }
+        }
+        TypedQuery<Long> longTypedQuery = entityManager.createQuery(criteriaQuery).setFlushMode(FlushModeType.COMMIT);
+
+        return longTypedQuery.getSingleResult();
+    }
+
+    //****************count end*******************//
 
     /**
      * <?>:可接收任何result type的criteriaQuery( criteriaBuilder.createQuery(T)-> result type为T );

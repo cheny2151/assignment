@@ -4,6 +4,7 @@ import com.cheny.entity.Analyst;
 import com.cheny.entity.Project;
 import com.cheny.service.AnalystService;
 import com.cheny.service.ProjectService;
+import com.cheny.system.FilterPolymorphism.FilterFactory;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,12 +29,8 @@ public class AnalystController extends BaseController {
 
     @RequestMapping("/test")
     public void test() {
-        try {
-            Analyst analyst = analystService.find(1L);
-            System.out.println(analyst.getName());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        List<Analyst> listPolymorphism = analystService.findListPolymorphism(FilterFactory.createFilterList(FilterFactory.like("name", "厚", Analyst.class), FilterFactory.like("name", "烧", Analyst.class)));
+        System.out.println(listPolymorphism.get(0).getName());
     }
 
     @RequestMapping("/add")
@@ -56,7 +53,7 @@ public class AnalystController extends BaseController {
         analystService.persist(analyst);
 
         addSuccessFlushMessage(redirectAttributes, "添加成功");
-        return "redirect:/page/analyst_add";
+        return "redirect:add";
 
     }
 
