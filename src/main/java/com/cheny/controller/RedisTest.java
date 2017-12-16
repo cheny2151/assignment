@@ -2,14 +2,19 @@ package com.cheny.controller;
 
 import com.cheny.entity.Area;
 import com.cheny.service.AreaService;
-import org.springframework.data.redis.core.RedisTemplate;
+import com.cheny.system.page.Page;
+import com.cheny.system.page.Pageable;
+import com.cheny.utils.JdkRedisClientImpl;
+import com.cheny.utils.JsonMessage;
+import org.junit.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.io.ByteArrayInputStream;
-import java.io.ObjectInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 /**
@@ -18,26 +23,42 @@ import java.util.List;
 @Controller
 public class RedisTest {
 
-    @Resource(name = "jsonRedisSerializerTemplate")
-    private RedisTemplate<String, Object> jsonRedisTemplate;
-    @Resource(name = "stringRedisSerializerTemplate")
-    private RedisTemplate<String, String> stringRedisTemplate;
+    @Resource(name = "jdkRedisClient")
+    private JdkRedisClientImpl<Page> redisClient;
     @Resource(name = "areaServiceImpl")
     private AreaService areaService;
-    @Resource(name = "jdkRedisSerializerTemplate")
-    private RedisTemplate<String, byte[]> redisTemplate;
 
     @RequestMapping("/redis")
     @ResponseBody
-    public List<Area> test() {
-        byte[] test3s = redisTemplate.opsForValue().get("test3");
+    public Object test() {
+
+        List<Area> areas = null;
+//                = areaService.getAreaTree(Area.Grade.district);
+
+
+        Page<Object> objectPage = new Page<>(new Pageable<>());
+
+
         try {
-            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(test3s);
-            ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
-            return (List<Area>) objectInputStream.readObject();
+            redisClient.setValue("test", objectPage,10);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+        }
+
+        return JsonMessage.success();
+
+    }
+
+
+    @Test
+    public void test2() {
+        try {
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+            objectOutputStream.writeObject("13132132");
+            System.out.println(byteArrayOutputStream.toByteArray().toString());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

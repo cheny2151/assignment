@@ -11,6 +11,8 @@ public interface AreaService extends BaseService<Area>{
 
     List<Area> getByGrade(Area.Grade grade);
 
+    List<Area> getAreaTree(Area.Grade grade);
+
     List<Area> getAll();
 
 }

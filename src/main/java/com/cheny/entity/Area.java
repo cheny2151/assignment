@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -65,6 +66,8 @@ public class Area extends BaseEntity {
      * 区域级别
      */
     private Grade grade;
+
+    private List<Area> childTree;
 
     /**
      * 获取名称
@@ -152,7 +155,7 @@ public class Area extends BaseEntity {
      *
      * @return 下级地区
      */
-    @JsonProperty
+    @JsonIgnore
     @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     public Set<Area> getChildren() {
         return children;
@@ -176,5 +179,13 @@ public class Area extends BaseEntity {
         this.grade = grade;
     }
 
+    @Transient
+//    @JsonProperty
+    public List<Area> getChildTree() {
+        return childTree;
+    }
 
+    public void setChildTree(List<Area> childTree) {
+        this.childTree = childTree;
+    }
 }

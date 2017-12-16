@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -35,6 +36,24 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
 
     public List<Area> getByGrade(Area.Grade grade) {
         return areaDao.getByGrade(grade);
+    }
+
+    public List<Area> getAreaTree(Area.Grade grade) {
+        List<Area> provinces = areaDao.getByGrade(Area.Grade.province);
+        if (!Area.Grade.province.equals(grade)) {
+            List<Area> cities = new ArrayList<>();
+            for (Area province : provinces) {
+                List<Area> cityTemp = areaDao.getByGradeAndParent(Area.Grade.city, province);
+                province.setChildTree(cityTemp);
+                cities.addAll(cityTemp);
+            }
+            if (Area.Grade.district.equals(grade)) {
+                for (Area city : cities) {
+                    city.setChildTree(areaDao.getByGradeAndParent(Area.Grade.district, city));
+                }
+            }
+        }
+        return provinces;
     }
 
     @Override
