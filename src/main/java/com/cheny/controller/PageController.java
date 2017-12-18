@@ -14,6 +14,7 @@ public class PageController extends BaseController {
 
     @RequestMapping("/index")
     public String index() {
+        logger.info("================");
         return "/index";
     }
 
