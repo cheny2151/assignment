@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 import redis.clients.jedis.exceptions.JedisException;
 
 import javax.annotation.Resource;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
