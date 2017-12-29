@@ -22,7 +22,15 @@ public class LogWebSocketThread extends Thread {
         String logContext;
         try {
             while ((logContext = reader.readLine()) != null) {
-                session.getBasicRemote().sendText(logContext + "<br/>");
+                try {
+                    Thread.sleep(1000);
+                    System.out.println("===============");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (session.isOpen()) {
+                    session.getBasicRemote().sendText(logContext + "<br/>");
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
