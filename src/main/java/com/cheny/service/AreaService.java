@@ -15,4 +15,6 @@ public interface AreaService extends BaseService<Area>{
 
     List<Area> getAll();
 
+    List<Area> test();
+
 }

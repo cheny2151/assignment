@@ -188,4 +188,12 @@ public class Area extends BaseEntity {
     public void setChildTree(List<Area> childTree) {
         this.childTree = childTree;
     }
+
+    @Override
+    public String toString() {
+        return "Area{" +
+                "name='" + name + '\'' +
+                ", fullName='" + fullName + '\'' +
+                '}';
+    }
 }

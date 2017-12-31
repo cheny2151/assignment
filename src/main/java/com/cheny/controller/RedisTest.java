@@ -1,11 +1,8 @@
 package com.cheny.controller;
 
-import com.cheny.entity.Area;
 import com.cheny.service.AreaService;
 import com.cheny.system.page.Page;
-import com.cheny.system.page.Pageable;
 import com.cheny.utils.JdkRedisClientImpl;
-import com.cheny.utils.JsonMessage;
 import org.junit.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +12,6 @@ import javax.annotation.Resource;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.List;
 
 /**
  * Created by cheny on 2017/12/3.
@@ -32,20 +28,9 @@ public class RedisTest {
     @ResponseBody
     public Object test() {
 
-        List<Area> areas = null;
-//                = areaService.getAreaTree(Area.Grade.district);
+        areaService.test();
 
-
-        Page<Object> objectPage = new Page<>(new Pageable<>());
-
-
-        try {
-            redisClient.setValue("test", objectPage,10);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return JsonMessage.success();
+        return "success";
 
     }
 
