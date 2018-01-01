@@ -2,6 +2,7 @@ package com.cheny.service.impl;
 
 import com.cheny.dao.SerialNumberDao;
 import com.cheny.entity.SerialNumber;
+import com.cheny.entity.SerialNumberVO;
 import com.cheny.service.SerialNumberService;
 import org.springframework.stereotype.Service;
 
@@ -21,4 +22,9 @@ public class SerialNumberServiceImpl extends BaseServiceImpl<SerialNumber> imple
         super.setBaseDao(serialNumberDao);
     }
 
+
+    @Override
+    public SerialNumberVO findInChildTable(Long id) {
+        return serialNumberDao.findInChildTable(id);
+    }
 }
