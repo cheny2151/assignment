@@ -77,4 +77,9 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
         return areas;
     }
 
+    @Override
+    public List<Area> test() {
+        return areaDao.test();
+    }
+
 }

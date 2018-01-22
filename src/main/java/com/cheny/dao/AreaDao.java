@@ -12,4 +12,6 @@ public interface AreaDao extends BaseDao<Area> {
     List<Area> getByGrade(Area.Grade grade);
 
     List<Area> getByGradeAndParent(Area.Grade grade, Area area);
+
+    List<Area> test();
 }

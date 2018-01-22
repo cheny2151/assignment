@@ -1,6 +1,9 @@
 package com.cheny.controller;
 
+import com.cheny.entity.Area;
 import com.cheny.service.AreaService;
+import com.cheny.system.page.Page;
+import com.cheny.system.page.Pageable;
 import com.cheny.utils.JdkRedisClientImpl;
 import org.junit.Test;
 import org.springframework.stereotype.Controller;

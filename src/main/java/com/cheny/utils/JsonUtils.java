@@ -21,4 +21,13 @@ public class JsonUtils {
         }
     }
 
+    public static <T> T toObject(String json, Class<T> clazz) {
+        try {
+            return objectMapper.readValue(json, clazz);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
