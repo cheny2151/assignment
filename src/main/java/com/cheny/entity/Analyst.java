@@ -29,7 +29,6 @@ public class Analyst extends BaseEntity {
      */
     private List<SerialNumber> serialNumbers = new ArrayList<>();
 
-
     @JoinTable(name = "analyst_project")
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     public List<Project> getProjects() {

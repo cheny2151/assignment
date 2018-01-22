@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  * Created by cheny on 2017/12/14.
  */
 @Component("strRedisClientImpl")
-public class StrRedisClientImpl implements RedisClient<String> {
+public abstract class StrRedisClientImpl implements RedisClient<String> {
 
     @Resource(name = "stringRedisSerializerTemplate")
     private RedisTemplate<String, String> strRedisTemplate;
