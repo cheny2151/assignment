@@ -1,10 +1,9 @@
-
 <!doctype html>
 <html lang="zh" class="fixed">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>任务分派</title>
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/vendor/bootstrap/css/font-awesome.min.css">
@@ -38,43 +37,44 @@
                 <div class="table-responsive">
                     <table class="table table-striped table-hover table-bordered text-center">
                         <thead>
-                            <tr>
-                                <th>
-                                    <input type="checkbox" id="all">
-                                </th>
-                                <th>
-                                    姓名
-                                </th>
-                                <th>
-                                    项目
-                                </th>
-                                <th>
-                                    操作
-                                </th>
-                            </tr>
+                        <tr>
+                            <th>
+                                <input type="checkbox" id="all">
+                            </th>
+                            <th>
+                                姓名
+                            </th>
+                            <th>
+                                项目
+                            </th>
+                            <th>
+                                操作
+                            </th>
+                        </tr>
                         </thead>
                         <tbody>
                         [#list analysts as analyst]
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="ids" value="${analyst.id}">
-                                </td>
-                                <td>
-                                    <span>${analyst.name}</span>
-                                </td>
-                                <td>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="ids" value="${analyst.id}">
+                            </td>
+                            <td>
+                                <span>${analyst.name}</span>
+                            </td>
+                            <td>
                                     [#list analyst.projects as project]
                                         <span>${project.name}</span>
                                         [#if project_has_next],[/#if]
                                     [/#list]
-                                </td>
-                                <td style="width: 150px;">
-                                    <a class="fa fa-cog" href="/analyst/edit?id=${analyst.id}" style="cursor: pointer;"></a>
-                                    &nbsp;
-                                    &nbsp;
-                                    <a class="fa fa-times action deleteOne" href="/analyst/delete?ids=${analyst.id}" style="cursor: pointer;"></a>
-                                </td>
-                            </tr>
+                            </td>
+                            <td style="width: 150px;">
+                                <a class="fa fa-cog" href="/analyst/edit?id=${analyst.id}" style="cursor: pointer;"></a>
+                                &nbsp;
+                                &nbsp;
+                                <a class="fa fa-times action deleteOne" href="/analyst/delete?ids=${analyst.id}"
+                                   style="cursor: pointer;"></a>
+                            </td>
+                        </tr>
                         [/#list]
                         </tbody>
                     </table>
@@ -95,6 +95,7 @@
     $(function () {
 
         [@flush_message /]
+
 
     })
 </script>

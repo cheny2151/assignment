@@ -30,7 +30,7 @@ public class RedisTest {
     @ResponseBody
     public Object test() {
 
-        redisClient.delete("mytest");
+        test2();
         return null;
 
     }

@@ -17,6 +17,8 @@
         <!-- mysql驱动版本号 -->
         <mysql-driver.version>5.1.37</mysql-driver.version>
 
+        <aspectj.version>1.8.13</aspectj.version>
+
         <!-- log4j日志包版本号 -->
         <slf4j.version>1.7.25</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
@@ -105,6 +107,18 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <!--aop依赖-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
         </dependency>
 
         <!--hibernate依赖-->
