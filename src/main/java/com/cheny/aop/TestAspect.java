@@ -1,21 +1,19 @@
 package com.cheny.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class TestAspect {
 
-    @Pointcut("execution(* com.cheny.controller.RedisTest.*(..))")
+    @Pointcut("execution(* com.cheny.controller.TestController.*(..)))")
     public void test() {
     }
 
     @Around("test()")
-    public void beforeTest(ProceedingJoinPoint joinPoint) {
+    public void around(ProceedingJoinPoint joinPoint) {
         try {
             System.out.println("-----before------");
             joinPoint.proceed();
@@ -23,6 +21,24 @@ public class TestAspect {
         } catch (Throwable throwable) {
             System.out.println("error");
         }
+    }
+
+    /**
+     * 限定参数并且将参数传入通知
+     *
+     * @param number
+     */
+    @Before("execution(* com.cheny.service.AreaService.*(int))&&args(number)")
+    public void before(int number) {
+        System.out.println("cut a" + number);
+    }
+
+    /**
+     * 限定bean(id)
+     */
+    @After("execution(* com.cheny.service.BaseService.*(..)) && bean(areaServiceImpl)")
+    public void after() {
+        System.out.println("after");
     }
 
 }

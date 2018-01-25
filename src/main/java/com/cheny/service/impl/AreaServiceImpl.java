@@ -5,6 +5,7 @@ import com.cheny.entity.Area;
 import com.cheny.service.AreaService;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.ByteArrayOutputStream;
@@ -17,6 +18,7 @@ import java.util.List;
 /**
  * Created by cheny on 2017/12/3.
  */
+@Transactional
 @Service("areaServiceImpl")
 public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaService {
 
@@ -66,19 +68,19 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
             }
             area.setChildren(new HashSet<>(citys));
         }
-        try {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-            objectOutputStream.writeObject(areas);
-            redisTemplate.opsForValue().set("test3", byteArrayOutputStream.toByteArray());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+//            objectOutputStream.writeObject(areas);
+//            redisTemplate.opsForValue().set("test3", byteArrayOutputStream.toByteArray());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         return areas;
     }
 
     @Override
-    public List<Area> test() {
+    public List<Area> test(int a) {
         return areaDao.test();
     }
 

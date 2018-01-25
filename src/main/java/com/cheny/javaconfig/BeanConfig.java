@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
 public class BeanConfig {
 
     @Profile("dev")
-    @Bean(name = "profilesBean")
+    @Bean(name = "profilesBean_dev")
     public String devBean() {
         return "dev";
     }
 
     @Profile("prod")
-    @Bean(name = "profilesBean")
+    @Bean(name = "profilesBean_prod")
     public String prodBean() {
         return "prod";
     }

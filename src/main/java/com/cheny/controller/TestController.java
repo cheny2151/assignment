@@ -1,5 +1,6 @@
 package com.cheny.controller;
 
+import com.cheny.service.AnalystService;
 import com.cheny.service.AreaService;
 import com.cheny.utils.JdkRedisClientImpl;
 import org.junit.Test;
@@ -12,31 +13,30 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 
 /**
  * Created by cheny on 2017/12/3.
  */
 @Controller
-public class RedisTest {
+public class TestController {
 
     @Resource(name = "jdkRedisClient")
     private JdkRedisClientImpl<String> redisClient;
     @Resource(name = "areaServiceImpl")
     private AreaService areaService;
-    @Resource(name = "profilesBean")
-    private String profiles;
+    @Resource(name = "analystServiceImpl")
+    private AnalystService analystService;
 
-    @RequestMapping("/redis")
+    @RequestMapping("/test")
     @ResponseBody
     public Object test(HttpServletRequest request) {
 
 //        Proxy.newProxyInstance(this.getClass().getClassLoader(), request.getClass().getInterfaces(), (proxy, method, args) -> null);
 //        test2();
 //        return null;
-        System.out.println(profiles);
+//        areaService.find(1L);
+//        System.out.println("---------");
+//        analystService.find(1L);
         return null;
 
     }
@@ -49,14 +49,13 @@ public class RedisTest {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
             objectOutputStream.writeObject("13132132");
             System.out.println(byteArrayOutputStream.toByteArray().toString());
-            test3();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void test3() {
-        System.out.println("test3");
+    public void test3(int a) {
+        System.out.println(a);
     }
 
 

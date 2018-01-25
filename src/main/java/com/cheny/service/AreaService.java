@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by cheny on 2017/12/3.
  */
-public interface AreaService extends BaseService<Area>{
+public interface AreaService extends BaseService<Area> {
 
     List<Area> getByGrade(Area.Grade grade);
 
@@ -15,6 +15,6 @@ public interface AreaService extends BaseService<Area>{
 
     List<Area> getAll();
 
-    List<Area> test();
+    List<Area> test(int a);
 
 }
