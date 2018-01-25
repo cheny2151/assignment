@@ -17,8 +17,9 @@ public class PageController extends BaseController {
         return "/index";
     }
 
-    @RequestMapping(value = "/page/{a}_{b}", method = RequestMethod.GET)
+    @RequestMapping(value = "/page/{a}/{b}", method = RequestMethod.GET)
     public String forward(@PathVariable String a, @PathVariable String b) {
+        System.out.println(a + "-------" + b);
         return "/" + a + "_" + b;
     }
 

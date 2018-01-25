@@ -5,17 +5,20 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.stereotype.Controller;
 
 import java.beans.PropertyVetoException;
 
 //@Configurable
-//@ComponentScan(basePackages = {"com.cheny"})
+//@ComponentScan(basePackages = {"com.cheny"}, excludeFilters = {@ComponentScan.Filter({Controller.class})})
 //@PropertySource(value = {"classpath:system.properties"})
+//@ImportResource("classpath*:spring/applicationContext*.xml")
 public class RootConfig {
 
-    @Value("${jdbc.driver}")
+   /*@Value("${jdbc.driver}")
     private String driver;
     @Value("${jdbc.url}")
     private String jdbcUrl;
@@ -36,7 +39,7 @@ public class RootConfig {
     @Value("${connection_pools.checkout_timeout}")
     private int checkoutTimeout;
 
-    @Bean(name = "dataSource")
+    @Bean(name = "dataSource",destroyMethod = "close")
     public ComboPooledDataSource setComboPooledDataSource() {
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
         try {
@@ -63,6 +66,6 @@ public class RootConfig {
         entityManagerFactory.setPersistenceXmlLocation("classpath:/persistence.xml");
         entityManagerFactory.setPersistenceUnitName("persistenceUnit");
         return entityManagerFactory;
-    }
+    }*/
 
 }

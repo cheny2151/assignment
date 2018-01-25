@@ -16,6 +16,12 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:spring/applicationContext*.xml</param-value>
   </context-param>
+
+  <context-param>
+    <param-name>spring.profiles.default</param-name>
+    <param-value>dev</param-value>
+  </context-param>
+
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
@@ -52,7 +58,12 @@
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath:spring/springmvc.xml</param-value>
     </init-param>
+    <init-param>
+      <param-name>spring.profiles.default</param-name>
+      <param-value>dev</param-value>
+    </init-param>
   </servlet>
+
   <servlet-mapping>
     <servlet-name>springMVC</servlet-name>
     <url-pattern>/</url-pattern>
@@ -66,5 +77,5 @@
     <error-code>404</error-code>
     <location>/404.action</location>
   </error-page>
-  
+
 </web-app>

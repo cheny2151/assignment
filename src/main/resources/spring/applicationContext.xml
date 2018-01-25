@@ -11,8 +11,9 @@
     <context:property-placeholder location="classpath*:/system.properties" ignore-resource-not-found="true"
                                   ignore-unresolvable="true"/>
 
+    <!-- 自动装配扫描包,不包含@Controller-->
     <context:component-scan base-package="com.cheny">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
@@ -105,7 +106,7 @@
     <!-- 开启注解管理事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <aop:aspectj-autoproxy />
+    <aop:aspectj-autoproxy/>
 
     <!-- ehcache缓存 -->
     <bean id="ehCacheManagerFactoryBean" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
@@ -118,21 +119,5 @@
 
     <!-- 启用缓存注解开关 -->
     <cache:annotation-driven cache-manager="cacheManager"/>
-
-    <!-- redis -->
-    <bean id="jedisPool" class="redis.clients.jedis.JedisPoolConfig">
-        <property name="maxIdle" value="${redis.maxIdle}"/>
-        <property name="maxTotal" value="${redis.maxActive}"/>
-        <property name="maxWaitMillis" value="${redis.maxWait}"/>
-        <property name="testOnBorrow" value="${redis.testOnBorrow}"/>
-    </bean>
-    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
-        <property name="usePool" value="true"/>
-        <property name="hostName" value="${redis.host}"/>
-        <property name="port" value="${redis.port}"/>
-        <property name="timeout" value="${redis.timeout}"/>
-        <!--   <property name="database" value="${redis.default.db}"></property> -->
-        <constructor-arg index="0" ref="jedisPool"/>
-    </bean>
 
 </beans>

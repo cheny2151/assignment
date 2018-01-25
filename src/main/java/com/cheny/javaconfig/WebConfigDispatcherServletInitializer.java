@@ -23,7 +23,7 @@ public class WebConfigDispatcherServletInitializer /*extends AbstractAnnotationC
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{RootConfig.class};
+        return new Class[]{WebServletConfig.class};
     }
 
     @Override
@@ -38,4 +38,6 @@ public class WebConfigDispatcherServletInitializer /*extends AbstractAnnotationC
         characterEncodingFilter.setForceEncoding(true);
         return new Filter[]{characterEncodingFilter};
     }*/
+
+
 }
