@@ -5,6 +5,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+/**
+ * 配置profiles
+ * 1,xml中配置默认加载的profiles spring.profiles.default
+ * 2,tomcat启动脚本中配置激活的profiles --> catalina.bar/sh -->添加JVM环境变量 JAVA_OPTS = -Dspring.profiles.active=prod
+ */
 @Configurable
 @Component
 public class BeanConfig {

@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 /**
  * Created by cheny on 2017/12/3.
@@ -47,8 +45,14 @@ public class TestController {
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-            objectOutputStream.writeObject("13132132");
-            System.out.println(byteArrayOutputStream.toByteArray().toString());
+            objectOutputStream.writeObject("test");
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+            ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+            try {
+                System.out.println(objectInputStream.readObject());
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

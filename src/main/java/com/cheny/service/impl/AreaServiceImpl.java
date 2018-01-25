@@ -68,14 +68,6 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
             }
             area.setChildren(new HashSet<>(citys));
         }
-//        try {
-//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-//            objectOutputStream.writeObject(areas);
-//            redisTemplate.opsForValue().set("test3", byteArrayOutputStream.toByteArray());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         return areas;
     }
 
