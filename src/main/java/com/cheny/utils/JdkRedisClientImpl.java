@@ -176,7 +176,8 @@ public class JdkRedisClientImpl<V> implements RedisClient<V> {
 
     public void HDel(String k, String hk) {
         try {
-            jdkRedisTemplate.delete(k);
+            HashOperations<String, String, V> opsForHash = jdkRedisTemplate.opsForHash();
+            opsForHash.delete(k, hk);
         } catch (Exception e) {
             logger.error("-----redis 删除hash hk失败----- key:hk:" + k + ":" + hk + "\t错误信息 :" + e.getMessage());
             throw e;

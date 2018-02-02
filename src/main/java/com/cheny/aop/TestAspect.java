@@ -13,14 +13,17 @@ public class TestAspect {
     }
 
     @Around("test()")
-    public void around(ProceedingJoinPoint joinPoint) {
+    public String around(ProceedingJoinPoint joinPoint) {
         try {
             System.out.println("-----before------");
-            joinPoint.proceed();
+            Object proceed = joinPoint.proceed();
+            System.out.println(proceed);
             System.out.println("-----after------");
         } catch (Throwable throwable) {
             System.out.println("error");
+            throwable.printStackTrace();
         }
+        return "/error_404";
     }
 
     /**

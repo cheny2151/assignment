@@ -1,16 +1,20 @@
 package com.cheny.controller;
 
+import com.cheny.entity.Analyst;
 import com.cheny.service.AnalystService;
 import com.cheny.service.AreaService;
 import com.cheny.utils.JdkRedisClientImpl;
 import org.junit.Test;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.*;
+import java.lang.reflect.Proxy;
 
 /**
  * Created by cheny on 2017/12/3.
@@ -27,15 +31,14 @@ public class TestController {
 
     @RequestMapping("/test")
     @ResponseBody
-    public Object test(HttpServletRequest request) {
+    public String test() {
 
-//        Proxy.newProxyInstance(this.getClass().getClassLoader(), request.getClass().getInterfaces(), (proxy, method, args) -> null);
 //        test2();
 //        return null;
 //        areaService.find(1L);
 //        System.out.println("---------");
 //        analystService.find(1L);
-        return null;
+        return "origin return";
 
     }
 
@@ -60,6 +63,19 @@ public class TestController {
 
     public void test3(int a) {
         System.out.println(a);
+    }
+
+    public void proxy(HttpServletRequest request) {
+        HttpServletRequest proxyRequest = (HttpServletRequest) Proxy.newProxyInstance(this.getClass().getClassLoader(), request.getClass().getInterfaces(), (proxy, method, args) -> {
+            Object invoke = method.invoke(request, args);
+            if ("getParameter".equals(method.getName())) {
+                return "1";
+            }
+            return invoke;
+        });
+        String test = request.getParameter("test");
+        System.out.println("origin--" + test);
+        System.out.println("proxy--" + proxyRequest.getParameter("test"));
     }
 
 
