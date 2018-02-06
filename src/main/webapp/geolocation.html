@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>test</title>
+		<script type="text/javascript" ></script>
+		<script type="text/javascript">
+			function test() {
+                if (navigator.geolocation){
+                    alert("test running...");
+                    navigator.geolocation.getCurrentPosition(successCallback);
+                }
+                else {
+                    x.innerHTML="Geolocation is not supported by this browser.";
+                }
+            }
+            function successCallback(position) {
+			    alert("callback running...")
+				var coords = position.coords;
+				var latitude = coords.latitude;
+				var longitude = coords.longitude;
+				alert(latitude+".."+longitude);
+            }
+		</script>
+	</head>
+
+	<body>
+	<button onclick="test()">test</button>
+	</body>
+
+</html>
