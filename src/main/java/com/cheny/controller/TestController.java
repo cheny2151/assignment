@@ -1,20 +1,17 @@
 package com.cheny.controller;
 
-import com.cheny.entity.Analyst;
 import com.cheny.service.AnalystService;
 import com.cheny.service.AreaService;
 import com.cheny.task.TaskTest;
 import com.cheny.utils.JdkRedisClientImpl;
 import org.junit.Test;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.io.*;
 import java.lang.reflect.Proxy;
 
@@ -35,23 +32,41 @@ public class TestController {
 
     @RequestMapping("/test")
     @ResponseBody
-    public String test() {
+    public String test(String reParam) {
 
 //        test2();
 //        return null;
 //        areaService.find(1L);
-        System.out.println("---------");
+        System.out.println("reParam" + reParam);
 //        analystService.find(1L);
         taskTest.taskExecute();
         return "origin return";
 
     }
 
+    /**
+     * controller统一异常处理测试
+     *
+     * @return
+     */
     @RequestMapping("/exception")
     @ResponseBody
-    public String exception(){
+    public String exception() {
         throw new IllegalArgumentException();
 //        return "success";
+    }
+
+    /**
+     * 重定向URL传数据测试
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/redirect")
+    public String redirect(Model model) {
+        model.addAttribute("reParam", "success");
+        model.addAttribute("a", "test");
+        return "redirect:/{a}";
     }
 
     @Test
@@ -76,6 +91,11 @@ public class TestController {
         System.out.println(a);
     }
 
+    /**
+     * jdk动态代理
+     *
+     * @param request
+     */
     public void proxy(HttpServletRequest request) {
         HttpServletRequest proxyRequest = (HttpServletRequest) Proxy.newProxyInstance(this.getClass().getClassLoader(), request.getClass().getInterfaces(), (proxy, method, args) -> {
             Object invoke = method.invoke(request, args);
