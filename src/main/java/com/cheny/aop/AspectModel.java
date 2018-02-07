@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class TestAspect {
+public class AspectModel {
 
     @Pointcut("execution(* com.cheny.controller.TestController.test*(..)) && !execution(* com.cheny.controller.TestController.exception(..)))")
     public void test() {

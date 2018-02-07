@@ -2,7 +2,7 @@ package com.cheny.controller;
 
 import com.cheny.service.AnalystService;
 import com.cheny.service.AreaService;
-import com.cheny.task.TaskTest;
+import com.cheny.task.TaskModel;
 import com.cheny.utils.JdkRedisClientImpl;
 import org.junit.Test;
 import org.springframework.stereotype.Controller;
@@ -27,8 +27,8 @@ public class TestController {
     private AreaService areaService;
     @Resource(name = "analystServiceImpl")
     private AnalystService analystService;
-    @Resource(name = "taskTest")
-    private TaskTest taskTest;
+    @Resource(name = "taskModel")
+    private TaskModel taskModel;
 
     @RequestMapping("/test")
     @ResponseBody
@@ -39,7 +39,7 @@ public class TestController {
 //        areaService.find(1L);
         System.out.println("reParam" + reParam);
 //        analystService.find(1L);
-        taskTest.taskExecute();
+        taskModel.taskExecute();
         return "origin return";
 
     }

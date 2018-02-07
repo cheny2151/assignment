@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Component
 @Lazy(value = false)
-public class TaskTest {
+public class TaskModel {
 
     private Logger logger = Logger.getLogger(this.getClass());
 
