@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.*;
@@ -46,6 +47,12 @@ public class TestController {
 
     }
 
+    @RequestMapping("/exception")
+    @ResponseBody
+    public String exception(){
+        throw new IllegalArgumentException();
+//        return "success";
+    }
 
     @Test
     public void test2() {

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestAspect {
 
-    @Pointcut("execution(* com.cheny.controller.TestController.*(..)))")
+    @Pointcut("execution(* com.cheny.controller.TestController.*(..)) && !execution(* com.cheny.controller.TestController.exception()))")
     public void test() {
     }
 
