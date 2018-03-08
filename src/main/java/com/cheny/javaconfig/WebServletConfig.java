@@ -1,8 +1,9 @@
 package com.cheny.javaconfig;
 
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.accept.ContentNegotiationManagerFactoryBean;
@@ -18,9 +19,13 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import java.util.Properties;
 
-//@Configurable
-//@EnableWebMvc
-//@ComponentScan(basePackages = {"com.cheny"}, useDefaultFilters = false, includeFilters = {@ComponentScan.Filter({Controller.class})})
+/**
+ * MVC配置
+ */
+@Configuration
+@EnableWebMvc
+@EnableAspectJAutoProxy
+@ComponentScan(basePackages = {"com.cheny"}, useDefaultFilters = false, includeFilters = {@ComponentScan.Filter({Controller.class})})
 public class WebServletConfig extends WebMvcConfigurerAdapter {
 
     @Bean(name = "contentNegotiationManager")
@@ -59,12 +64,12 @@ public class WebServletConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean(name = "requestMappingHandlerAdapter")
-    public RequestMappingHandlerAdapter registerRequestMappingHandlerAdapter(){
+    public RequestMappingHandlerAdapter registerRequestMappingHandlerAdapter() {
         return new RequestMappingHandlerAdapter();
     }
 
     @Bean(name = "requestMappingHandlerMapping")
-    public RequestMappingHandlerMapping registerRequestMappingHandlerMapping(){
+    public RequestMappingHandlerMapping registerRequestMappingHandlerMapping() {
         return new RequestMappingHandlerMapping();
     }
 

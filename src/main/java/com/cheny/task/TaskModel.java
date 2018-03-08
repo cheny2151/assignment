@@ -18,6 +18,7 @@ public class TaskModel {
     @Scheduled(cron = "0/5 * * * * ? ")
     public void scheduled() {
         logger.info(DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+        taskExecute();
     }
 
     @Async

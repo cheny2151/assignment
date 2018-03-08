@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
  * 2,tomcat启动脚本中配置激活的profiles --> catalina.bar/sh -->添加JVM环境变量 JAVA_OPTS = -Dspring.profiles.active=prod
  */
 @Configurable
-@Component
 public class BeanConfig {
 
     @Profile("dev")

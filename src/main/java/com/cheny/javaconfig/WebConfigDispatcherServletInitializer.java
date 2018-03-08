@@ -8,9 +8,12 @@ import javax.servlet.Filter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-public class WebConfigDispatcherServletInitializer /*extends AbstractAnnotationConfigDispatcherServletInitializer*/ {
+/**
+ * servlet容器配置 (代替web.xml)
+ */
+public class WebConfigDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-    /*@Override
+    @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         servletContext.addListener(RequestContextListener.class);
         super.onStartup(servletContext);
@@ -37,7 +40,7 @@ public class WebConfigDispatcherServletInitializer /*extends AbstractAnnotationC
         characterEncodingFilter.setEncoding("utf-8");
         characterEncodingFilter.setForceEncoding(true);
         return new Filter[]{characterEncodingFilter};
-    }*/
+    }
 
 
 }
