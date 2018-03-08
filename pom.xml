@@ -8,11 +8,13 @@
     <name>assignment Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <!-- spring版本号 -->
-        <spring.version>4.3.9.RELEASE</spring.version>
+        <!-- Spring版本号 -->
+        <spring.version>5.0.4.RELEASE</spring.version>
+        <!-- Spring Security 版本号-->
+        <spring.security>5.0.3.RELEASE</spring.security>
 
-        <!--hibernate版本号-->
-        <hibernate.version>5.2.10.Final</hibernate.version>
+        <!--Hibernate版本号-->
+        <hibernate.version>5.2.14.Final</hibernate.version>
 
         <!-- mysql驱动版本号 -->
         <mysql-driver.version>5.1.37</mysql-driver.version>
@@ -107,6 +109,23 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <!--Spring Security依赖-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.security}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security}</version>
         </dependency>
 
         <!--aop依赖-->
@@ -287,7 +306,6 @@
             </plugin>
         </plugins>
     </build>
-
 
 
 </project>
