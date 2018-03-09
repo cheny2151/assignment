@@ -11,7 +11,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
@@ -26,7 +26,29 @@ import java.util.Properties;
 @EnableWebMvc
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages = {"com.cheny"}, useDefaultFilters = false, includeFilters = {@ComponentScan.Filter({Controller.class})})
-public class WebServletConfig extends WebMvcConfigurerAdapter {
+public class WebServletConfig implements WebMvcConfigurer {
+
+    /**
+     * 静态资源由WEB服务器默认的Servlet来处理
+     *
+     * @param configurer
+     */
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
+
+    /**
+     * 拦截器
+     *
+     * @param registry
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        OpenEntityManagerInViewInterceptor openEntityManagerInViewInterceptor = new OpenEntityManagerInViewInterceptor();
+        registry.addWebRequestInterceptor(openEntityManagerInViewInterceptor).addPathPatterns("/**");
+    }
+
 
     @Bean(name = "contentNegotiationManager")
     public ContentNegotiationManagerFactoryBean registerContentNegotiationManagerFactoryBean() {
@@ -83,27 +105,6 @@ public class WebServletConfig extends WebMvcConfigurerAdapter {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
         multipartResolver.setDefaultEncoding("utf-8");
         return multipartResolver;
-    }
-
-    /**
-     * 静态资源由WEB服务器默认的Servlet来处理
-     *
-     * @param configurer
-     */
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
-
-    /**
-     * 拦截器
-     *
-     * @param registry
-     */
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        OpenEntityManagerInViewInterceptor openEntityManagerInViewInterceptor = new OpenEntityManagerInViewInterceptor();
-        registry.addWebRequestInterceptor(openEntityManagerInViewInterceptor).addPathPatterns("/**");
     }
 
 }

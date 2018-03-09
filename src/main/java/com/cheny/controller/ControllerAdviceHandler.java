@@ -1,11 +1,13 @@
 package com.cheny.controller;
 
 import com.cheny.utils.JsonMessage;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
-import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -21,7 +23,8 @@ public class ControllerAdviceHandler {
      *
      * @return
      */
-    @ExceptionHandler({NoResultException.class})
+    @ExceptionHandler({NoHandlerFoundException.class})
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
     @ResponseBody
     public JsonMessage exceptionHandler() {
         return JsonMessage.error("error_404");
